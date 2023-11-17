@@ -1,9 +1,11 @@
-import AllProductScreen from "./AllProductsScreen";
-import NewProductScreen from "./NewProductScreen";
-import StorefrontScreen from "./StorefrontScreen";
+import AllProductScreen from './AllProductsScreen';
+import NewProductScreen from './NewProductScreen';
+import WarehouseScreen from './WarehouseScreen';
+import SettingBusinessScreen from './SettingBusinessScreen';
 
 export {
-    AllProductScreen,
-    NewProductScreen,
-    StorefrontScreen
-}
+  AllProductScreen,
+  NewProductScreen,
+  WarehouseScreen,
+  SettingBusinessScreen,
+};
