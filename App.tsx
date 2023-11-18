@@ -24,15 +24,15 @@ function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="MapScreen">
-        <Stack.Screen name="MapScreen" component={MapScreen} options={{ headerShown: false }}/>
+        <Stack.Screen name="MapScreen" component={MapScreen} options={{ headerShown: false, animation: "none"  }}/>
         <Stack.Screen name="CheckoutScreen" component={CheckoutScreen} options={{ headerShown: false }}/>
         <Stack.Screen name="ProductScreen" component={ProductScreen} options={{ headerShown: false }}/>
-        <Stack.Screen name="StorefrontScreen" component={StorefrontScreen} options={{ headerShown: false }}/>
+        <Stack.Screen name="StorefrontScreen" component={StorefrontScreen} options={{ headerShown: false, animation: "none"  }}/>
         <Stack.Screen name="AllProductScreen" component={AllProductScreen} options={{ headerShown: false }}/>
         <Stack.Screen name="NewProductScreen" component={NewProductScreen} options={{ headerShown: false }}/>
         <Stack.Screen name="WarehouseScrren" component={WarehouseScreen} options={{ headerShown: false }}/>
-        <Stack.Screen name="SettingUserScreen" component={SettingUserScreen} options={{ headerShown: false }}/>
-        <Stack.Screen name='SettingBusinessScreen' component={SettingBusinessScreen} options={{ headerShown: false }}/>
+        <Stack.Screen name="SettingUserScreen" component={SettingUserScreen} options={{ headerShown: false, animation: "none"  }}/>
+        <Stack.Screen name='SettingBusinessScreen' component={SettingBusinessScreen} options={{ headerShown: false}}/>
       </Stack.Navigator>
     </NavigationContainer>
   );
