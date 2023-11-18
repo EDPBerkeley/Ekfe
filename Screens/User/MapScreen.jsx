@@ -4,16 +4,19 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Icon from 'react-native-vector-icons/Feather';
 import { MainText, TabBar } from "../../Components";
+import { get_all_stores } from "../../API";
+import { ListItem } from "../../Components/List";
 
 const MapScreen = ({ navigation }) => {
 
-    return (
-      <View flex={1}>
-        <MainText text="Map Screen"/>
-        <TabBar navigation={ navigation }/>
-      </View>
 
-    );
+  get_all_stores()
+
+  return (
+    <View flex={1}>
+      <TabBar navigation={ navigation }/>
+    </View>
+  );
 };
 
 

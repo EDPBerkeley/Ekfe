@@ -9,7 +9,7 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome'
 
 const TabBar = ({navigation}) => {
   return (
-      <View style={styles.buttonTabBar}>
+      <View style={styles.buttonTabBar2}>
         <TabIcon icon="Ionicons" icon_name="globe-outline" description="Marketplace" onPress={() => navigation.navigate("MapScreen")} />
         <TabIcon icon="Ionicons" icon_name="clipboard-outline" description="Storefront" onPress={() => navigation.navigate("StorefrontScreen")} />
         <TabIcon icon="FontAwesome" icon_name="bars" description={"Settings"} onPress={() => navigation.navigate("SettingUserScreen")} />
@@ -34,8 +34,19 @@ const IconWrapper = {
   FontAwesome
 }
 
+
 const styles = StyleSheet.create({
+  buttonTabBar2: {
+    flex: 1,
+    flexDirection: 'row',
+    position: 'absolute',
+    bottom: 0,
+    paddingBottom: 5,
+    paddingTop: 7,
+    backgroundColor: '#8E0000',
+  },
   buttonTabBar: {
+    flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-between',
     paddingBottom: 10,
@@ -43,18 +54,20 @@ const styles = StyleSheet.create({
     paddingLeft: 35,
     paddingRight: 35,
     backgroundColor: '#8E0000',
-    height: 60
+    height: 60,
+    position: 'absolute',
+    bottom: 0,
   },
   icon: {
     color: '#FFFFFF'
   },
   iconGroup: {
-    alignItems: 'center'
+    alignItems: 'center',
+    flex: 1
   },
   text: {
     fontSize: 10,
     color: '#FFFFFF',
-    paddingTop: 2
   }
 });
 
