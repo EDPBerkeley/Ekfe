@@ -5,6 +5,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Feather from 'react-native-vector-icons/Feather';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
+import { ICONWRAPPER } from "../../Constants";
 
 
 const TabBar = ({navigation}) => {
@@ -18,7 +19,7 @@ const TabBar = ({navigation}) => {
 }
 const TabIcon = ({ icon, icon_name, onPress, description }) => {
 
-  const SelectedIcon = IconWrapper[icon]
+  const SelectedIcon = ICONWRAPPER[icon]
 
   return (
     <TouchableOpacity style={styles.iconGroup} onPress={onPress}>
@@ -28,11 +29,6 @@ const TabIcon = ({ icon, icon_name, onPress, description }) => {
   );
 };
 
-const IconWrapper = {
-  Feather,
-  Ionicons,
-  FontAwesome
-}
 
 
 const styles = StyleSheet.create({

@@ -1,9 +1,11 @@
 import { StyleSheet, Text, View } from "react-native";
+import { ListItem } from "../List";
 
 const MainText = ({text}) => {
 
   return (
     <View style={Styles.container}>
+
       <Text style={Styles.text}>{text}</Text>
     </View>
 
