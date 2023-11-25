@@ -1,5 +1,5 @@
-import { View, Text, StyleSheet, Button, TouchableOpacity } from "react-native";
-import React from "react";
+import { View, Text, StyleSheet, Button, TouchableOpacity, FlatList } from "react-native";
+import React, { useEffect, useState } from "react";
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Icon from 'react-native-vector-icons/Feather';
@@ -10,25 +10,52 @@ import { Title } from "../../Components/Title/title";
 
 const MapScreen = ({ navigation }) => {
 
+  const [list_data, set_list_data] = useState(null)
 
-  get_all_stores()
+  useEffect(() => {
+    let mounted = true;
+    get_all_stores()
+      .then((data) => {
+        if (mounted) {
+          set_list_data(JSON.parse(data))
+        }
+      })
+    return () => {
+      mounted = false;
+    }
+  }, [])
 
-  return (
-    <View flex={1}>
-      <Title text={"Marketplace"}/>
-      <ListItem
-        name={"The Cool Store"}
-        rating={5}
-        category={3}
-        phone_number={"240-550-1099"}
-        cost={2}
-        distance={5}
-        description={"Guess mother serious down wrong. Manager door her particular. Adult resource use indeed white trip only always. Final financial after."}
-      />
-      <TabBar navigation={ navigation }/>
-    </View>
-  );
-};
+
+  if (list_data != null) {
+    return (
+      <View flex={1}>
+        <Title text={"Marketplace"} />
+        <View paddingTop={0}>
+          <FlatList
+            data={list_data}
+            renderItem={({ item }) => (
+              <ListItem
+                name={item.name}
+                rating={item.rating}
+                category={item.category}
+                phone_number={item.number}
+                cost={item.cost}
+                distance={item.distance}
+                description={item.description}
+              />
+            )}
+            keyExtractor={item => item.id}
+          />
+        </View>
+
+        <TabBar navigation={navigation} />
+      </View>
+    );
+  };
+}
+
+
+
 
 
 export default MapScreen;

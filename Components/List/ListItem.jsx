@@ -1,57 +1,12 @@
 import { Text, View, StyleSheet } from "react-native";
 import { CATEGORIES, ICONWRAPPER } from "../../Constants";
-import Feather from "react-native-vector-icons/Feather";
 
-
-
-const NumCost = (numSigns) => {
-  let finalComponents = []
-  const SelectedIcon = ICONWRAPPER["Feather"]
-
-  for (let i = 0; i < numSigns + 1; i++) {
-    finalComponents.push(
-      <SelectedIcon style={container_styles.cost} name={"dollar-sign"}/>
-    )
-  }
-
-  return finalComponents
-}
-
-const Rating = (rating) => {
-  return (
-    <View style={rating_stylesheet.container}>
-      <ICONWRAPPER["AntDesign"] style=star>
-      <Text style={rating_stylesheet.rating_text}>{rating}</Text>
-    </View>
-
-  )
-}
-
-const rating_stylesheet = StyleSheet.create({
-  container: {
-    flexDirection: "row",
-    width: 60,
-    height: 22.5,
-    backgroundColor: "#8E0000",
-    borderRadius: 4,
-    alignItems: "center"
-  },
-  rating_text: {
-    fontFamily: "Roboto-bold",
-    color: "#FFFFFF"
-  },
-  star: {
-    fontSize: 15,
-    color: "#FFFFFF"
-  }
-})
 const ListItem = ({name, category, phone_number, cost, distance, rating, description}) => {
 
   const CostComponents = NumCost(cost)
   description = "Description: " + description
   distance = distance + " mi"
   category = CATEGORIES[category]
-  const b = Rating(rating)
   return(
 
     <View style={container_styles.list}>
@@ -75,12 +30,35 @@ const ListItem = ({name, category, phone_number, cost, distance, rating, descrip
         <Text style={text_styles.description}>{ description }</Text>
       </View>
 
-
-
-
+      <View style={container_styles.divider}></View>
     </View>
   )
 };
+
+const NumCost = (numSigns) => {
+  let finalComponents = []
+  const SelectedIcon = ICONWRAPPER["Feather"]
+
+  for (let i = 0; i < numSigns + 1; i++) {
+    finalComponents.push(
+      <SelectedIcon style={container_styles.cost} name={"dollar-sign"}/>
+    )
+  }
+
+  return finalComponents
+}
+
+const Rating = (rating) => {
+
+  const SelectedIcon = ICONWRAPPER["AntDesign"]
+  return (
+    <View style={rating_stylesheet.container}>
+      <SelectedIcon style={[rating_stylesheet.star, rating_stylesheet.star_container]} name={"star"}/>
+      <Text style={rating_stylesheet.rating_text}>{rating}</Text>
+    </View>
+
+  )
+}
 
 const container_styles = StyleSheet.create({
 
@@ -90,8 +68,8 @@ const container_styles = StyleSheet.create({
   },
   header: {
     flexDirection: 'row',
-    paddingTop: 10,
     justifyContent: 'space-between',
+    paddingTop: 22
   },
   intermediate: {
     flexDirection: 'column'
@@ -118,10 +96,14 @@ const container_styles = StyleSheet.create({
   cost_container: {
     paddingHorizontal: 13
   },
+  divider: {
+    flexDirection: "row",
+    backgroundColor: "#8E0000",
+    paddingHorizontal: 15,
+    marginTop: 10,
+    height: 1
 
-
-
-
+  }
 })
 
 const text_styles = StyleSheet.create({
@@ -129,6 +111,7 @@ const text_styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: 'bold',
     fontFamily: 'Roboto-Bold',
+    color: "#343434"
   },
   info_text_other_items: {
     paddingLeft: 13
@@ -152,6 +135,32 @@ const text_styles = StyleSheet.create({
   },
   category: {
     fontWeight: 'bold'
+  }
+})
+
+
+const rating_stylesheet = StyleSheet.create({
+  container: {
+    flexDirection: "row",
+    width: 50,
+    height: 22.5,
+    backgroundColor: "#8E0000",
+    borderRadius: 4,
+    alignItems: "center",
+    justifyContent: "space-evenly"
+  },
+  rating_text: {
+    fontFamily: "Roboto-bold",
+    color: "#FFFFFF",
+    fontSize: 16,
+    paddingTop: 1
+  },
+  star_container: {
+
+  },
+  star: {
+    fontSize: 15,
+    color: "#FFFFFF"
   }
 })
 
