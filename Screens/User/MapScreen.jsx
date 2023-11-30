@@ -28,6 +28,7 @@ const MapScreen = ({ navigation }) => {
     console.log("This is the center", center)
   }
 
+
   useEffect(() => {
     let mounted = true;
     get_all_stores()
@@ -63,7 +64,7 @@ const MapScreen = ({ navigation }) => {
           >
             <Marker
               key={1}
-              coordinate={{latitude: 37.8715, longitude: -122.2730}}
+              coordinate={{latitude: center["latitude"], longitude: center["longitude"]}}
               title={"Pin"}
               description={"Desc"}
               pinColor={"#00FFFF"}
