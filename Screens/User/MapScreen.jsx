@@ -7,8 +7,13 @@ import { MainText, TabBar } from "../../Components";
 import { get_all_stores } from "../../API";
 import { ListItem } from "../../Components/List";
 import { Title } from "../../Components/Title/title";
-import MapView from "react-native-maps";
+import MapView, { Marker, PROVIDER_GOOGLE } from "react-native-maps";
+import { MAPSTYLE } from "../../Constants";
 
+
+const stuff = (region) => {
+  console.log(region)
+}
 const MapScreen = ({ navigation }) => {
 
   const [list_data, set_list_data] = useState(null)
@@ -34,6 +39,8 @@ const MapScreen = ({ navigation }) => {
         <Title text={"Marketplace"} />
         <View flex={2}>
           <MapView
+            customMapStyle={MAPSTYLE}
+            provider={PROVIDER_GOOGLE}
             style={{flex: 1}}
             region={{
               latitude: 37.8715,
@@ -41,7 +48,18 @@ const MapScreen = ({ navigation }) => {
               latitudeDelta: 0.0922,
               longitudeDelta: 0.0421
             }}
-          />
+            onRegionChangeComplete={
+            stuff
+            }
+          >
+            <Marker
+              key={1}
+              coordinate={{latitude: 37.8715, longitude: -122.2730}}
+              title={"Pin"}
+              description={"Desc"}
+              pinColor={"#00FFFF"}
+            />
+          </MapView>
         </View>
         <View flex={3}>
         <View paddingTop={0}>
@@ -69,6 +87,12 @@ const MapScreen = ({ navigation }) => {
   };
 }
 
+const styles = StyleSheet.create({
+  map: {
+
+  }
+
+})
 
 
 

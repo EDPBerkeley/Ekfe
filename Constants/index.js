@@ -1,6 +1,7 @@
-import {ICONWRAPPER, CATEGORIES} from "./constants";
+import {ICONWRAPPER, CATEGORIES, MAPSTYLE} from "./constants";
 
 export {
   ICONWRAPPER,
-  CATEGORIES
+  CATEGORIES,
+  MAPSTYLE
 }
