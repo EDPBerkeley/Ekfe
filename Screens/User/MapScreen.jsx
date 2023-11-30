@@ -7,6 +7,7 @@ import { MainText, TabBar } from "../../Components";
 import { get_all_stores } from "../../API";
 import { ListItem } from "../../Components/List";
 import { Title } from "../../Components/Title/title";
+import MapView from "react-native-maps";
 
 const MapScreen = ({ navigation }) => {
 
@@ -29,7 +30,20 @@ const MapScreen = ({ navigation }) => {
   if (list_data != null) {
     return (
       <View flex={1}>
+
         <Title text={"Marketplace"} />
+        <View flex={2}>
+          <MapView
+            style={{flex: 1}}
+            region={{
+              latitude: 37.8715,
+              longitude: -122.2730,
+              latitudeDelta: 0.0922,
+              longitudeDelta: 0.0421
+            }}
+          />
+        </View>
+        <View flex={3}>
         <View paddingTop={0}>
           <FlatList
             data={list_data}
@@ -46,6 +60,7 @@ const MapScreen = ({ navigation }) => {
             )}
             keyExtractor={item => item.id}
           />
+        </View>
         </View>
 
         <TabBar navigation={navigation} />
