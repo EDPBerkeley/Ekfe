@@ -11,12 +11,22 @@ import MapView, { Marker, PROVIDER_GOOGLE } from "react-native-maps";
 import { MAPSTYLE } from "../../Constants";
 
 
-const stuff = (region) => {
-  console.log(region)
-}
+
+
 const MapScreen = ({ navigation }) => {
 
   const [list_data, set_list_data] = useState(null)
+  const [center, set_center] = useState({
+    latitude: 37.8715,
+    longitude: -122.2730,
+    latitudeDelta: 0.0922,
+    longitudeDelta: 0.0421
+  })
+
+  const regionChange = (region) => {
+    set_center(region)
+    console.log("This is the center", center)
+  }
 
   useEffect(() => {
     let mounted = true;
@@ -38,18 +48,17 @@ const MapScreen = ({ navigation }) => {
 
         <Title text={"Marketplace"} />
         <View flex={2}>
+
+
+
+
           <MapView
             customMapStyle={MAPSTYLE}
             provider={PROVIDER_GOOGLE}
             style={{flex: 1}}
-            region={{
-              latitude: 37.8715,
-              longitude: -122.2730,
-              latitudeDelta: 0.0922,
-              longitudeDelta: 0.0421
-            }}
+            region={center}
             onRegionChangeComplete={
-            stuff
+            regionChange
             }
           >
             <Marker
@@ -60,6 +69,10 @@ const MapScreen = ({ navigation }) => {
               pinColor={"#00FFFF"}
             />
           </MapView>
+
+
+
+
         </View>
         <View flex={3}>
         <View paddingTop={0}>
@@ -80,9 +93,12 @@ const MapScreen = ({ navigation }) => {
           />
         </View>
         </View>
-
         <TabBar navigation={navigation} />
       </View>
+
+
+
+
     );
   };
 }
