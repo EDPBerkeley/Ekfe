@@ -17,7 +17,7 @@ async function get_stores_in_boundary(ne_lat, ne_lon, sw_lat, sw_lon)  {
     "sw_lat": sw_lat
   })
   const url = STORE_URL + `/get_stores/boundary?${queryString}`
-  console.log("URL", url)
+  // console.log("URL", url)
   return fetch(url)
     .then(data => data.json())
 }

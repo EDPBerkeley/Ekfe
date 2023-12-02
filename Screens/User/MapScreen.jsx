@@ -1,9 +1,6 @@
-import { View, Text, StyleSheet, Button, TouchableOpacity, FlatList } from "react-native";
-import React, { useEffect, useRef, useState } from "react";
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import Icon from 'react-native-vector-icons/Feather';
-import { MainText, TabBar } from "../../Components";
+import { View, FlatList, Text } from "react-native";
+import React, { useState } from "react";
+import { TabBar } from "../../Components";
 import { get_all_stores, get_stores_in_boundary } from "../../API";
 import { ListItem } from "../../Components/List";
 import { Title } from "../../Components/Title/title";
@@ -17,7 +14,8 @@ const MapScreen = ({ navigation }) => {
 
   const [list_data, set_list_data] = useState(null)
   const [mapRef, set_mapRef] = useState(null)
-  let intial = true
+  const[initial, set_initial] = useState(true)
+  const[markers, set_markers] = useState(null)
   // const mapRef = useRef(null)
   const [center, set_center] = useState({
     latitude: 37.8715,
@@ -28,51 +26,60 @@ const MapScreen = ({ navigation }) => {
 
   const regionChange = (region) => {
     set_center(region)
-    get_store_markers()
-    console.log("This is the center", center)
+    get_store_by_boundaries()
+    // console.log("This is the center", center)
   }
 
-  const get_store_markers = () => {
-    if (intial === true) {
+  const get_store_by_boundaries = () => {
+    if (initial === true) {
       get_all_stores()
         .then((data) => {
           set_list_data(JSON.parse(data))
+          set_initial(false)
         })
     }
-    if (intial === false) {
+    if (initial === false) {
       let boundaries = mapRef
         .getMapBoundaries()
         .then((boundaries) => {
-          console.log(boundaries)
+          // console.log(boundaries)
           get_stores_in_boundary(
             boundaries["northEast"]["latitude"],
             boundaries["northEast"]["longitude"],
             boundaries["southWest"]["latitude"],
             boundaries["southWest"]["longitude"])
             .then((data) => {
-              console.log("THIS IS DATAASDFSDF", Object.keys(data).length)
-              intial = false
+
               set_list_data(JSON.parse(data))
+
+              create_store_markers()
+
 
             })
         })
     }
   }
 
+  const create_store_markers = () => {
+    // console.log(list_data[0]["location"]["geometry"]["coordinates"])
+    let updated_markers = list_data.map((marker, index) => {
+      // console.log("THIS IS MARKER", marker["location"]["geometry"]["coordinates"])
+      // return <Marker
+      //   key={index}
+      //   coordinate={marker["location"]["geometry"]["coordinates"]}
+      //   title={marker["name"]}
+      //   description={marker["description"]}
+      // />
+      return <Marker
+        key={index}
+        coordinate={{"latitude": marker.location.geometry.coordinates[1], "longitude":marker.location.geometry.coordinates[0]}}
+        title={"HI"}
+        description={"DESC"}
+      />
+    })
 
-  // if (mounted === false) {
-  //   useEffect(() => {
-  //     let mounted = true;
-  //     get_all_stores()
-  //       .then((data) => {
-  //         if (mounted) {
-  //           set_list_data(JSON.parse(data))
-  //         }
-  //       })
-  //   }, [])
-  // }
-
-
+    set_markers(updated_markers)
+  }
 
 
     return (
@@ -92,13 +99,14 @@ const MapScreen = ({ navigation }) => {
             region={center}
             onRegionChangeComplete={regionChange}
           >
-            <Marker
-              key={1}
-              coordinate={{latitude: center["latitude"], longitude: center["longitude"]}}
-              title={"Pin"}
-              description={"Desc"}
-              pinColor={"#00FFFF"}
-            />
+            {/*<Marker*/}
+            {/*  key={1}*/}
+            {/*  coordinate={{latitude: center["latitude"], longitude: center["longitude"]}}*/}
+            {/*  title={"Pin"}*/}
+            {/*  description={"Desc"}*/}
+            {/*  pinColor={"#00FFFF"}*/}
+            {/*/>*/}
+            {markers}
 
           </MapView>
 
