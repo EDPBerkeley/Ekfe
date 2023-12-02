@@ -5,7 +5,7 @@ const ProductScreen = ({navigation}) => {
 
   return(
     <View flex={1}>
-      <MainText text={ProductScreen}/>
+      <MainText text={"ProductScreen"}/>
       <TabBar navigation={navigation}/>
     </View>
   )

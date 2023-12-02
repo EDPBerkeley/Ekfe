@@ -139,11 +139,9 @@ const MapScreen = ({ navigation }) => {
         <View paddingTop={0}>
           <FlatList
             data={list_data}
-            keyExtractor={(item, index) => {
-              return index.toString();
-            }}
-            renderItem={({ item, index }) => (
+            renderItem={({ item }) => (
               <ListItem
+                key = {item._id}
                 name={item.name}
                 rating={item.rating}
                 category={item.category}
@@ -151,6 +149,7 @@ const MapScreen = ({ navigation }) => {
                 cost={item.cost}
                 distance={item.distance}
                 description={item.description}
+                navigation={navigation}
               />
             )}
           />

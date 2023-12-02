@@ -1,37 +1,38 @@
-import { Text, View, StyleSheet } from "react-native";
+import { Text, View, StyleSheet, TouchableOpacity } from "react-native";
 import { CATEGORIES, ICONWRAPPER } from "../../Constants";
 
-const ListItem = ({name, category, phone_number, cost, distance, rating, description}) => {
+const ListItem = ({name, category, phone_number, cost, distance, rating, description, navigation}) => {
 
   const CostComponents = NumCost(cost)
   description = "Description: " + description
   distance = distance + " mi"
   category = CATEGORIES[category]
   return(
-
-    <View style={container_styles.list}>
-      <View style={container_styles.header}>
-        <View style={container_styles.intermediate}>
-          <Text style={[text_styles.store_name]}>{name}</Text>
-          <View style={container_styles.info_row}>
-            <Text style={[text_styles.info_text_first_item, text_styles.info]}>{category}</Text>
-            <Text style={[text_styles.info_text_other_items, text_styles.info, text_styles.phone_number]}>{phone_number}</Text>
-            <View style={container_styles.cost_container}>
-              <View style={container_styles.cost}>{NumCost(cost)}</View>
+    <TouchableOpacity onPress={() => navigation.navigate("ProductScreen")}>
+      <View style={container_styles.list}>
+        <View style={container_styles.header}>
+          <View style={container_styles.intermediate}>
+            <Text style={[text_styles.store_name]}>{name}</Text>
+            <View style={container_styles.info_row}>
+              <Text style={[text_styles.info_text_first_item, text_styles.info]}>{category}</Text>
+              <Text style={[text_styles.info_text_other_items, text_styles.info, text_styles.phone_number]}>{phone_number}</Text>
+              <View style={container_styles.cost_container}>
+                <View style={container_styles.cost}>{NumCost(cost)}</View>
+              </View>
+              <Text style={[text_styles.info_text_other_items, text_styles.info]}>{distance}</Text>
             </View>
-            <Text style={[text_styles.info_text_other_items, text_styles.info]}>{distance}</Text>
           </View>
+          {Rating(rating)}
+
         </View>
-        {Rating(rating)}
 
+        <View style={container_styles.description}>
+          <Text style={text_styles.description}>{ description }</Text>
+        </View>
+
+        <View style={container_styles.divider}></View>
       </View>
-
-      <View style={container_styles.description}>
-        <Text style={text_styles.description}>{ description }</Text>
-      </View>
-
-      <View style={container_styles.divider}></View>
-    </View>
+    </TouchableOpacity>
   )
 };
 
