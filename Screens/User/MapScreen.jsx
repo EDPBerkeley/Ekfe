@@ -1,4 +1,4 @@
-import { View, FlatList, Text } from "react-native";
+import { FlatList, View } from "react-native";
 import React, { useState } from "react";
 import { TabBar } from "../../Components";
 import { get_all_stores, get_stores_in_boundary } from "../../API";
@@ -6,8 +6,6 @@ import { ListItem } from "../../Components/List";
 import { Title } from "../../Components/Title/title";
 import MapView, { Marker, PROVIDER_GOOGLE } from "react-native-maps";
 import { MAPSTYLE } from "../../Constants";
-
-
 
 
 const MapScreen = ({ navigation }) => {
@@ -23,6 +21,31 @@ const MapScreen = ({ navigation }) => {
     latitudeDelta: 0.0922,
     longitudeDelta: 0.0421
   })
+
+  const doubleBounds = (boundary) => {
+    const x1 = boundary["southWest"]["latitude"]
+    const y1 = boundary["southWest"]["longitude"]
+    const x2 = boundary["northEast"]["latitude"]
+    const y2 = boundary["northEast"]["longitude"]
+
+    const length = x2 - x1
+    const height = y2 - y1
+
+    // return {
+    //   "northEast_x": x2 + length,
+    //   "northEast_y": y2 + height,
+    //   "southWest_x": x1 - length,
+    //   "southWest_y": y2 - height
+    // }
+    const bounds =  [
+      x2 + (4 * length),
+      y2 + (4 * height),
+      x1 - (4* length),
+      y2 - (4 * height)
+      ]
+    // console.log(bounds)
+    return bounds
+  }
 
   const regionChange = (region) => {
     set_center(region)
@@ -43,11 +66,12 @@ const MapScreen = ({ navigation }) => {
         .getMapBoundaries()
         .then((boundaries) => {
           // console.log(boundaries)
+          boundaries = doubleBounds(boundaries)
           get_stores_in_boundary(
-            boundaries["northEast"]["latitude"],
-            boundaries["northEast"]["longitude"],
-            boundaries["southWest"]["latitude"],
-            boundaries["southWest"]["longitude"])
+            boundaries[0],
+            boundaries[1],
+            boundaries[2],
+            boundaries[3])
             .then((data) => {
 
               set_list_data(JSON.parse(data))
@@ -61,18 +85,12 @@ const MapScreen = ({ navigation }) => {
   }
 
   const create_store_markers = () => {
-    // console.log(list_data[0]["location"]["geometry"]["coordinates"])
-    let updated_markers = list_data.map((marker, index) => {
-      // console.log("THIS IS MARKER", marker["location"]["geometry"]["coordinates"])
-      // return <Marker
-      //   key={index}
-      //   coordinate={marker["location"]["geometry"]["coordinates"]}
-      //   title={marker["name"]}
-      //   description={marker["description"]}
-      // />
+
+    let updated_markers = list_data.map((shop, index) => {
+
       return <Marker
-        key={index}
-        coordinate={{"latitude": marker.location.geometry.coordinates[1], "longitude":marker.location.geometry.coordinates[0]}}
+        key={shop._id}
+        coordinate={{"latitude": shop.location.geometry.coordinates[1], "longitude":shop.location.geometry.coordinates[0]}}
         title={"HI"}
         description={"DESC"}
       />
@@ -99,13 +117,6 @@ const MapScreen = ({ navigation }) => {
             region={center}
             onRegionChangeComplete={regionChange}
           >
-            {/*<Marker*/}
-            {/*  key={1}*/}
-            {/*  coordinate={{latitude: center["latitude"], longitude: center["longitude"]}}*/}
-            {/*  title={"Pin"}*/}
-            {/*  description={"Desc"}*/}
-            {/*  pinColor={"#00FFFF"}*/}
-            {/*/>*/}
             {markers}
 
           </MapView>
