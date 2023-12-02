@@ -12,6 +12,7 @@ const MapScreen = ({ navigation }) => {
 
   const [list_data, set_list_data] = useState(null)
   const [mapRef, set_mapRef] = useState(null)
+  const [marker_data, set_marker_data] = useState(null)
   const[initial, set_initial] = useState(true)
   const[markers, set_markers] = useState(null)
   // const mapRef = useRef(null)
@@ -22,7 +23,7 @@ const MapScreen = ({ navigation }) => {
     longitudeDelta: 0.0421
   })
 
-  const doubleBounds = (boundary) => {
+  const doubleBounds = (boundary, scope) => {
     const x1 = boundary["southWest"]["latitude"]
     const y1 = boundary["southWest"]["longitude"]
     const x2 = boundary["northEast"]["latitude"]
@@ -31,19 +32,12 @@ const MapScreen = ({ navigation }) => {
     const length = x2 - x1
     const height = y2 - y1
 
-    // return {
-    //   "northEast_x": x2 + length,
-    //   "northEast_y": y2 + height,
-    //   "southWest_x": x1 - length,
-    //   "southWest_y": y2 - height
-    // }
     const bounds =  [
-      x2 + (4 * length),
-      y2 + (4 * height),
-      x1 - (4* length),
-      y2 - (4 * height)
-      ]
-    // console.log(bounds)
+      x2 + (scope * length),
+      y2 + (scope * height),
+      x1 - (scope * length),
+      y1 - (scope * height)
+    ]
     return bounds
   }
 
@@ -64,19 +58,35 @@ const MapScreen = ({ navigation }) => {
     if (initial === false) {
       let boundaries = mapRef
         .getMapBoundaries()
-        .then((boundaries) => {
+        .then((boundary) => {
           // console.log(boundaries)
-          boundaries = doubleBounds(boundaries)
+          const list_store_boundary = doubleBounds(boundary, 0)
+          const marker_store_boundary = doubleBounds(boundary, 4)
+
           get_stores_in_boundary(
-            boundaries[0],
-            boundaries[1],
-            boundaries[2],
-            boundaries[3])
+            list_store_boundary[0],
+            list_store_boundary[1],
+            list_store_boundary[2],
+            list_store_boundary[3])
             .then((data) => {
+
+              // console.log("Length of list_store", Object.keys(JSON.parse(data)).length)
 
               set_list_data(JSON.parse(data))
 
-              create_store_markers()
+              get_stores_in_boundary(
+                marker_store_boundary[0],
+                marker_store_boundary[1],
+                marker_store_boundary[2],
+                marker_store_boundary[3]
+              )
+                .then((marker_data_p) => {
+
+                  set_marker_data(JSON.parse(marker_data_p))
+                  create_store_markers()
+                })
+
+
 
 
             })
@@ -86,7 +96,7 @@ const MapScreen = ({ navigation }) => {
 
   const create_store_markers = () => {
 
-    let updated_markers = list_data.map((shop, index) => {
+    let updated_markers = marker_data.map((shop, index) => {
 
       return <Marker
         key={shop._id}
