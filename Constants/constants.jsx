@@ -28,6 +28,190 @@ const CATEGORIES = [
   "Office & School Supplies"
 ]
 
+const PRODUCT_CATEGORIES = {
+  "Home": [
+    "Home Decor",
+    "Cleaning Supplies",
+    "Bedding & Linens",
+    "Lighting",
+    "Home Improvement Tools",
+    "Gardening Supplies",
+    "Air Purifiers",
+    "Home Fragrances",
+    "Security Systems",
+    "Storage Solutions"
+  ],
+  "Kitchen": [
+    "Cookware",
+    "Utensils",
+    "Small Appliances",
+    "Food Storage",
+    "Tableware",
+    "Bakeware",
+    "Kitchen Linens",
+    "Kitchen Gadgets",
+    "Cutlery",
+    "Barware"
+  ],
+  "Electronics": [
+    "Computers & Accessories",
+    "Mobile Devices",
+    "Audio & Video Equipment",
+    "Smart Home Devices",
+    "Cameras & Photography",
+    "Gaming Consoles",
+    "Wearable Technology",
+    "Networking Devices",
+    "Electronic Components",
+    "Batteries & Chargers"
+  ],
+  "Clothing": [
+    "Women's Fashion",
+    "Men's Fashion",
+    "Kids' & Baby Clothing",
+    "Footwear",
+    "Accessories",
+    "Activewear",
+    "Outerwear",
+    "Undergarments",
+    "Formal Wear",
+    "Sleepwear"
+  ],
+  "Books": [
+    "Fiction",
+    "Non-Fiction",
+    "Children's Books",
+    "Educational",
+    "E-Books",
+    "Cookbooks",
+    "Biographies",
+    "Self-Help",
+    "Graphic Novels",
+    "Reference Books"
+  ],
+  "Furniture": [
+    "Living Room Furniture",
+    "Bedroom Furniture",
+    "Office Furniture",
+    "Outdoor Furniture",
+    "Storage Solutions",
+    "Dining Furniture",
+    "Bar Furniture",
+    "Kids' Furniture",
+    "Accent Pieces",
+    "Mattresses"
+  ],
+  "Beauty": [
+    "Skincare Products",
+    "Makeup",
+    "Hair Care Products",
+    "Fragrances",
+    "Nail Care",
+    "Beauty Tools",
+    "Men's Grooming",
+    "Bath & Body Products",
+    "Sun Care Products",
+    "Beauty Supplements"
+  ],
+  "Sports & Outdoors": [
+    "Fitness Equipment",
+    "Outdoor Gear",
+    "Athletic Apparel",
+    "Water Sports Equipment",
+    "Camping & Hiking Gear",
+    "Cycling Gear",
+    "Sports Nutrition",
+    "Team Sports Equipment",
+    "Winter Sports Gear",
+    "Fishing Equipment"
+  ],
+  "Toys & Games": [
+    "Educational Toys",
+    "Board Games",
+    "Electronic Toys",
+    "Puzzles",
+    "Dolls & Action Figures",
+    "Outdoor Toys",
+    "Crafts & Arts",
+    "Musical Toys",
+    "Role Playing Games",
+    "Construction Toys"
+  ],
+  "Jewelry": [
+    "Necklaces & Pendants",
+    "Earrings",
+    "Rings",
+    "Bracelets",
+    "Watches",
+    "Body Jewelry",
+    "Fine Jewelry",
+    "Costume Jewelry",
+    "Jewelry Boxes & Organizers",
+    "Jewelry Making Supplies"
+  ],
+  "Grocery": [
+    "Fresh Produce",
+    "Meat & Seafood",
+    "Dairy & Eggs",
+    "Bakery Items",
+    "Snacks & Beverages",
+    "Frozen Foods",
+    "Pantry Staples",
+    "Organic Products",
+    "International Cuisine",
+    "Specialty Diet Foods"
+  ],
+  "Automotive": [
+    "Car Accessories",
+    "Automotive Tools",
+    "Car Care Products",
+    "Replacement Parts",
+    "Motor Oils & Fluids",
+    "Car Electronics",
+    "Tires & Wheels",
+    "Motorcycle Gear",
+    "Auto Safety & Security",
+    "Vehicle Covers"
+  ],
+  "Pet Supplies": [
+    "Pet Food",
+    "Toys & Play Items",
+    "Grooming Products",
+    "Healthcare Items",
+    "Bedding & Accessories",
+    "Feeding & Watering Supplies",
+    "Pet Clothing & Accessories",
+    "Aquariums & Supplies",
+    "Pet Training Products",
+    "Pet Travel & Carriers"
+  ],
+  "Health & Wellness": [
+    "Vitamins & Supplements",
+    "Personal Care Items",
+    "Fitness & Weight Management",
+    "Medical Devices",
+    "Natural Remedies",
+    "First Aid Supplies",
+    "Prescription Medications",
+    "Sexual Wellness",
+    "Sleep & Snoring Aids",
+    "Mobility Aids"
+  ],
+  "Office & School Supplies": [
+    "Writing Instruments",
+    "Notebooks & Paper Products",
+    "Desk Organizers",
+    "School Supplies",
+    "Office Technology",
+    "Art Supplies",
+    "Filing & Storage",
+    "Printers & Ink",
+    "Office Furniture",
+    "Calendars & Planners"
+  ]
+};
+
+
 const MAPSTYLE = [
   {
     "featureType": "administrative",

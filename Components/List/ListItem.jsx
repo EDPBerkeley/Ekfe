@@ -1,14 +1,14 @@
 import { Text, View, StyleSheet, TouchableOpacity } from "react-native";
 import { CATEGORIES, ICONWRAPPER } from "../../Constants";
 
-const ListItem = ({name, category, phone_number, cost, distance, rating, description, navigation}) => {
-
+const ListItem = ({name, category, phone_number, cost, distance, rating, description, navigation, shop }) => {
+  // console.log("THIS IS INSIDE LISTITEM", shop)
   const CostComponents = NumCost(cost)
   description = "Description: " + description
   distance = distance + " mi"
   category = CATEGORIES[category]
   return(
-    <TouchableOpacity onPress={() => navigation.navigate("ProductScreen")}>
+    <TouchableOpacity onPress={() => navigation.navigate("ProductScreen", { shop : shop })}>
       <View style={container_styles.list}>
         <View style={container_styles.header}>
           <View style={container_styles.intermediate}>

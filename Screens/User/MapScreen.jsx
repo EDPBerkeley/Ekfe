@@ -139,18 +139,22 @@ const MapScreen = ({ navigation }) => {
         <View paddingTop={0}>
           <FlatList
             data={list_data}
-            renderItem={({ item }) => (
+            renderItem={({ item : shop }) => (
+              // console.log(shop)
               <ListItem
-                key = {item._id}
-                name={item.name}
-                rating={item.rating}
-                category={item.category}
-                phone_number={item.number}
-                cost={item.cost}
-                distance={item.distance}
-                description={item.description}
+                key = {shop._id}
+                name={shop.name}
+                rating={shop.rating}
+                category={shop.category}
+                phone_number={shop.number}
+                cost={shop.cost}
+                distance={shop.distance}
+                description={shop.description}
                 navigation={navigation}
-              />
+                shop = {shop}
+              >
+
+              </ListItem>
             )}
           />
         </View>
