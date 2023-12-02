@@ -96,7 +96,7 @@ const MapScreen = ({ navigation }) => {
 
   const create_store_markers = () => {
 
-    let updated_markers = marker_data.map((shop, index) => {
+    let updated_markers = marker_data.map((shop) => {
 
       return <Marker
         key={shop._id}
