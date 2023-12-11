@@ -15,11 +15,14 @@ import {
   NewProductScreen,
   WarehouseScreen,
   SettingBusinessScreen
-} from './Screens/Business';
+} from './Screens/Business'
+
+import { LogBox } from 'react-native';
 
 const Stack = createNativeStackNavigator();
-
+LogBox.ignoreLogs(["Warning: Each child in a list should have a unique \"key\" prop."]);
 function App() {
+
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="MapScreen">

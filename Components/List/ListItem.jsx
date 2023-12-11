@@ -37,6 +37,7 @@ const ListItem = ({name, category, phone_number, cost, distance, rating, descrip
 };
 
 const NumCost = (numSigns) => {
+
   let finalComponents = []
   const SelectedIcon = ICONWRAPPER["Feather"]
 
@@ -45,7 +46,6 @@ const NumCost = (numSigns) => {
       <SelectedIcon style={container_styles.cost} name={"dollar-sign"}/>
     )
   }
-
   return finalComponents
 }
 
