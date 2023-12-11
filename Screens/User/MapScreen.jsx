@@ -27,48 +27,23 @@ const MapScreen = ({ navigation }) => {
     latitudeDelta: 0.0922,
     longitudeDelta: 0.0421
   })
-  const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
 
-  useEffect(() => {
-    console.log("Updated shops in list:", shops_in_list);
-  }, [shops_in_list]);
-
-  const updateMapRef = new Promise((resolve, reject) => {
-
-    if (initial === true) {
-
-      resolve(bounds)
-    } else {
-      resolve(mapRef.getMapBoundaries())
-    }
-  })
 
   const updateRegionStateVars = () => {
-    console.log("1")
 
     mapRef.getMapBoundaries()
       .then((bounds) => {
-        console.log("2")
         set_list_bounds(bounds)
         set_marker_bounds(scaleBounds(bounds, 4))
 
         get_stores_in_boundary(list_bounds)
           .then((data) => {
-            console.log("3")
             set_shops_in_list(JSON.parse(data))
 
             get_stores_in_boundary(marker_bounds)
               .then((data) => {
                 data = JSON.parse(data)
-                console.log("4")
-                // console.log("slfjldsf", data)
                 set_shops_in_markers(data)
-
-                if (initial === true) {
-                  console.log("5")
-                  initial = false
-                }
-
 
               })
 
@@ -79,7 +54,6 @@ const MapScreen = ({ navigation }) => {
 
 
   const create_store_markers = () => {
-    console.log("slfjldsf-skjfnsjfd", shops_in_markers)
     let updated_markers = shops_in_markers.map((shop) => {
 
       return <Marker
@@ -95,9 +69,6 @@ const MapScreen = ({ navigation }) => {
 
     set_markers(updated_markers)
   }
-
-    console.log("6")
-
     return (
       <View flex={1}>
 
@@ -155,8 +126,6 @@ const MapScreen = ({ navigation }) => {
       </View>
 
     );
-
-
 
   };
 
