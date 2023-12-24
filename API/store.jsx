@@ -2,7 +2,7 @@ import axios from "axios";
 import { objToQueryString } from "./utils";
 import { boundsDicttoArr } from "../Services/Utils";
 
-const STORE_URL = "http://10.0.0.220:8000/store";
+const STORE_URL = "http://192.168.1.162:8000/store";
 async function get_all_stores() {
   let url = STORE_URL + "/all"
 

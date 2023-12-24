@@ -16,6 +16,7 @@
     "@react-navigation/stack": "^6.3.20",
     "@types/react-native-vector-icons": "^6.4.17",
     "axios": "^1.6.2",
+    "query-string": "^8.1.0",
     "react": "18.2.0",
     "react-native": "0.72.6",
     "react-native-gesture-handler": "^2.13.4",
