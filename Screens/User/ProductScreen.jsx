@@ -31,6 +31,8 @@ const ProductScreen = ({route, navigation}) => {
   return(
     <View flex={1}>
 
+      <Title text={"Products"} />
+
       <FlatList
         keyExtractor={(item) => item._id.toString()}
         data={products}
@@ -41,6 +43,8 @@ const ProductScreen = ({route, navigation}) => {
             price={product.price}
             description={product.description}
             navigation={navigation}
+            shop={shop}
+            product={product}
           />
         )}
       />

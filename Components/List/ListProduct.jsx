@@ -1,29 +1,34 @@
 import { CATEGORIES, ICONWRAPPER } from "../../Constants";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
-const ListProduct = ({name, category, price, description, navigation } ) => {
+const ListProduct = ({name, category, price, description, navigation, product } ) => {
   description = "Description: " + description
   let phone_number = 1234567890
+  let qty_string = "Qty: " + product.quantity
   category = CATEGORIES[category]
   return(
     <TouchableOpacity onPress={() => navigation.navigate("ProductScreen", { shop : shop })}>
+
       <View style={container_styles.list}>
+
+
         <View style={container_styles.header}>
           <View style={container_styles.intermediate}>
             <Text style={[text_styles.store_name]}>{name}</Text>
             <View style={container_styles.info_row}>
               <Text style={[text_styles.info_text_first_item, text_styles.info]}>{category}</Text>
-              <Text style={[text_styles.info_text_other_items, text_styles.info, text_styles.phone_number]}>{phone_number}</Text>
+              <Text style={[text_styles.info_text_other_items, text_styles.info]}>{qty_string}</Text>
             </View>
           </View>
-
         </View>
 
         <View style={container_styles.description}>
-          <Text style={text_styles.description}>{ description }</Text>
+          <Text numberOfLines={4} style={text_styles.description}>{ description }</Text>
         </View>
 
-        <View style={container_styles.divider}></View>
+        <View style={container_styles.divider}/>
+
+
       </View>
 
     </TouchableOpacity>
@@ -33,10 +38,12 @@ const ListProduct = ({name, category, price, description, navigation } ) => {
 const container_styles = StyleSheet.create({
 
   list: {
+    flex: 1,
     paddingLeft: 15,
     paddingRight: 15
   },
   header: {
+    flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-between',
     paddingTop: 22
@@ -54,6 +61,7 @@ const container_styles = StyleSheet.create({
     paddingTop: 5
   },
   description: {
+    flex: 3,
     paddingTop: 9
   },
   cost: {
