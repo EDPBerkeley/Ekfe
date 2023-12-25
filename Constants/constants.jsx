@@ -3,6 +3,8 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import AntDesign from "react-native-vector-icons/AntDesign";
 
+
+const IP_ADDRESS = "172.20.19.150"
 const ICONWRAPPER = {
   Feather,
   Ionicons,
@@ -395,4 +397,4 @@ const MAPSTYLE = [
   }
 ]
 
-export {ICONWRAPPER, CATEGORIES, MAPSTYLE};
+export {ICONWRAPPER, CATEGORIES, MAPSTYLE, IP_ADDRESS};

@@ -1,8 +1,9 @@
 import axios from "axios";
 import { objToQueryString } from "./utils";
 import { boundsDicttoArr } from "../Services/Utils";
+import {IP_ADDRESS} from "../Constants";
 
-const STORE_URL = "http://192.168.1.162:8000/store";
+const STORE_URL = "http://" + IP_ADDRESS +":8000/store";
 async function get_all_stores() {
   let url = STORE_URL + "/all"
 

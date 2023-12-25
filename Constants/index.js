@@ -1,7 +1,8 @@
-import {ICONWRAPPER, CATEGORIES, MAPSTYLE} from "./constants";
+import {ICONWRAPPER, CATEGORIES, MAPSTYLE, IP_ADDRESS} from "./constants";
 
 export {
   ICONWRAPPER,
   CATEGORIES,
-  MAPSTYLE
+  MAPSTYLE,
+  IP_ADDRESS
 }

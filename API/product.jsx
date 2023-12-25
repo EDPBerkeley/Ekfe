@@ -1,7 +1,8 @@
 import * as querystring from "query-string";
 import queryString from "query-string";
+import {IP_ADDRESS} from "../Constants";
 
-const PRODUCT_URL = "http://192.168.1.162:8000/product";
+const PRODUCT_URL = "http://" + IP_ADDRESS + "8000/product";
 
 async function get_product_for_shop(store_id) {
 
