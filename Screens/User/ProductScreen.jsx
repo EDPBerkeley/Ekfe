@@ -48,6 +48,8 @@ const ProductScreen = ({route, navigation}) => {
           />
         )}
       />
+
+        <TabBar navigation={navigation} />
     </View>
   )
 }
