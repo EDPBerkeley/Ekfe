@@ -28,6 +28,12 @@ async function get_stores_in_boundary(bounds_dict)  {
     .then(data => data.json())
 }
 
+async function get_random_shop(){
+  const url = STORE_URL + "/random_shop"
+  return fetch(url)
+      .then(data => data.json())
+}
 
 
-export { get_all_stores, get_stores_in_boundary };
+
+export { get_all_stores, get_stores_in_boundary, get_random_shop };
