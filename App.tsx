@@ -22,24 +22,25 @@ import {
 import { LogBox } from 'react-native';
 import {get_random_shop} from "./API/store";
 import {get_random_user} from "./API/user";
+import { useState } from "react";
 
 const Stack = createNativeStackNavigator();
 LogBox.ignoreLogs(["Warning: Each child in a list should have a unique \"key\" prop."]);
 
-let SHOP = null
-let USER = null
+// const [SHOP, set_SHOP] = useState(null)
+// let USER = null
 
-get_random_shop()
-    .then(data => {
-      console.log(data)
-      SHOP = data
-    })
-
-get_random_user()
-    .then(data => {
-      console.log(data)
-      USER = data
-    })
+// get_random_shop()
+//     .then(data => {
+//       console.log(data)
+//       set_SHOP(JSON.parse(data))
+//     })
+//
+// get_random_user()
+//     .then(data => {
+//       console.log(data)
+//       USER = data
+//     })
 function App() {
 
 
@@ -62,4 +63,4 @@ function App() {
     </NavigationContainer>
   );
 }
-export default App;
+ export default App;

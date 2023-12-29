@@ -4,7 +4,7 @@ import FontAwesome from "react-native-vector-icons/FontAwesome";
 import AntDesign from "react-native-vector-icons/AntDesign";
 
 
-const IP_ADDRESS = "172.20.19.150"
+const IP_ADDRESS = "172.20.22.255"
 const ICONWRAPPER = {
   Feather,
   Ionicons,
