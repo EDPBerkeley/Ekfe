@@ -7,7 +7,6 @@ const ListProduct = ({name, category, price, description, navigation, product } 
   let qty_string = "Qty: " + product.quantity
   category = CATEGORIES[category]
   return(
-    <TouchableOpacity onPress={() => navigation.navigate("ProductScreen", { shop : shop })}>
 
       <View style={container_styles.list}>
 
@@ -31,7 +30,7 @@ const ListProduct = ({name, category, price, description, navigation, product } 
 
       </View>
 
-    </TouchableOpacity>
+
   )
 };
 

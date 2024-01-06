@@ -22,9 +22,9 @@ const ProductScreen = ({route, navigation}) => {
       })
   }, []);
 
-  useEffect(() => {
-    console.log("THIS IS products", products)
-  }, [products])
+  // useEffect(() => {
+  //   console.log("THIS IS products", products)
+  // }, [products])
 
 
 

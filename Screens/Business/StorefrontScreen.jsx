@@ -8,32 +8,38 @@ import { SHOP } from "../../App";
 import { get_random_shop } from "../../API/store";
 import { DisplayOverviewData } from "../../Components/Statistics/Overview_Data";
 import { ListProduct } from "../../Components/List/ListProduct";
+import { get_product_for_shop } from "../../API";
 
 const StorefrontScreen = ({navigation}) => {
 
   const [overview_button, set_overview_button] = useState("clicked")
   const [product_data_button, set_product_data_button] = useState("not_clicked")
-  const [store, set_store] = useState(null)
+  const [shop, set_shop] = useState(null)
   const [store_overview_data, set_store_overview_data] = useState(null)
+  const [product_data, set_product_data] = useState(null)
 
   useEffect(() => {
     get_random_shop().then(data => {
-      set_store(data)
+      set_shop(data)
     })
   }, []);
 
 
   useEffect(() => {
-    // console.log("THIS IS STORE " + JSON.stringify(store))
-    if (store != null) {
-      // console.log("THIS IS STORE" + store._id)
-      get_store_overview_data(store._id).then(data => {
+    // console.log("THIS IS STORE " + JSON.stringify(shop))
+    if (shop != null) {
+      // console.log("THIS IS STORE" + shop._id)
+      get_store_overview_data(shop._id).then(data => {
         // console.log("THIS IS MOST" + data.most_revenue_product)
         set_store_overview_data(data)
       })
+
+      get_product_for_shop(shop._id).then(data => {
+        set_product_data(data)
+      })
     }
 
-  }, [store]);
+  }, [shop]);
 
   //
   //
@@ -80,7 +86,22 @@ const StorefrontScreen = ({navigation}) => {
           set_overview_button={set_overview_button}
           product_data_button={product_data_button}
           set_product_data_button={set_product_data_button}/>
-        <MainText text={"Product Data Screen"}/>
+        <FlatList
+          keyExtractor={(item) => item._id.toString()}
+          data={product_data}
+          renderItem={({ item: product }) => (
+            <ListProduct
+              name={product.name}
+              category={product.category}
+              price={product.price}
+              description={product.description}
+              navigation={navigation}
+              shop={shop}
+              product={product}
+            />
+          )}
+          contentContainerStyle={{ paddingBottom: 87 }}
+        />
         <TabBar navigation={navigation}/>
       </View>
     )
