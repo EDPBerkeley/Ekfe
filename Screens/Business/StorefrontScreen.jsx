@@ -9,6 +9,7 @@ import { get_random_shop } from "../../API/store";
 import { DisplayOverviewData } from "../../Components/Statistics/Overview_Data";
 import { ListProduct } from "../../Components/List/ListProduct";
 import { get_product_for_shop } from "../../API";
+import { ListProductData } from "../../Components/List/ListProductData";
 
 const StorefrontScreen = ({navigation}) => {
 
@@ -78,7 +79,7 @@ const StorefrontScreen = ({navigation}) => {
     )
   } else if (product_data_button === "clicked" && store_overview_data != null) {
     return(
-      <View flex={1}>
+      <View flex={1} backgroundColor ={"#d7d7d7"}>
         <Title text={"Storefront"} />
         <StorefrontButtons
           navigation={navigation}
@@ -86,11 +87,12 @@ const StorefrontScreen = ({navigation}) => {
           set_overview_button={set_overview_button}
           product_data_button={product_data_button}
           set_product_data_button={set_product_data_button}/>
+        <View marginTop={10}/>
         <FlatList
           keyExtractor={(item) => item._id.toString()}
           data={product_data}
           renderItem={({ item: product }) => (
-            <ListProduct
+            <ListProductData
               name={product.name}
               category={product.category}
               price={product.price}
