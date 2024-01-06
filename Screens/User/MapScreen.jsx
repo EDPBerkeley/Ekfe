@@ -118,6 +118,7 @@ const MapScreen = ({ navigation }) => {
                   shop={shop}
                 />
               )}
+              contentContainerStyle={{ paddingBottom: 87 }}
             />
 
           </View>

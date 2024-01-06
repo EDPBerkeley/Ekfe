@@ -47,6 +47,7 @@ const ProductScreen = ({route, navigation}) => {
             product={product}
           />
         )}
+        contentContainerStyle={{ paddingBottom: 87 }}
       />
 
         <TabBar navigation={navigation} />

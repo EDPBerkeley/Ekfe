@@ -1,18 +1,20 @@
 import { MainText, TabBar } from "../../Components";
-import { View } from "react-native";
+import { FlatList, View } from "react-native";
 import { StorefrontButtons } from "../../Components/Storefront/StorefrontButtons";
 import { Title } from "../../Components/Title/title";
 import React, { useEffect, useState } from "react";
 import { get_store_overview_data } from "../../API/store_overview";
 import { SHOP } from "../../App";
 import { get_random_shop } from "../../API/store";
+import { DisplayOverviewData } from "../../Components/Statistics/Overview_Data";
+import { ListProduct } from "../../Components/List/ListProduct";
 
 const StorefrontScreen = ({navigation}) => {
 
   const [overview_button, set_overview_button] = useState("clicked")
   const [product_data_button, set_product_data_button] = useState("not_clicked")
   const [store, set_store] = useState(null)
-  const [store_data, set_store_data] = useState(null)
+  const [store_overview_data, set_store_overview_data] = useState(null)
 
   useEffect(() => {
     get_random_shop().then(data => {
@@ -26,7 +28,8 @@ const StorefrontScreen = ({navigation}) => {
     if (store != null) {
       // console.log("THIS IS STORE" + store._id)
       get_store_overview_data(store._id).then(data => {
-        set_store_data(data)
+        // console.log("THIS IS MOST" + data.most_revenue_product)
+        set_store_overview_data(data)
       })
     }
 
@@ -43,9 +46,9 @@ const StorefrontScreen = ({navigation}) => {
   // }, [SHOP]);
 
 
-  if (overview_button === "clicked" && store_data != null) {
+  if (overview_button === "clicked" && store_overview_data != null) {
     return(
-      <View flex={1}>
+      <View flex={1} backgroundColor ={"#d7d7d7"}>
         <Title text={"Storefront"} />
         <StorefrontButtons
           navigation={navigation}
@@ -53,11 +56,21 @@ const StorefrontScreen = ({navigation}) => {
           set_overview_button={set_overview_button}
           product_data_button={product_data_button}
           set_product_data_button={set_product_data_button}/>
-        <MainText text={"Overview Screen"}/>
+
+        <View marginTop={10}/>
+        <FlatList
+          // keyExtractor={(item) => item._id.toString()}
+          data={store_overview_data}
+          renderItem={({ item }) => (
+            <DisplayOverviewData stat_name={item.stat_name} stat={item.stat}/>
+          )}
+          contentContainerStyle={{ paddingBottom: 87 }}
+        />
+
         <TabBar navigation={navigation}/>
       </View>
     )
-  } else if (product_data_button === "clicked" && store_data != null) {
+  } else if (product_data_button === "clicked" && store_overview_data != null) {
     return(
       <View flex={1}>
         <Title text={"Storefront"} />
