@@ -3,46 +3,38 @@ import React from "react";
 const DisplayOverviewData = ({ stat_name, stat }) => {
   return(
 
+    <View>
       <View style={container_styles.data_block}>
 
-        <View style={container_styles.spacer2}/>
         <Text style={text_styles.stat}> {stat} </Text>
-        <View style={container_styles.spacer}/>
         <Text style={text_styles.stat_name}> {stat_name} </Text>
-        <View style={container_styles.spacer2}/>
+
+
+
 
       </View>
+
+      <View style={container_styles.divider}/>
+
+    </View>
 
 
   )
 }
 
 const container_styles = StyleSheet.create({
-  background: {
-    backgroundColor: "#c4c4c4"
-  },
   data_block: {
-    backgroundColor: "#FFFFFF",
-
-    paddingHorizontal: 25,
     alignItems: 'center',
-    borderRadius: 10,
-    marginHorizontal: 10,
-    marginVertical: 7
-  },
-  spacer: {
-    paddingVertical: 3
-  },
-  spacer2: {
-    paddingTop: 40
+    paddingVertical: 50,
+    // marginHorizontal: 10,
+    // marginVertical: 7
   },
   divider: {
-    flexDirection: "row",
-    height: 1,
-    width: "100%",
-    marginTop: 50,
-
-
+    // flexDirection: "row",
+    backgroundColor: "#8E0000",
+    marginHorizontal: 30,
+    marginTop: 10,
+    height: 1
 
   }
 
@@ -52,13 +44,11 @@ const text_styles= StyleSheet.create({
   stat_name: {
     fontSize: 11,
     color: "#383838"
-
   },
   stat: {
     fontSize: 30,
-    fontWeight: "500",
+    fontWeight: "600",
     color: "#1c1c1c"
-
   }
 })
 

@@ -55,7 +55,7 @@ const StorefrontScreen = ({navigation}) => {
 
   if (overview_button === "clicked" && store_overview_data != null) {
     return(
-      <View flex={1} backgroundColor ={"#d7d7d7"}>
+      <View flex={1}>
         <Title text={"Storefront"} />
         <StorefrontButtons
           navigation={navigation}
@@ -64,7 +64,7 @@ const StorefrontScreen = ({navigation}) => {
           product_data_button={product_data_button}
           set_product_data_button={set_product_data_button}/>
 
-        <View marginTop={10}/>
+        <View marginTop={0}/>
         <FlatList
           // keyExtractor={(item) => item._id.toString()}
           data={store_overview_data}
@@ -79,7 +79,7 @@ const StorefrontScreen = ({navigation}) => {
     )
   } else if (product_data_button === "clicked" && store_overview_data != null) {
     return(
-      <View flex={1} backgroundColor ={"#d7d7d7"}>
+      <View flex={1} >
         <Title text={"Storefront"} />
         <StorefrontButtons
           navigation={navigation}
@@ -87,7 +87,7 @@ const StorefrontScreen = ({navigation}) => {
           set_overview_button={set_overview_button}
           product_data_button={product_data_button}
           set_product_data_button={set_product_data_button}/>
-        <View marginTop={10}/>
+        {/*<View marginTop={10}/>*/}
         <FlatList
           keyExtractor={(item) => item._id.toString()}
           data={product_data}

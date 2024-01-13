@@ -30,8 +30,8 @@ const ListProductData = ({name, category, price, description, navigation, produc
 
           <View style={container_styles.stats_row}>
             <View style={container_styles.stat}>
-              <Text style={text_styles.stat}>{revenue}</Text>
-              <Text style={text_styles.stat_name}>Revenue (Dollars)</Text>
+              <Text style={text_styles.stat}>{"$" + revenue}</Text>
+              <Text style={text_styles.stat_name}>Gross Revenue</Text>
             </View>
             <View style={container_styles.stat}>
               <Text style={text_styles.stat}>{units_sold}</Text>
@@ -39,9 +39,11 @@ const ListProductData = ({name, category, price, description, navigation, produc
             </View>
             <View style={container_styles.stat}>
               <Text style={text_styles.stat}>{rating}</Text>
-              <Text style={text_styles.stat_name}>Rating</Text>
+              <Text style={text_styles.stat_name}>Product Rating</Text>
             </View>
           </View>
+
+          <View style={container_styles.divider}/>
 
 
         </View>
@@ -59,8 +61,8 @@ const container_styles = StyleSheet.create({
 
   list: {
     flex: 1,
-    paddingLeft: 15,
-    paddingRight: 15
+    // paddingLeft: 15,
+    // paddingRight: 15
   },
   header: {
     flex: 1,
@@ -68,9 +70,13 @@ const container_styles = StyleSheet.create({
     justifyContent: 'space-between',
     paddingTop: 10,
 
-    borderRadius: 10,
+    // borderRadius: 10,
     backgroundColor: "#FFFFFF",
-    marginVertical: 7
+    // marginVertical: 7,
+    // borderTopWidth: 1,
+    // borderBottomWidth: 1,
+    // borderColor: "#8E0000", // sets the color of the border
+
 
   },
   stats_row: {
@@ -102,6 +108,14 @@ const container_styles = StyleSheet.create({
     paddingLeft: 22,
     paddingTop: 3
   },
+  divider: {
+    flexDirection: "row",
+    backgroundColor: "#8E0000",
+    marginHorizontal: 20,
+    marginTop: 10,
+    height: 1
+
+  }
 
 
 })
@@ -117,7 +131,8 @@ const text_styles = StyleSheet.create({
     fontSize: 10
   },
   stat: {
-    fontSize: 20
+    fontSize: 20,
+    fontWeight: "bold"
   },
   info_text_other_items: {
     paddingLeft: 13
