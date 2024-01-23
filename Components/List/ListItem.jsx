@@ -6,7 +6,7 @@ const ListItem = ({name, category, phone_number, cost, distance, rating, descrip
   const CostComponents = NumCost(cost)
   description = "Description: " + description
   distance = distance + " mi"
-  category = CATEGORIES[category]
+  // category = CATEGORIES[category]
   return(
     <TouchableOpacity onPress={() => navigation.navigate("ProductScreen", { shop : shop })}>
       <View style={container_styles.list}>

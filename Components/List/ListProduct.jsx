@@ -5,7 +5,7 @@ const ListProduct = ({name, category, price, description, navigation, product } 
   description = "Description: " + description
   let phone_number = 1234567890
   let qty_string = "Qty: " + product.quantity
-  category = CATEGORIES[category]
+  // category = CATEGORIES[category]
   return(
 
       <View style={container_styles.list}>

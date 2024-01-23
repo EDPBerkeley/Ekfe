@@ -8,7 +8,7 @@ const ListProductData = ({name, category, price, description, navigation, produc
   const revenue = Math.floor(Math.random() * 900) + 100;
   var units_sold = Math.floor(Math.random() * 50) + 1;
   const rating = Math.floor(Math.random() * 30 + 20) / 10;
-  category = CATEGORIES[category]
+  // category = CATEGORIES[category]
   return(
 
       <View style={container_styles.list}>
