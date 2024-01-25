@@ -44,6 +44,7 @@ const ProductScreen = ({route, navigation}) => {
             description={product.description}
             navigation={navigation}
             shop={shop}
+            images={product.images}
             product={product}
           />
         )}

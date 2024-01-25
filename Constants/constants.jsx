@@ -2,7 +2,10 @@ import Feather from "react-native-vector-icons/Feather";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import AntDesign from "react-native-vector-icons/AntDesign";
+import { Dimensions } from "react-native";
 
+
+const SCREEN_WIDTH = Dimensions.get('window').width;
 
 const IP_ADDRESS = "10.0.0.220"
 const ICONWRAPPER = {
@@ -397,4 +400,4 @@ const MAPSTYLE = [
   }
 ]
 
-export {ICONWRAPPER, CATEGORIES, MAPSTYLE, IP_ADDRESS};
+export {ICONWRAPPER, CATEGORIES, MAPSTYLE, IP_ADDRESS, SCREEN_WIDTH};

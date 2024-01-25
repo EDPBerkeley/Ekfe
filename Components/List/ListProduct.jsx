@@ -1,7 +1,10 @@
 import { CATEGORIES, ICONWRAPPER } from "../../Constants";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { StyleSheet, Text, TouchableOpacity, View, Image } from "react-native";
+import { SCREEN_WIDTH } from "../../Constants/constants";
 
-const ListProduct = ({name, category, price, description, navigation, product } ) => {
+const ListProduct = ({name, category, price, description, navigation, product, images } ) => {
+
+  console.log("These are images    " + images[0].element + "    POIUYTS")
   description = "Description: " + description
   let phone_number = 1234567890
   let qty_string = "Qty: " + product.quantity
@@ -21,8 +24,13 @@ const ListProduct = ({name, category, price, description, navigation, product } 
           </View>
         </View>
 
-        <View style={container_styles.description}>
-          <Text numberOfLines={4} style={text_styles.description}>{ description }</Text>
+        <View style={container_styles.info_row_container}>
+          <View style={container_styles.image}>
+            <Image source={{ uri: `data:image/png;base64,${images[0].element}` }}  style={{ width: 85, height: 85, borderRadius: 10 }} />
+          </View>
+          <View style={container_styles.description}>
+            <Text style={text_styles.description}>{ description }</Text>
+          </View>
         </View>
 
         <View style={container_styles.divider}/>
@@ -59,10 +67,21 @@ const container_styles = StyleSheet.create({
     paddingRight: 15,
     paddingTop: 5
   },
-  description: {
-    flex: 3,
+  info_row_container: {
+    width: SCREEN_WIDTH,
+    flexDirection: "row",
     paddingTop: 9
   },
+  description: {
+    flex: 1,
+    paddingHorizontal: 15,
+    marginLeft: 5,
+    marginRight: 10,
+  },
+  image : {
+    borderRadius: 5
+  },
+
   cost: {
     fontSize: 11,
     flexDirection: "row",
@@ -77,7 +96,7 @@ const container_styles = StyleSheet.create({
     flexDirection: "row",
     backgroundColor: "#8E0000",
     paddingHorizontal: 15,
-    marginTop: 10,
+    marginTop: 20,
     height: 1
 
   }
@@ -104,7 +123,8 @@ const text_styles = StyleSheet.create({
   },
   description: {
     fontFamily: 'Roboto-Light',
-    fontSize: 12.5
+    fontSize: 12.5,
+    flexWrap: 'wrap'
   },
   phone_number: {
     textDecorationLine: 'underline',
