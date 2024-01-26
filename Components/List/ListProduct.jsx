@@ -13,6 +13,11 @@ const ListProduct = ({name, category, price, description, navigation, product, i
 
       <View style={container_styles.list}>
 
+        <View style={container_styles.info_row_container}>
+          <Image source={{ uri: `data:image/png;base64,${images[0].element}` }}  style={container_styles.image} />
+
+        </View>
+
 
         <View style={container_styles.header}>
           <View style={container_styles.intermediate}>
@@ -24,14 +29,11 @@ const ListProduct = ({name, category, price, description, navigation, product, i
           </View>
         </View>
 
-        <View style={container_styles.info_row_container}>
-          <View style={container_styles.image}>
-            <Image source={{ uri: `data:image/png;base64,${images[0].element}` }}  style={{ width: 85, height: 85, borderRadius: 10 }} />
-          </View>
-          <View style={container_styles.description}>
-            <Text style={text_styles.description}>{ description }</Text>
-          </View>
+        <View style={container_styles.description}>
+          <Text style={text_styles.description}>{ description }</Text>
         </View>
+
+
 
         <View style={container_styles.divider}/>
 
@@ -51,9 +53,9 @@ const container_styles = StyleSheet.create({
   },
   header: {
     flex: 1,
-    flexDirection: 'row',
+    paddingHorizontal: 10,
     justifyContent: 'space-between',
-    paddingTop: 22
+    paddingTop: 10
   },
   intermediate: {
     flexDirection: 'column'
@@ -68,20 +70,20 @@ const container_styles = StyleSheet.create({
     paddingTop: 5
   },
   info_row_container: {
-    width: SCREEN_WIDTH,
     flexDirection: "row",
-    paddingTop: 9
+    paddingTop: 40,
+    justifyContent: "center"
   },
   description: {
     flex: 1,
-    paddingHorizontal: 15,
-    marginLeft: 5,
-    marginRight: 10,
+    paddingTop: 10,
+    paddingHorizontal: 10
   },
   image : {
-    borderRadius: 5
+    width: 350,
+    height: 187.5,
+    borderRadius: 10,
   },
-
   cost: {
     fontSize: 11,
     flexDirection: "row",
@@ -95,7 +97,7 @@ const container_styles = StyleSheet.create({
   divider: {
     flexDirection: "row",
     backgroundColor: "#8E0000",
-    paddingHorizontal: 15,
+    // paddingHorizontal: 25,
     marginTop: 20,
     height: 1
 
