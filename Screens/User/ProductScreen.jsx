@@ -1,11 +1,13 @@
-import { ActivityIndicator, FlatList, Text, View, StyleSheet, Dimensions } from "react-native";
+
+
+
+import { ActivityIndicator, FlatList, Text, View, StyleSheet, Dimensions, Image, ScrollView } from "react-native";
 import { MainText, TabBar } from "../../Components";
 import { Title } from "../../Components/Title/title";
 import React, { useEffect, useState } from "react";
 import { ListProduct } from "../../Components/List/ListProduct";
 import { ListItem } from "../../Components/List";
 import { get_product_for_shop } from "../../API";
-import { Stack } from 'expo-router';
 
 import Animated, {
   interpolate,
@@ -16,11 +18,32 @@ import Animated, {
 
 
 
+const { width } = Dimensions.get('window');
+const IMG_HEIGHT = 300;
 
 const ProductScreen = ({route, navigation}) => {
   const [products, set_products] = useState([])
   const { shop } = route.params
   const [isLoading, setIsLoading] = useState(true);
+  const scrollRef = useAnimatedRef();
+  const scrollOffset = useScrollViewOffset(scrollRef);
+
+  const imageAnimatedStyle = useAnimatedStyle(() => {
+    return {
+      transform: [
+        {
+          translateY: interpolate(
+            scrollOffset.value,
+            [-IMG_HEIGHT, 0, IMG_HEIGHT],
+            [-IMG_HEIGHT / 2, 0, IMG_HEIGHT * 0.75]
+          )
+        },
+        {
+          scale: interpolate(scrollOffset.value, [-IMG_HEIGHT, 0, IMG_HEIGHT], [2, 1, 1])
+        }
+      ]
+    };
+  });
 
 
   useEffect(() => {
@@ -32,58 +55,44 @@ const ProductScreen = ({route, navigation}) => {
       })
   }, []);
 
-  // useEffect(() => {
-  //   console.log("THIS IS products", products)
-  // }, [products])
-
-  if (isLoading) {
     return (
-      <View flex={1}>
-        <Title text={"Products"} />
-        <View style={styles.loadingContainer}>
-          <ActivityIndicator size="large" color="#8E0000" />
-          {/* You can add additional text or graphics here */}
-        </View>
-        <TabBar navigation={navigation} />
-      </View>
-
-    );
-  } else {
-    return (
-      <View flex={1}>
-
-        <Title text={"Products"} />
-
-        <FlatList
-          keyExtractor={(item) => item._id.toString()}
-          data={products}
-          renderItem={({ item: product }) => (
-            <ListProduct
-              name={product.name}
-              category={product.category}
-              price={product.price}
-              description={product.description}
-              navigation={navigation}
-              shop={shop}
-              images={product.images}
-              product={product}
-            />
-          )}
-          contentContainerStyle={{ paddingBottom: 87 }}
-        />
-
-        <TabBar navigation={navigation} />
+      <View style={styles.container}>
+        <Animated.ScrollView ref={scrollRef} scrollEventThrottle={16}>
+          <Animated.Image
+            source={{
+              uri: "https://reactjs.org/logo-og.png"
+            }}
+            style={[styles.image, imageAnimatedStyle]}
+            onError={(e) => console.log(e.nativeEvent.error)}
+          />
+          <View style={{ height: 2000, backgroundColor: '#fff' }}>
+            <Text style={{ fontSize: 20, fontWeight: 'bold', textAlign: 'center', marginTop: 20 }}>
+              Parallax Scroll
+            </Text>
+          </View>
+        </Animated.ScrollView>
       </View>
     )
-  }
 }
 
+// const styles = StyleSheet.create({
+//   loadingContainer: {
+//     flex: 1,
+//     justifyContent: 'center',
+//     alignItems: 'center',
+//   },
+// })
+
 const styles = StyleSheet.create({
-  loadingContainer: {
+  container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    backgroundColor: '#fff'
   },
-})
+  image: {
+    width: width,
+    height: IMG_HEIGHT
+  }
+});
 
 export default ProductScreen;
+
