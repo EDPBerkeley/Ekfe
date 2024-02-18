@@ -11,7 +11,7 @@
 		13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
-		1A37297169DEB010818ACEA6 /* libPods-EkFe-EkFeTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 46F0024FD5F54D03C8C3C011 /* libPods-EkFe-EkFeTests.a */; };
+		4AE941E30FF95EFE6B75BF37 /* libPods-EkFe-EkFeTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B3BD2AE44F7E905BA6216370 /* libPods-EkFe-EkFeTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		C50DB5C52B624F06005B9FA9 /* Roboto-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C50DB5B92B624F05005B9FA9 /* Roboto-Thin.ttf */; };
 		C50DB5C62B624F06005B9FA9 /* Roboto-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C50DB5BA2B624F05005B9FA9 /* Roboto-BoldItalic.ttf */; };
@@ -44,7 +44,26 @@
 		C54879C12B00026D00C8D43C /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C548799D2B00026D00C8D43C /* Entypo.ttf */; };
 		C54879C32B00026D00C8D43C /* FontAwesome5_Brands.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C548799E2B00026D00C8D43C /* FontAwesome5_Brands.ttf */; };
 		C54879C52B00026D00C8D43C /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C548799F2B00026D00C8D43C /* EvilIcons.ttf */; };
-		E242F82C9CF83AC42C7F0DF8 /* libPods-EkFe.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B465DC65A9C80FBB3B21DB9 /* libPods-EkFe.a */; };
+		C5F211A82B7C4F15005DB173 /* AntDesign.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C548798F2B00026D00C8D43C /* AntDesign.ttf */; };
+		C5F211A92B7C4F15005DB173 /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C548799D2B00026D00C8D43C /* Entypo.ttf */; };
+		C5F211AA2B7C4F15005DB173 /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C548799F2B00026D00C8D43C /* EvilIcons.ttf */; };
+		C5F211AB2B7C4F15005DB173 /* Feather.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C548798E2B00026D00C8D43C /* Feather.ttf */; };
+		C5F211AC2B7C4F15005DB173 /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C548798D2B00026D00C8D43C /* FontAwesome.ttf */; };
+		C5F211AD2B7C4F15005DB173 /* FontAwesome5_Brands.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C548799E2B00026D00C8D43C /* FontAwesome5_Brands.ttf */; };
+		C5F211AE2B7C4F15005DB173 /* FontAwesome5_Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C54879902B00026D00C8D43C /* FontAwesome5_Regular.ttf */; };
+		C5F211AF2B7C4F15005DB173 /* FontAwesome5_Solid.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C54879942B00026D00C8D43C /* FontAwesome5_Solid.ttf */; };
+		C5F211B02B7C4F15005DB173 /* FontAwesome6_Brands.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C54879912B00026D00C8D43C /* FontAwesome6_Brands.ttf */; };
+		C5F211B12B7C4F15005DB173 /* FontAwesome6_Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C548799B2B00026D00C8D43C /* FontAwesome6_Regular.ttf */; };
+		C5F211B22B7C4F15005DB173 /* FontAwesome6_Solid.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C54879962B00026D00C8D43C /* FontAwesome6_Solid.ttf */; };
+		C5F211B32B7C4F15005DB173 /* Fontisto.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C54879952B00026D00C8D43C /* Fontisto.ttf */; };
+		C5F211B42B7C4F15005DB173 /* Foundation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C54879932B00026D00C8D43C /* Foundation.ttf */; };
+		C5F211B52B7C4F15005DB173 /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C54879922B00026D00C8D43C /* Ionicons.ttf */; };
+		C5F211B62B7C4F15005DB173 /* MaterialCommunityIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C548799C2B00026D00C8D43C /* MaterialCommunityIcons.ttf */; };
+		C5F211B72B7C4F15005DB173 /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C548799A2B00026D00C8D43C /* MaterialIcons.ttf */; };
+		C5F211B82B7C4F15005DB173 /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C54879972B00026D00C8D43C /* Octicons.ttf */; };
+		C5F211B92B7C4F15005DB173 /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C54879982B00026D00C8D43C /* SimpleLineIcons.ttf */; };
+		C5F211BA2B7C4F15005DB173 /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C54879992B00026D00C8D43C /* Zocial.ttf */; };
+		E38C9318568F9ED66D3D3F62 /* libPods-EkFe.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D0C7C4899D13505C691AC8A /* libPods-EkFe.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,7 +87,6 @@
 		00E356EE1AD99517003FC87E /* EkFeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EkFeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* EkFeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EkFeTests.m; sourceTree = "<group>"; };
-		08365E9A813FF3DED9089122 /* Pods-EkFe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EkFe.release.xcconfig"; path = "Target Support Files/Pods-EkFe/Pods-EkFe.release.xcconfig"; sourceTree = "<group>"; };
 		127E824AB06C47BE9DED7B30 /* Roboto-ThinItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-ThinItalic.ttf"; path = "../assets/fonts/Roboto-ThinItalic.ttf"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* EkFe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EkFe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = EkFe/AppDelegate.h; sourceTree = "<group>"; };
@@ -79,14 +97,15 @@
 		1E37638BF27D4584A3190187 /* Roboto-BlackItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-BlackItalic.ttf"; path = "../assets/fonts/Roboto-BlackItalic.ttf"; sourceTree = "<group>"; };
 		24028B57CF8C46D7A60BDE12 /* Roboto-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-Bold.ttf"; path = "../assets/fonts/Roboto-Bold.ttf"; sourceTree = "<group>"; };
 		3A46A5777EDD4D2685657F8E /* Roboto-Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-Italic.ttf"; path = "../assets/fonts/Roboto-Italic.ttf"; sourceTree = "<group>"; };
-		46F0024FD5F54D03C8C3C011 /* libPods-EkFe-EkFeTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-EkFe-EkFeTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		67B692F4A3DF44F8897465D5 /* Roboto-MediumItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-MediumItalic.ttf"; path = "../assets/fonts/Roboto-MediumItalic.ttf"; sourceTree = "<group>"; };
-		7FAEA0D24A9949BC74A2CBEA /* Pods-EkFe-EkFeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EkFe-EkFeTests.release.xcconfig"; path = "Target Support Files/Pods-EkFe-EkFeTests/Pods-EkFe-EkFeTests.release.xcconfig"; sourceTree = "<group>"; };
+		6D0C7C4899D13505C691AC8A /* libPods-EkFe.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-EkFe.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8070390674546190F6F4AF5E /* Pods-EkFe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EkFe.debug.xcconfig"; path = "Target Support Files/Pods-EkFe/Pods-EkFe.debug.xcconfig"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = EkFe/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		838BA580FBC94FE4A1C9F052 /* Roboto-Black.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-Black.ttf"; path = "../assets/fonts/Roboto-Black.ttf"; sourceTree = "<group>"; };
-		894ECC6DC7695BAAE2E30002 /* Pods-EkFe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EkFe.debug.xcconfig"; path = "Target Support Files/Pods-EkFe/Pods-EkFe.debug.xcconfig"; sourceTree = "<group>"; };
-		9B465DC65A9C80FBB3B21DB9 /* libPods-EkFe.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-EkFe.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9EE060AE033E5594AA04EC59 /* Pods-EkFe-EkFeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EkFe-EkFeTests.debug.xcconfig"; path = "Target Support Files/Pods-EkFe-EkFeTests/Pods-EkFe-EkFeTests.debug.xcconfig"; sourceTree = "<group>"; };
 		AE55045EE9D142A7B02D6389 /* Roboto-Thin.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-Thin.ttf"; path = "../assets/fonts/Roboto-Thin.ttf"; sourceTree = "<group>"; };
+		B3BD2AE44F7E905BA6216370 /* libPods-EkFe-EkFeTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-EkFe-EkFeTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B417A1BDA32AA2A10B3B2B62 /* Pods-EkFe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EkFe.release.xcconfig"; path = "Target Support Files/Pods-EkFe/Pods-EkFe.release.xcconfig"; sourceTree = "<group>"; };
 		B8F4716ADD774ECD92FCF1E2 /* Roboto-BoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-BoldItalic.ttf"; path = "../assets/fonts/Roboto-BoldItalic.ttf"; sourceTree = "<group>"; };
 		C50DB5B92B624F05005B9FA9 /* Roboto-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Roboto-Thin.ttf"; path = "../assets/fonts/Roboto-Thin.ttf"; sourceTree = "<group>"; };
 		C50DB5BA2B624F05005B9FA9 /* Roboto-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Roboto-BoldItalic.ttf"; path = "../assets/fonts/Roboto-BoldItalic.ttf"; sourceTree = "<group>"; };
@@ -122,10 +141,10 @@
 		C54DBC412B180FA900ED34F4 /* AirMaps.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = AirMaps.xcodeproj; path = "../node_modules/react-native-maps/ios/AirMaps.xcodeproj"; sourceTree = "<group>"; };
 		CF856C364A324FB894024901 /* Roboto-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-Medium.ttf"; path = "../assets/fonts/Roboto-Medium.ttf"; sourceTree = "<group>"; };
 		DC3D8876ACB645EABBAFE985 /* Roboto-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-Regular.ttf"; path = "../assets/fonts/Roboto-Regular.ttf"; sourceTree = "<group>"; };
-		E1EFB7D575B70E109772CC13 /* Pods-EkFe-EkFeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EkFe-EkFeTests.debug.xcconfig"; path = "Target Support Files/Pods-EkFe-EkFeTests/Pods-EkFe-EkFeTests.debug.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		F1953ECBE6D4435C9616DA02 /* Roboto-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-Light.ttf"; path = "../assets/fonts/Roboto-Light.ttf"; sourceTree = "<group>"; };
 		F4DF2CA74E5C43AD8042FAFD /* Roboto-LightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-LightItalic.ttf"; path = "../assets/fonts/Roboto-LightItalic.ttf"; sourceTree = "<group>"; };
+		FD90E2C27EA86E9A30AB1360 /* Pods-EkFe-EkFeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EkFe-EkFeTests.release.xcconfig"; path = "Target Support Files/Pods-EkFe-EkFeTests/Pods-EkFe-EkFeTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,7 +152,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1A37297169DEB010818ACEA6 /* libPods-EkFe-EkFeTests.a in Frameworks */,
+				4AE941E30FF95EFE6B75BF37 /* libPods-EkFe-EkFeTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -141,7 +160,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E242F82C9CF83AC42C7F0DF8 /* libPods-EkFe.a in Frameworks */,
+				E38C9318568F9ED66D3D3F62 /* libPods-EkFe.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -184,6 +203,17 @@
 			name = Resources;
 			sourceTree = "<group>";
 		};
+		11122ED377CADB13E375BC94 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				8070390674546190F6F4AF5E /* Pods-EkFe.debug.xcconfig */,
+				B417A1BDA32AA2A10B3B2B62 /* Pods-EkFe.release.xcconfig */,
+				9EE060AE033E5594AA04EC59 /* Pods-EkFe-EkFeTests.debug.xcconfig */,
+				FD90E2C27EA86E9A30AB1360 /* Pods-EkFe-EkFeTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		13B07FAE1A68108700A75B9A /* EkFe */ = {
 			isa = PBXGroup;
 			children = (
@@ -203,8 +233,8 @@
 			children = (
 				C54DBC412B180FA900ED34F4 /* AirMaps.xcodeproj */,
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
-				9B465DC65A9C80FBB3B21DB9 /* libPods-EkFe.a */,
-				46F0024FD5F54D03C8C3C011 /* libPods-EkFe-EkFeTests.a */,
+				6D0C7C4899D13505C691AC8A /* libPods-EkFe.a */,
+				B3BD2AE44F7E905BA6216370 /* libPods-EkFe-EkFeTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -224,8 +254,8 @@
 				00E356EF1AD99517003FC87E /* EkFeTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
-				BBD78D7AC51CEA395F1C20DB /* Pods */,
 				02BCDA4C39094D8682FE55C9 /* Resources */,
+				11122ED377CADB13E375BC94 /* Pods */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -239,17 +269,6 @@
 				00E356EE1AD99517003FC87E /* EkFeTests.xctest */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		BBD78D7AC51CEA395F1C20DB /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				894ECC6DC7695BAAE2E30002 /* Pods-EkFe.debug.xcconfig */,
-				08365E9A813FF3DED9089122 /* Pods-EkFe.release.xcconfig */,
-				E1EFB7D575B70E109772CC13 /* Pods-EkFe-EkFeTests.debug.xcconfig */,
-				7FAEA0D24A9949BC74A2CBEA /* Pods-EkFe-EkFeTests.release.xcconfig */,
-			);
-			path = Pods;
 			sourceTree = "<group>";
 		};
 		C548798C2B00024D00C8D43C /* Fonts */ = {
@@ -305,12 +324,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "EkFeTests" */;
 			buildPhases = (
-				FC590CB2C0DA5719E0648879 /* [CP] Check Pods Manifest.lock */,
+				B086A14B401060715C71F7E0 /* [CP] Check Pods Manifest.lock */,
 				00E356EA1AD99517003FC87E /* Sources */,
 				00E356EB1AD99517003FC87E /* Frameworks */,
 				00E356EC1AD99517003FC87E /* Resources */,
-				B5DA5DF69903E09944CCE04A /* [CP] Embed Pods Frameworks */,
-				437926DB65DDA6FFF38892B1 /* [CP] Copy Pods Resources */,
+				FE3F34507FA61235B1DB1FBF /* [CP] Embed Pods Frameworks */,
+				01496A7F60958638C26CFC26 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -326,14 +345,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "EkFe" */;
 			buildPhases = (
-				27B37970AC3089C9908D79AC /* [CP] Check Pods Manifest.lock */,
+				3809AB2F431471F09CE193A5 /* [CP] Check Pods Manifest.lock */,
 				FD10A7F022414F080027D42C /* Start Packager */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
-				B6CC5354CC970544A0041C40 /* [CP] Embed Pods Frameworks */,
-				883028848F1900EAF71ADA61 /* [CP] Copy Pods Resources */,
+				6FE265731A9B8C0009A5655B /* [CP] Embed Pods Frameworks */,
+				47F01D6AFE7B2F8649CF0AA4 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -427,6 +446,25 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C5F211A82B7C4F15005DB173 /* AntDesign.ttf in Resources */,
+				C5F211A92B7C4F15005DB173 /* Entypo.ttf in Resources */,
+				C5F211AA2B7C4F15005DB173 /* EvilIcons.ttf in Resources */,
+				C5F211AB2B7C4F15005DB173 /* Feather.ttf in Resources */,
+				C5F211AC2B7C4F15005DB173 /* FontAwesome.ttf in Resources */,
+				C5F211AD2B7C4F15005DB173 /* FontAwesome5_Brands.ttf in Resources */,
+				C5F211AE2B7C4F15005DB173 /* FontAwesome5_Regular.ttf in Resources */,
+				C5F211AF2B7C4F15005DB173 /* FontAwesome5_Solid.ttf in Resources */,
+				C5F211B02B7C4F15005DB173 /* FontAwesome6_Brands.ttf in Resources */,
+				C5F211B12B7C4F15005DB173 /* FontAwesome6_Regular.ttf in Resources */,
+				C5F211B22B7C4F15005DB173 /* FontAwesome6_Solid.ttf in Resources */,
+				C5F211B32B7C4F15005DB173 /* Fontisto.ttf in Resources */,
+				C5F211B42B7C4F15005DB173 /* Foundation.ttf in Resources */,
+				C5F211B52B7C4F15005DB173 /* Ionicons.ttf in Resources */,
+				C5F211B62B7C4F15005DB173 /* MaterialCommunityIcons.ttf in Resources */,
+				C5F211B72B7C4F15005DB173 /* MaterialIcons.ttf in Resources */,
+				C5F211B82B7C4F15005DB173 /* Octicons.ttf in Resources */,
+				C5F211B92B7C4F15005DB173 /* SimpleLineIcons.ttf in Resources */,
+				C5F211BA2B7C4F15005DB173 /* Zocial.ttf in Resources */,
 				C50DB5CB2B624F06005B9FA9 /* Roboto-Medium.ttf in Resources */,
 				C50DB5D02B624F06005B9FA9 /* Roboto-MediumItalic.ttf in Resources */,
 				C50DB5C82B624F06005B9FA9 /* Roboto-Bold.ttf in Resources */,
@@ -463,7 +501,24 @@
 			shellPath = /bin/sh;
 			shellScript = "set -e\n\nWITH_ENVIRONMENT=\"../node_modules/react-native/scripts/xcode/with-environment.sh\"\nREACT_NATIVE_XCODE=\"../node_modules/react-native/scripts/react-native-xcode.sh\"\n\n/bin/sh -c \"$WITH_ENVIRONMENT $REACT_NATIVE_XCODE\"\n";
 		};
-		27B37970AC3089C9908D79AC /* [CP] Check Pods Manifest.lock */ = {
+		01496A7F60958638C26CFC26 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-EkFe-EkFeTests/Pods-EkFe-EkFeTests-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-EkFe-EkFeTests/Pods-EkFe-EkFeTests-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-EkFe-EkFeTests/Pods-EkFe-EkFeTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3809AB2F431471F09CE193A5 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -485,24 +540,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		437926DB65DDA6FFF38892B1 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-EkFe-EkFeTests/Pods-EkFe-EkFeTests-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-EkFe-EkFeTests/Pods-EkFe-EkFeTests-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-EkFe-EkFeTests/Pods-EkFe-EkFeTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		883028848F1900EAF71ADA61 /* [CP] Copy Pods Resources */ = {
+		47F01D6AFE7B2F8649CF0AA4 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -519,24 +557,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-EkFe/Pods-EkFe-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		B5DA5DF69903E09944CCE04A /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-EkFe-EkFeTests/Pods-EkFe-EkFeTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-EkFe-EkFeTests/Pods-EkFe-EkFeTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-EkFe-EkFeTests/Pods-EkFe-EkFeTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		B6CC5354CC970544A0041C40 /* [CP] Embed Pods Frameworks */ = {
+		6FE265731A9B8C0009A5655B /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -553,7 +574,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-EkFe/Pods-EkFe-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		FC590CB2C0DA5719E0648879 /* [CP] Check Pods Manifest.lock */ = {
+		B086A14B401060715C71F7E0 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -594,6 +615,23 @@
 			shellScript = "export RCT_METRO_PORT=\"${RCT_METRO_PORT:=8081}\"\necho \"export RCT_METRO_PORT=${RCT_METRO_PORT}\" > \"${SRCROOT}/../node_modules/react-native/scripts/.packager.env\"\nif [ -z \"${RCT_NO_LAUNCH_PACKAGER+xxx}\" ] ; then\n  if nc -w 5 -z localhost ${RCT_METRO_PORT} ; then\n    if ! curl -s \"http://localhost:${RCT_METRO_PORT}/status\" | grep -q \"packager-status:running\" ; then\n      echo \"Port ${RCT_METRO_PORT} already in use, packager is either not running or not running correctly\"\n      exit 2\n    fi\n  else\n    open \"$SRCROOT/../node_modules/react-native/scripts/launchPackager.command\" || echo \"Can't start packager automatically\"\n  fi\nfi\n";
 			showEnvVarsInLog = 0;
 		};
+		FE3F34507FA61235B1DB1FBF /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-EkFe-EkFeTests/Pods-EkFe-EkFeTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-EkFe-EkFeTests/Pods-EkFe-EkFeTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-EkFe-EkFeTests/Pods-EkFe-EkFeTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -627,7 +665,7 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E1EFB7D575B70E109772CC13 /* Pods-EkFe-EkFeTests.debug.xcconfig */;
+			baseConfigurationReference = 9EE060AE033E5594AA04EC59 /* Pods-EkFe-EkFeTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -654,7 +692,7 @@
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7FAEA0D24A9949BC74A2CBEA /* Pods-EkFe-EkFeTests.release.xcconfig */;
+			baseConfigurationReference = FD90E2C27EA86E9A30AB1360 /* Pods-EkFe-EkFeTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
@@ -678,7 +716,7 @@
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 894ECC6DC7695BAAE2E30002 /* Pods-EkFe.debug.xcconfig */;
+			baseConfigurationReference = 8070390674546190F6F4AF5E /* Pods-EkFe.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -706,7 +744,7 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 08365E9A813FF3DED9089122 /* Pods-EkFe.release.xcconfig */;
+			baseConfigurationReference = B417A1BDA32AA2A10B3B2B62 /* Pods-EkFe.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;

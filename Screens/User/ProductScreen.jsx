@@ -1,11 +1,18 @@
-import { ActivityIndicator, FlatList, Text, View, StyleSheet } from "react-native";
+import { ActivityIndicator, FlatList, Text, View, StyleSheet, Dimensions } from "react-native";
 import { MainText, TabBar } from "../../Components";
 import { Title } from "../../Components/Title/title";
 import React, { useEffect, useState } from "react";
 import { ListProduct } from "../../Components/List/ListProduct";
 import { ListItem } from "../../Components/List";
 import { get_product_for_shop } from "../../API";
+import { Stack } from 'expo-router';
 
+import Animated, {
+  interpolate,
+  useAnimatedRef,
+  useAnimatedStyle,
+  useScrollViewOffset
+} from 'react-native-reanimated';
 
 
 
