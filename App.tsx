@@ -50,7 +50,7 @@ function App() {
       <Stack.Navigator initialRouteName="StorefrontScreen">
         <Stack.Screen name="MapScreen" component={MapScreen} options={{ headerShown: false, animation: "none"  }}/>
         <Stack.Screen name="CheckoutScreen" component={CheckoutScreen} options={{ headerShown: false }}/>
-        <Stack.Screen name="ProductScreen" component={ProductScreen} options={{ headerShown: false }}/>
+        <Stack.Screen name="ProductScreen" component={ProductScreen} options={{ headerShown: true }}/>
         <Stack.Screen name="StorefrontScreen" component={StorefrontScreen} options={{ headerShown: false, animation: "none"  }}/>
         <Stack.Screen name="AllProductScreen" component={AllProductScreen} options={{ headerShown: false }}/>
         <Stack.Screen name="NewProductScreen" component={NewProductScreen} options={{ headerShown: false }}/>

@@ -1,24 +1,33 @@
-
-
-
-import { ActivityIndicator, FlatList, Text, View, StyleSheet, Dimensions, Image, ScrollView } from "react-native";
+import {
+  ActivityIndicator,
+  FlatList,
+  Text,
+  View,
+  StyleSheet,
+  Dimensions,
+  Image,
+  ScrollView,
+  Button, SafeAreaView,
+} from "react-native";
 import { MainText, TabBar } from "../../Components";
 import { Title } from "../../Components/Title/title";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useLayoutEffect, useState } from "react";
 import { ListProduct } from "../../Components/List/ListProduct";
 import { ListItem } from "../../Components/List";
 import { get_product_for_shop } from "../../API";
 
 import Animated, {
   interpolate,
-  useAnimatedRef,
+  useAnimatedRef, useAnimatedScrollHandler,
   useAnimatedStyle,
-  useScrollViewOffset
-} from 'react-native-reanimated';
+  useScrollViewOffset, useSharedValue,
+} from "react-native-reanimated";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 
 
 const { width } = Dimensions.get('window');
+const { height } = Dimensions.get('window')
 const IMG_HEIGHT = 300;
 
 const ProductScreen = ({route, navigation}) => {
@@ -27,6 +36,15 @@ const ProductScreen = ({route, navigation}) => {
   const [isLoading, setIsLoading] = useState(true);
   const scrollRef = useAnimatedRef();
   const scrollOffset = useScrollViewOffset(scrollRef);
+  const CustomHeader = ({ opacity }) => {
+    console.log(opacity)
+    return (
+      <View style={[styles.header, { opacity }]}>
+        <Text style={styles.headerText}>My Custom Header</Text>
+      </View>
+    );
+  };
+
 
   const imageAnimatedStyle = useAnimatedStyle(() => {
     return {
@@ -45,6 +63,30 @@ const ProductScreen = ({route, navigation}) => {
     };
   });
 
+  const headerAnimatedStyle = useAnimatedStyle(() => {
+    return {
+      opacity: interpolate(scrollOffset.value, [0, IMG_HEIGHT / 1.5], [0, 1])
+    };
+  });
+
+  const Header = () => {
+    const insets = useSafeAreaInsets();
+    return (
+      <Animated.View style={ [headerAnimatedStyle, styles3.container, {paddingTop: insets.top}] }>
+        <Text style={styles3.text}>Product Screen</Text>
+      </Animated.View>
+    )
+  }
+
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerTransparent: true,
+      headerLeft: () => <View/>,
+      headerTitle: '',
+      headerBackground: () => <Header/>
+    });
+  }, [navigation]); // Re-run when navigation changes (though usually it doesn't)
+
 
   useEffect(() => {
     get_product_for_shop(shop._id)
@@ -56,6 +98,7 @@ const ProductScreen = ({route, navigation}) => {
   }, []);
 
     return (
+
       <View style={styles.container}>
         <Animated.ScrollView ref={scrollRef} scrollEventThrottle={16}>
           <Animated.Image
@@ -63,25 +106,19 @@ const ProductScreen = ({route, navigation}) => {
               uri: "https://reactjs.org/logo-og.png"
             }}
             style={[styles.image, imageAnimatedStyle]}
-            onError={(e) => console.log(e.nativeEvent.error)}
           />
-          <View style={{ height: 2000, backgroundColor: '#fff' }}>
+          <View style={{ height: height, backgroundColor: '#fff' }}>
             <Text style={{ fontSize: 20, fontWeight: 'bold', textAlign: 'center', marginTop: 20 }}>
               Parallax Scroll
             </Text>
+
           </View>
         </Animated.ScrollView>
+
       </View>
     )
 }
 
-// const styles = StyleSheet.create({
-//   loadingContainer: {
-//     flex: 1,
-//     justifyContent: 'center',
-//     alignItems: 'center',
-//   },
-// })
 
 const styles = StyleSheet.create({
   container: {
@@ -91,8 +128,32 @@ const styles = StyleSheet.create({
   image: {
     width: width,
     height: IMG_HEIGHT
+  },
+  header: {
+    height: 60,
+    width: '100%',
+    backgroundColor: 'blue',
+    justifyContent: 'center',
+    alignItems: 'center',
+    position: 'absolute',
+    top: 0,
   }
 });
+
+const styles3 = StyleSheet.create({
+  container: {
+    flexDirection: "row",
+    paddingTop: 10,
+    paddingBottom: 10,
+    paddingLeft: 15,
+    backgroundColor:'#8E0000',
+  },
+  text: {
+    fontSize: 25,
+    color: "#FFFFFF",
+    fontWeight: 'bold'
+  }
+})
 
 export default ProductScreen;
 
