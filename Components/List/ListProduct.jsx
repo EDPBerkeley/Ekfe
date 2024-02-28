@@ -4,7 +4,7 @@ import { SCREEN_WIDTH } from "../../Constants/constants";
 
 const ListProduct = ({name, category, price, description, navigation, product, images } ) => {
 
-  console.log("These are images    " + images[0].element + "    POIUYTS")
+  // console.log("These are images    " + images[0].element + "    POIUYTS")
   description = "Description: " + description
   let phone_number = 1234567890
   let qty_string = "Qty: " + product.quantity

@@ -7,22 +7,23 @@ import {
   Dimensions,
   Image,
   ScrollView,
-  Button, SafeAreaView,
+  Button, SafeAreaView, TouchableWithoutFeedback,
 } from "react-native";
 import { MainText, TabBar } from "../../Components";
 import { Title } from "../../Components/Title/title";
-import React, { useEffect, useLayoutEffect, useState } from "react";
+import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { ListProduct } from "../../Components/List/ListProduct";
 import { ListItem } from "../../Components/List";
 import { get_product_for_shop } from "../../API";
 
 import Animated, {
   interpolate,
-  useAnimatedRef, useAnimatedScrollHandler,
+  useAnimatedRef,
   useAnimatedStyle,
   useScrollViewOffset, useSharedValue,
 } from "react-native-reanimated";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { useFocusEffect, useNavigation } from "@react-navigation/native";
 
 
 
@@ -53,7 +54,7 @@ const ProductScreen = ({route, navigation}) => {
 
   const imageAnimatedStyle = useAnimatedStyle(() => {
 
-      console.log("sldfjklsdjfkldsjfklsdjklfjsdklfjs")
+      // console.log("sldfjklsdjfkldsjfklsdjklfjsdklfjs")
       return {
         transform: [
           {
@@ -70,10 +71,12 @@ const ProductScreen = ({route, navigation}) => {
       };
   });
 
+  const [OPACITY, setOPACITY] = useState(0);
+
   const headerAnimatedStyle = useAnimatedStyle(() => {
-    console.log({
-      opacity: interpolate(scrollOffset.value, [0, IMG_HEIGHT / 1.5], [0, 1])
-    })
+    // console.log({
+    //   opacity: interpolate(scrollOffset.value, [0, IMG_HEIGHT / 1.5], [0, 1])
+    // })
     return {
       opacity: interpolate(scrollOffset.value, [0, IMG_HEIGHT / 1.5], [0, 1])
     };
@@ -82,31 +85,34 @@ const ProductScreen = ({route, navigation}) => {
   const Header = () => {
     const insets = useSafeAreaInsets();
     return (
-      <Animated.View style={[headerAnimatedStyle, styles3.container, { paddingTop: insets.top }]}>
+      <Animated.View style={[{ opacity: OPACITY }, styles3.container, { paddingTop: insets.top }]}>
         <Text style={styles3.text}>Product Screen</Text>
       </Animated.View>
     )
   }
 
-  useLayoutEffect(() => {
+  useFocusEffect(() => {
     navigation.setOptions({
       headerTransparent: true,
       headerLeft: () => <View />,
       headerTitle: '',
       headerBackground: () => <Header />
     });
-  }, [navigation]); // Re-run when navigation changes (though usually it doesn't)
+  }); // Re-run when navigation changes (though usually it doesn't)
 
+  const handleScroll = (e) => {
+    console.log("hit handler and header should have opacity of", interpolate(e.nativeEvent.contentOffset.y, [0, IMG_HEIGHT / 1.5], [0, 1]))
+    setOPACITY(interpolate(e.nativeEvent.contentOffset.y, [0, IMG_HEIGHT / 1.5], [0, 1]))
+
+
+  }
 
   if (isLoading) {
     return (
       <View style={{flex: 1 }}>
         <View style={{backgroundColor: 'grey', height: 300, width: width}}/>
-        <Animated.ScrollView ref={scrollRef} scrollEventThrottle={16} contentContainerStyle={{ flexGrow: 1, justifyContent: 'center', alignItems: 'center'}}>
-          {/*<View style={styles.loadingContainer}/>*/}
+        <Animated.ScrollView ref={scrollRef} onScroll={handleScroll} scrollEventThrottle={16} contentContainerStyle={{ flexGrow: 1, justifyContent: 'center', alignItems: 'center'}}>
 
-
-          {/*<Title text={"Products"} />*/}
 
           <ActivityIndicator size="large" color="#8E0000"/>
           <View style={{height: 50}}/>
@@ -120,58 +126,97 @@ const ProductScreen = ({route, navigation}) => {
   } if (isLoading === false) {
     const insets2 = useSafeAreaInsets();
 
+    const handleTouchStart = () => {
+      scrollRef.current.setNativeProps({ scrollEnabled: false }); // Disable scrolling on ScrollView
+    };
 
+    const handleTouchMove = () => {
+      scrollRef.current.setNativeProps({ scrollEnabled: true }); // Enable scrolling on ScrollView
+    };
 
 
 
     return (
-      <View flex={1}>
-        {/*<Title text={"Products"} />*/}
-        <View style={[styles.container, ]}>
+      <View style={{flex: 1 }}>
 
-          <Animated.ScrollView ref={scrollRef} scrollEventThrottle={16}>
-            <Animated.Image
-              source={{
-                uri: "https://reactjs.org/logo-og.png"
-              }}
-              style={[styles.image, imageAnimatedStyle]}
-            />
-            <View style={{ height: 10000, backgroundColor: '#fff' }}>
-              <Text style={{ fontSize: 20, fontWeight: 'bold', textAlign: 'center', marginTop: 20 }}>
-                Parallax Scroll
-              </Text>
-                <FlatList
-                  scrollEnabled={false}
-                  keyExtractor={(item) => item._id.toString()}
-                  data={products}
-                  renderItem={({ item: product }) => (
-                    <ListProduct
-                      name={product.name}
-                      category={product.category}
-                      price={product.price}
-                      description={product.description}
-                      navigation={navigation}
-                      shop={shop}
-                      images={product.images}
-                      product={product}
-                    />
-                  )}
-                  contentContainerStyle={{ paddingBottom: 87 }}
+
+        {/*<View style={{backgroundColor: 'grey', height: 300, width: width}}/>*/}
+
+        <Animated.ScrollView ref={scrollRef} onScroll={handleScroll} scrollEventThrottle={32} contentContainerStyle={{ flexGrow: 1}}>
+
+
+
+          <Animated.Image
+            source={{
+              uri: "https://reactjs.org/logo-og.png"
+            }}
+            style={[styles.image, imageAnimatedStyle]}
+          />
+
+          <View style={{ flexGrow: 1}}>
+            <FlatList
+              keyExtractor={(item) => item._id.toString()}
+              data={products}
+              renderItem={({ item: product }) => (
+                <ListProduct
+                  name={product.name}
+                  category={product.category}
+                  price={product.price}
+                  description={product.description}
+                  navigation={navigation}
+                  shop={shop}
+                  images={product.images}
+                  product={product}
                 />
-            </View>
-
-          </Animated.ScrollView>
-          <TabBar navigation={navigation} />
-
-
-        </View>
+              )}
+              contentContainerStyle={{ paddingBottom: 87 }}
+            />
+          {/* You can add additional text or graphics here */}
+          </View>
+        </Animated.ScrollView>
+        <TabBar navigation={navigation} />
 
       </View>
     )
   }
 }
-
-
+//
+//
+// <View flex={1}>
+//   {/*<Title text={"Products"} />*/}
+//   <View style={[styles.container, ]}>
+//
+//     <Animated.ScrollView ref={scrollRef} scrollEventThrottle={16} contentContainerStyle={{ flexGrow: 1}}>
+//       <Animated.Image
+//         source={{
+//           uri: "https://reactjs.org/logo-og.png"
+//         }}
+//         style={[styles.image, imageAnimatedStyle]}
+//       />
+//       <View style={{ backgroundColor: '#fff', height:300 }} >
+//
+/*//         {/!*<FlatList*!/}
+//         {/!*  keyExtractor={(item) => item._id.toString()}*!/}
+//         {/!*  data={products}*!/}
+//         {/!*  renderItem={({ item: product }) => (*!/}
+//         {/!*    <ListProduct*!/}
+//         {/!*      name={product.name}*!/}
+//         {/!*      category={product.category}*!/}
+//         {/!*      price={product.price}*!/}
+//         {/!*      description={product.description}*!/}
+//         {/!*      navigation={navigation}*!/}
+//         {/!*      shop={shop}*!/}
+//         {/!*      images={product.images}*!/}
+//         {/!*      product={product}*!/}
+//         {/!*    />*!/}
+//         {/!*  )}*!/}
+//         {/!*  contentContainerStyle={{ paddingBottom: 87 }}*!/}
+//         {/!*!/>*!/}*/
+//       </View>
+//     </Animated.ScrollView>
+//     <TabBar navigation={navigation} />
+//   </View>
+// </View>
 
 const styles = StyleSheet.create({
   container: {
