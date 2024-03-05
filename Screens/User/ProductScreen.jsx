@@ -71,7 +71,8 @@ const ProductScreen = ({route, navigation}) => {
       };
   });
 
-  const [OPACITY, setOPACITY] = useState(0);
+
+  const OPACITY = useRef(new Animated.Value(0)).current;
 
   const headerAnimatedStyle = useAnimatedStyle(() => {
     // console.log({
@@ -81,11 +82,17 @@ const ProductScreen = ({route, navigation}) => {
       opacity: interpolate(scrollOffset.value, [0, IMG_HEIGHT / 1.5], [0, 1])
     };
   });
+  const createAnimatedOpacityStyle = (e) =useAnimatedStyle(() => {
+    console.log("new function hit")
+    return {
+      opacity: interpolate(e.nativeEvent.contentOffset.y, [0, IMG_HEIGHT / 1.5], [0, 1]) // Adjust the formula as needed
+    };
+  });
 
   const Header = () => {
     const insets = useSafeAreaInsets();
     return (
-      <Animated.View style={[{ opacity: OPACITY }, styles3.container, { paddingTop: insets.top }]}>
+      <Animated.View style={[createAnimatedOpacityStyle, styles3.container, { paddingTop: insets.top }]}>
         <Text style={styles3.text}>Product Screen</Text>
       </Animated.View>
     )
@@ -103,9 +110,10 @@ const ProductScreen = ({route, navigation}) => {
   const handleScroll = (e) => {
     console.log("hit handler and header should have opacity of", interpolate(e.nativeEvent.contentOffset.y, [0, IMG_HEIGHT / 1.5], [0, 1]))
     setOPACITY(interpolate(e.nativeEvent.contentOffset.y, [0, IMG_HEIGHT / 1.5], [0, 1]))
-
-
   }
+
+
+
 
   if (isLoading) {
     return (
@@ -133,6 +141,8 @@ const ProductScreen = ({route, navigation}) => {
     const handleTouchMove = () => {
       scrollRef.current.setNativeProps({ scrollEnabled: true }); // Enable scrolling on ScrollView
     };
+
+
 
 
 
