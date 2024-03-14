@@ -7,7 +7,7 @@ import { Dimensions } from "react-native";
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
 
-const IP_ADDRESS = "10.0.0.224"
+const IP_ADDRESS = "10.0.0.102"
 const ICONWRAPPER = {
   Feather,
   Ionicons,
