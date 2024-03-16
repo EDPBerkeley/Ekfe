@@ -11,6 +11,8 @@ import { useEffect, useState } from "react";
 import { get_product_for_shop } from "../../API";
 import { TabBar } from "../../Components";
 import { ListProduct } from "../../Components/List/ListProduct";
+import { ListProductHorizontal } from "../../Components/List/ListProductHorizontal";
+import { get_general_product_field_for_shop } from "../../API/product";
 
 const { width } = Dimensions.get('window');
 const IMG_HEIGHT = 300;
@@ -19,6 +21,8 @@ const ProductScreen = ({route, navigation}) => {
   const scrollRef = useAnimatedRef();
   const scrollOffset = useScrollViewOffset(scrollRef);
   const [products, set_products] = useState([])
+  const [for_you_products, set_for_you_products] = useState([])
+  const [featured_products, set_featured_products] = useState([])
   const { shop } = route.params
   const [isLoading, setIsLoading] = useState(true);
 
@@ -27,16 +31,24 @@ const ProductScreen = ({route, navigation}) => {
     Promise.all([
       Image.prefetch("https://reactjs.org/logo-og.png"),
       get_product_for_shop(shop._id),
+      get_general_product_field_for_shop(shop._id, "featured_products"),
+      get_general_product_field_for_shop(shop._id, "for_you_products")
 
-    ]).then(([image_prefetch_result, data]) => {
+    ]).then(([
+          image_prefetch_result,
+          data,
+          featured_products,
+          for_you_products
+      ]) => {
       set_products(data)
+      set_featured_products(featured_products)
+      set_for_you_products(for_you_products)
       setIsLoading(false)
     })
   }, []);
 
     const Header = () => {
     const insets = useSafeAreaInsets();
-    console.log("This is shop", shop.product_categories)
     return (
       <Animated.View style={[headerAnimatedStyle, styles.container2, { paddingTop: insets.top, position: 'absolute',  zIndex: 9999, width: SCREEN_WIDTH, flexDirection: "column"}]}>
         <View style={styles.product_title_container}>
@@ -114,6 +126,41 @@ const ProductScreen = ({route, navigation}) => {
             style={[styles.image, imageAnimatedStyle]}
           />
           <View style={{backgroundColor: '#FFFFFF'}}>
+
+
+            <View style={styles.horizontal_products_container}>
+              <FlatList
+                data={featured_products}
+                horizontal={true}
+                renderItem={({ item: product }) => (
+                  <ListProductHorizontal
+                    name={product.name}
+                    price={product.price}
+                    images={product.images}
+                  />
+                )}
+                keyExtractor={(item, index) => String(index)} // Provide a unique key extractor for each item
+                showsHorizontalScrollIndicator={false}
+              />
+            </View>
+
+            <View style={styles.horizontal_products_container}>
+              <FlatList
+                data={for_you_products}
+                horizontal={true}
+                renderItem={({ item: product }) => (
+                  <ListProductHorizontal
+                    name={product.name}
+                    price={product.price}
+                    images={product.images}
+                  />
+                )}
+                showsHorizontalScrollIndicator={false}
+                keyExtractor={(item, index) => String(index)} // Provide a unique key extractor for each item
+
+              />
+            </View>
+
             <FlatList
               data={products}
               renderItem={({ item: product, index }) => (
@@ -139,6 +186,7 @@ const ProductScreen = ({route, navigation}) => {
     );
   }
 };
+
 
 
 const styles = StyleSheet.create({
@@ -170,7 +218,10 @@ const styles = StyleSheet.create({
     color: "#FFFFFF",
     paddingRight: 40,
     fontFamily: 'Roboto',
-
+  },
+  horizontal_products_container : {
+    paddingLeft: 20,
+    paddingTop: 20,
 
   },
   category_bar: {
