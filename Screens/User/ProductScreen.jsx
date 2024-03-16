@@ -13,6 +13,7 @@ import { TabBar } from "../../Components";
 import { ListProduct } from "../../Components/List/ListProduct";
 import { ListProductHorizontal } from "../../Components/List/ListProductHorizontal";
 import { get_general_product_field_for_shop } from "../../API/product";
+import { ListProductVerticalGroup } from "../../Components/List/ListProductVerticalGroup";
 
 const { width } = Dimensions.get('window');
 const IMG_HEIGHT = 200;
@@ -180,8 +181,8 @@ const ProductScreen = ({route, navigation}) => {
 
 
             </View>
-
-            <View style={styles.bar}></View>
+            <View style={{marginTop: 10}}/>
+            <View style={styles.bar}/>
           </View>
 
 
@@ -223,26 +224,27 @@ const ProductScreen = ({route, navigation}) => {
                 keyExtractor={(item, index) => String(index)} // Provide a unique key extractor for each item
 
               />
-            </View>
 
-            <View>
-              <Text style={styles.header_product_text}>Necklaces</Text>
+
+            </View >
+
+            <View style={{marginTop: 30}}/>
+            <View style={styles.bar}></View>
+
+            <View style={{paddingTop: 30}}>
+              <Text style={styles.all_product_text}>Necklaces</Text>
 
               <FlatList
                 data={products}
                 renderItem={({ item: product, index }) => (
-                  <ListProduct
+                  <ListProductVerticalGroup
                     name={product.name}
-                    category={product.category}
                     price={product.price}
-                    description={product.description}
-                    navigation={navigation}
-                    shop={shop}
                     images={product.images}
-                    product={product}
                   />
                 )}
-                contentContainerStyle={{ paddingBottom: 87 }}
+                contentContainerStyle={vertical_product_list.flatListContent}
+                numColumns={2}
               />
             </View>
 
@@ -309,7 +311,12 @@ const header_styles = StyleSheet.create({
   }
 })
 
-
+const vertical_product_list = StyleSheet.create({
+  flatListContent: {
+    alignItems: 'center',
+    paddingBottom: 87
+  },
+})
 const styles = StyleSheet.create({
   cost: {
     fontSize: 11,
@@ -352,11 +359,21 @@ const styles = StyleSheet.create({
     paddingLeft: 20,
     paddingTop: 20,
   },
+  vertical_products_container : {
+    paddingLeft: 20,
+    paddingTop: 20,
+  },
   header_product_text: {
     fontFamily: 'Roboto-Bold',
     fontSize: 18,
     paddingBottom: 10,
 
+  },
+  all_product_text: {
+    fontFamily: 'Roboto-Bold',
+    fontSize: 21,
+    paddingBottom: 10,
+    paddingLeft: 20
   },
   category_bar: {
     flexDirection: "row",
@@ -378,7 +395,6 @@ const styles = StyleSheet.create({
     height: 1,
     marginHorizontal: 15,
     backgroundColor: "#7c7c7c",
-    marginTop: 10
   }
 });
 export default ProductScreen;
