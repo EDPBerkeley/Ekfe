@@ -6,7 +6,7 @@ import Animated, {
   useScrollViewOffset
 } from 'react-native-reanimated';
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { SCREEN_WIDTH } from "../../Constants/constants";
+import { ICONWRAPPER, SCREEN_WIDTH } from "../../Constants/constants";
 import { useEffect, useState } from "react";
 import { get_product_for_shop } from "../../API";
 import { TabBar } from "../../Components";
@@ -15,7 +15,7 @@ import { ListProductHorizontal } from "../../Components/List/ListProductHorizont
 import { get_general_product_field_for_shop } from "../../API/product";
 
 const { width } = Dimensions.get('window');
-const IMG_HEIGHT = 300;
+const IMG_HEIGHT = 200;
 
 const ProductScreen = ({route, navigation}) => {
   const scrollRef = useAnimatedRef();
@@ -47,7 +47,24 @@ const ProductScreen = ({route, navigation}) => {
     })
   }, []);
 
+  const NumCost = (numSigns) => {
+
+    let finalComponents = []
+    const SelectedIcon = ICONWRAPPER["Feather"]
+
+    for (let i = 0; i < numSigns + 1; i++) {
+      finalComponents.push(
+        <SelectedIcon style={styles.cost} name={"dollar-sign"}/>
+      )
+    }
+    return finalComponents
+  }
+
     const Header = () => {
+
+
+
+
     const insets = useSafeAreaInsets();
     return (
       <Animated.View style={[headerAnimatedStyle, styles.container2, { paddingTop: insets.top, position: 'absolute',  zIndex: 9999, width: SCREEN_WIDTH, flexDirection: "column"}]}>
@@ -66,6 +83,7 @@ const ProductScreen = ({route, navigation}) => {
               </View>
             )}
             keyExtractor={(item, index) => String(index)} // Provide a unique key extractor for each item
+            showsHorizontalScrollIndicator={false}
 
           />
         </View>
@@ -118,17 +136,61 @@ const ProductScreen = ({route, navigation}) => {
     return (
       <View style={styles.container}>
         <Header />
-        <Animated.ScrollView ref={scrollRef} scrollEventThrottle={16}>
+        <Animated.ScrollView ref={scrollRef} scrollEventThrottle={16} style={{backgroundColor: "#FFFFFF"}}>
           <Animated.Image
             source={{
               uri: "https://reactjs.org/logo-og.png"
             }}
             style={[styles.image, imageAnimatedStyle]}
           />
+
+          <View style={{backgroundColor: "#FFFFFF"}}>
+            <View style={header_styles.container}>
+
+              <View style={header_styles.name_container}>
+                <Text style={header_styles.name_text}>{shop.name}</Text>
+              </View>
+
+
+
+              <View style={header_styles.horizontal_container}>
+                <View style={header_styles.category_container}>
+                  <Text style={header_styles.category_text}>{shop.category}</Text>
+                </View>
+
+                <View style={{paddingHorizontal: 5, alignItems: "center"}}>
+                  <Text style={{color: "#555555"}}>|</Text>
+                </View>
+
+
+
+                <View style={header_styles.distance_container}>
+                  <Text style={header_styles.distance_text}>{shop.distance + "mi"}</Text>
+                </View>
+
+                <View style={{paddingHorizontal: 5, alignItems: "center"}}>
+                  <Text style={{color: "#555555"}}>|</Text>
+                </View>
+
+                <View style={header_styles.cost_container}>
+                  <Text style={header_styles.cost_text}>{NumCost(shop.cost)}</Text>
+                </View>
+              </View>
+
+
+
+            </View>
+
+            <View style={styles.bar}></View>
+          </View>
+
+
           <View style={{backgroundColor: '#FFFFFF'}}>
 
 
             <View style={styles.horizontal_products_container}>
+              <Text style={styles.header_product_text}>Featured</Text>
+
               <FlatList
                 data={featured_products}
                 horizontal={true}
@@ -144,7 +206,9 @@ const ProductScreen = ({route, navigation}) => {
               />
             </View>
 
+
             <View style={styles.horizontal_products_container}>
+              <Text style={styles.header_product_text}>For You</Text>
               <FlatList
                 data={for_you_products}
                 horizontal={true}
@@ -161,22 +225,27 @@ const ProductScreen = ({route, navigation}) => {
               />
             </View>
 
-            <FlatList
-              data={products}
-              renderItem={({ item: product, index }) => (
-                <ListProduct
-                  name={product.name}
-                  category={product.category}
-                  price={product.price}
-                  description={product.description}
-                  navigation={navigation}
-                  shop={shop}
-                  images={product.images}
-                  product={product}
-                />
-              )}
-              contentContainerStyle={{ paddingBottom: 87 }}
-            />
+            <View>
+              <Text style={styles.header_product_text}>Necklaces</Text>
+
+              <FlatList
+                data={products}
+                renderItem={({ item: product, index }) => (
+                  <ListProduct
+                    name={product.name}
+                    category={product.category}
+                    price={product.price}
+                    description={product.description}
+                    navigation={navigation}
+                    shop={shop}
+                    images={product.images}
+                    product={product}
+                  />
+                )}
+                contentContainerStyle={{ paddingBottom: 87 }}
+              />
+            </View>
+
           </View>
         </Animated.ScrollView>
         <TabBar navigation={navigation} />
@@ -189,7 +258,67 @@ const ProductScreen = ({route, navigation}) => {
 
 
 
+const header_styles = StyleSheet.create({
+  container: {
+    paddingLeft: 20,
+    paddingTop: 20,
+    backgroundColor: "#FFFFFF",
+  },
+  horizontal_container: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  name_container: {
+    paddingBottom: 5
+  },
+  name_text: {
+    fontSize: 23,
+    fontFamily: "Roboto-Bold"
+  },
+  category_container: {
+    paddingRight: 5
+  },
+  category_text: {
+    fontFamily: "Roboto",
+    fontSize: 12,
+    color: "#555555"
+  },
+  rating_container: {
+    paddingRight: 5
+  },
+  rating_text: {
+    fontFamily: "Roboto",
+    fontSize: 12,
+    color: "#555555"
+  },
+  distance_container: {
+    paddingRight: 5
+  },
+  distance_text: {
+    fontFamily: "Roboto",
+    fontSize: 12,
+    color: "#555555"
+  },
+  cost_container: {
+    paddingRight: 5,
+    paddingTop: 2.5
+  },
+  cost_text: {
+    color: "#555555",
+    fontSize: 12,
+  }
+})
+
+
 const styles = StyleSheet.create({
+  cost: {
+    fontSize: 11,
+    flexDirection: "row",
+    paddingBottom: .025,
+    marginEnd: -3,
+    color: "#555555",
+  },
+
   container: {
     flex: 1,
     backgroundColor: '#fff'
@@ -208,10 +337,10 @@ const styles = StyleSheet.create({
 
     backgroundColor:'#8E0000',
   },
-    product_text: {
-    fontSize: 20,
+  product_text: {
+    fontSize: 18,
     color: "#FFFFFF",
-    fontFamily: 'Roboto'
+    fontFamily: 'Roboto-Medium',
   },
   category_text: {
     fontSize: 14,
@@ -222,6 +351,11 @@ const styles = StyleSheet.create({
   horizontal_products_container : {
     paddingLeft: 20,
     paddingTop: 20,
+  },
+  header_product_text: {
+    fontFamily: 'Roboto-Bold',
+    fontSize: 18,
+    paddingBottom: 10,
 
   },
   category_bar: {
@@ -238,6 +372,13 @@ const styles = StyleSheet.create({
     paddingBottom: 19,
     fontFamily: 'Roboto',
     justifyContent: 'center'
+  },
+  bar: {
+    flexDirection: "row",
+    height: 1,
+    marginHorizontal: 15,
+    backgroundColor: "#7c7c7c",
+    marginTop: 10
   }
 });
 export default ProductScreen;
