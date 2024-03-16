@@ -36,9 +36,27 @@ const ProductScreen = ({route, navigation}) => {
 
     const Header = () => {
     const insets = useSafeAreaInsets();
+    console.log("This is shop", shop.product_categories)
     return (
-      <Animated.View style={[headerAnimatedStyle, styles.container2, { paddingTop: insets.top, position: 'absolute',  zIndex: 9999, width: SCREEN_WIDTH}]}>
-        <Text style={styles.text}>Product Screen</Text>
+      <Animated.View style={[headerAnimatedStyle, styles.container2, { paddingTop: insets.top, position: 'absolute',  zIndex: 9999, width: SCREEN_WIDTH, flexDirection: "column"}]}>
+        <View style={styles.product_title_container}>
+          <Text style={styles.product_text}>{shop.name}</Text>
+        </View>
+
+        <View style={styles.category_bar}>
+          <View style={{paddingLeft: 10}}/>
+          <FlatList
+            data={shop.product_categories}
+            horizontal={true}
+            renderItem={({ item: category }) => (
+              <View >
+                <Text style={styles.category_text}>{category}</Text>
+              </View>
+            )}
+            keyExtractor={(item, index) => String(index)} // Provide a unique key extractor for each item
+
+          />
+        </View>
       </Animated.View>
     )
   }
@@ -138,19 +156,37 @@ const styles = StyleSheet.create({
     borderWidth: StyleSheet.hairlineWidth
   },
   container2: {
-    flexDirection: "row",
     paddingTop: 10,
-    paddingBottom: 10,
-    paddingLeft: 15,
+
     backgroundColor:'#8E0000',
   },
-    text: {
-    fontSize: 25,
+    product_text: {
+    fontSize: 20,
     color: "#FFFFFF",
-    fontWeight: 'bold'
+    fontFamily: 'Roboto'
   },
-  background: {
+  category_text: {
+    fontSize: 14,
+    color: "#FFFFFF",
+    paddingRight: 40,
+    fontFamily: 'Roboto',
 
+
+  },
+  category_bar: {
+    flexDirection: "row",
+    // backgroundColor: "#7A0000",
+    paddingBottom: 15
+
+  },
+  product_title_container: {
+    flexDirection: 'row',
+    paddingLeft: 15,
+    paddingRight: 8,
+    paddingTop: 4,
+    paddingBottom: 19,
+    fontFamily: 'Roboto',
+    justifyContent: 'center'
   }
 });
 export default ProductScreen;
