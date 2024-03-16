@@ -1,4 +1,4 @@
-import { ActivityIndicator, Dimensions, StyleSheet, Text, View, Image, FlatList } from "react-native";
+import { ActivityIndicator, Dimensions, StyleSheet, Text, View, Image, FlatList, TouchableOpacity } from "react-native";
 import Animated, {
   interpolate,
   useAnimatedRef,
@@ -12,8 +12,9 @@ import { get_product_for_shop } from "../../API";
 import { TabBar } from "../../Components";
 import { ListProduct } from "../../Components/List/ListProduct";
 import { ListProductHorizontal } from "../../Components/List/ListProductHorizontal";
-import { get_general_product_field_for_shop } from "../../API/product";
+import { get_general_product_field_for_shop, get_sorted_products } from "../../API/product";
 import { ListProductVerticalGroup } from "../../Components/List/ListProductVerticalGroup";
+console.disableYellowBox = true;
 
 const { width } = Dimensions.get('window');
 const IMG_HEIGHT = 200;
@@ -26,6 +27,8 @@ const ProductScreen = ({route, navigation}) => {
   const [featured_products, set_featured_products] = useState([])
   const { shop } = route.params
   const [isLoading, setIsLoading] = useState(true);
+  const [selected_category, set_selected_category] = useState("All Products")
+  const [sorted_products, set_sorted_products] = useState([])
 
 
   useEffect(() => {
@@ -33,17 +36,20 @@ const ProductScreen = ({route, navigation}) => {
       Image.prefetch("https://reactjs.org/logo-og.png"),
       get_product_for_shop(shop._id),
       get_general_product_field_for_shop(shop._id, "featured_products"),
-      get_general_product_field_for_shop(shop._id, "for_you_products")
+      get_general_product_field_for_shop(shop._id, "for_you_products"),
+      get_sorted_products(shop._id)
 
     ]).then(([
           image_prefetch_result,
           data,
           featured_products,
-          for_you_products
+          for_you_products,
+          sorted_products
       ]) => {
       set_products(data)
       set_featured_products(featured_products)
       set_for_you_products(for_you_products)
+      set_sorted_products(sorted_products)
       setIsLoading(false)
     })
   }, []);
@@ -79,9 +85,13 @@ const ProductScreen = ({route, navigation}) => {
             data={shop.product_categories}
             horizontal={true}
             renderItem={({ item: category }) => (
-              <View >
-                <Text style={styles.category_text}>{category}</Text>
-              </View>
+
+              <TouchableOpacity onPress={() => (set_selected_category(category))}>
+                <View >
+                  <Text style={styles.category_text}>{category}</Text>
+                </View>
+              </TouchableOpacity>
+
             )}
             keyExtractor={(item, index) => String(index)} // Provide a unique key extractor for each item
             showsHorizontalScrollIndicator={false}
@@ -231,11 +241,11 @@ const ProductScreen = ({route, navigation}) => {
             <View style={{marginTop: 30}}/>
             <View style={styles.bar}></View>
 
-            <View style={{paddingTop: 30}}>
-              <Text style={styles.all_product_text}>Necklaces</Text>
+            <View style={{paddingTop: 15}}>
+              <Text style={styles.all_product_text}>{selected_category}</Text>
 
               <FlatList
-                data={products}
+                data={sorted_products[selected_category]}
                 renderItem={({ item: product, index }) => (
                   <ListProductVerticalGroup
                     name={product.name}
@@ -274,7 +284,7 @@ const header_styles = StyleSheet.create({
     paddingBottom: 5
   },
   name_text: {
-    fontSize: 23,
+    fontSize: 25,
     fontFamily: "Roboto-Bold"
   },
   category_container: {
@@ -282,7 +292,7 @@ const header_styles = StyleSheet.create({
   },
   category_text: {
     fontFamily: "Roboto",
-    fontSize: 12,
+    fontSize: 13,
     color: "#555555"
   },
   rating_container: {
@@ -290,7 +300,7 @@ const header_styles = StyleSheet.create({
   },
   rating_text: {
     fontFamily: "Roboto",
-    fontSize: 12,
+    fontSize: 13,
     color: "#555555"
   },
   distance_container: {
@@ -298,7 +308,7 @@ const header_styles = StyleSheet.create({
   },
   distance_text: {
     fontFamily: "Roboto",
-    fontSize: 12,
+    fontSize: 13,
     color: "#555555"
   },
   cost_container: {
@@ -365,13 +375,13 @@ const styles = StyleSheet.create({
   },
   header_product_text: {
     fontFamily: 'Roboto-Bold',
-    fontSize: 18,
+    fontSize: 20,
     paddingBottom: 10,
 
   },
   all_product_text: {
     fontFamily: 'Roboto-Bold',
-    fontSize: 21,
+    fontSize: 23,
     paddingBottom: 10,
     paddingLeft: 20
   },

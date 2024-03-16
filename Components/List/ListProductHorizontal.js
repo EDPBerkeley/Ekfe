@@ -39,7 +39,9 @@ const horizontal_product_styles = StyleSheet.create({
   container: {
     marginRight: 20,
     backgroundColor: "#F5F5F5",
-    borderRadius: 5
+    borderRadius: 5,
+    borderWidth: .5,
+    borderColor: "#d2d2d2"
   },
   image_container: {
 

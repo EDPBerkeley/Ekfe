@@ -37,4 +37,29 @@ async function get_general_product_field_for_shop(shop_id, product_field) {
     .then(data => data.json())
 }
 
-export { get_product_for_shop, get_general_product_field_for_shop }
+async function get_sorted_products(shop_id) {
+
+
+  const params = {
+    shop_id: shop_id
+  };
+
+  // Create a URLSearchParams object and append each parameter
+  const searchParams = new URLSearchParams();
+  for (const key in params) {
+    if (params.hasOwnProperty(key)) {
+      searchParams.append(key, params[key]);
+    }
+  }
+
+  // Construct the full URL with the encoded parameters
+  const SPECIFIC_PRODUCT_URL = PRODUCT_URL + "/sorted_products"
+  const fullURL = `${SPECIFIC_PRODUCT_URL}?${searchParams.toString()}`;
+
+
+  return fetch(fullURL)
+    .then(data => data.json())
+}
+
+
+export { get_product_for_shop, get_general_product_field_for_shop, get_sorted_products }
