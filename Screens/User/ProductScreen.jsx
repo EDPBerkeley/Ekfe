@@ -1,4 +1,14 @@
-import { ActivityIndicator, Dimensions, StyleSheet, Text, View, Image, FlatList, TouchableOpacity } from "react-native";
+import {
+  ActivityIndicator,
+  Dimensions,
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  FlatList,
+  TouchableOpacity,
+  LogBox,
+} from "react-native";
 import Animated, {
   interpolate,
   useAnimatedRef,
@@ -13,7 +23,7 @@ import { TabBar } from "../../Components";
 import { ListProduct } from "../../Components/List/ListProduct";
 import { ListProductHorizontal } from "../../Components/List/ListProductHorizontal";
 import { get_general_product_field_for_shop, get_sorted_products } from "../../API/product";
-import { ListProductVerticalGroup } from "../../Components/List/ListProductVerticalGroup";
+import { ListProductVertical } from "../../Components/List/ListProductVertical";
 console.disableYellowBox = true;
 
 const { width } = Dimensions.get('window');
@@ -30,8 +40,14 @@ const ProductScreen = ({route, navigation}) => {
   const [selected_category, set_selected_category] = useState("All Products")
   const [sorted_products, set_sorted_products] = useState([])
 
+
   useEffect(() => {
-  }, [selected_category])
+    LogBox.ignoreLogs(['VirtualizedLists should never be nested']);
+  }, [])
+
+  useEffect(() => {
+    LogBox.ignoreLogs(['Possible Unhandled Promise Rejection']);
+  }, [])
 
   useEffect(() => {
     Promise.all([
@@ -205,6 +221,8 @@ const ProductScreen = ({route, navigation}) => {
             <View style={styles.horizontal_products_container}>
               <Text style={styles.header_product_text}>Featured</Text>
 
+
+
               <FlatList
                 data={featured_products}
                 horizontal={true}
@@ -250,7 +268,7 @@ const ProductScreen = ({route, navigation}) => {
               <FlatList
                 data={sorted_products[selected_category]}
                 renderItem={({ item: product, index }) => (
-                  <ListProductVerticalGroup
+                  <ListProductVertical
                     name={product.name}
                     price={product.price}
                     images={product.images}

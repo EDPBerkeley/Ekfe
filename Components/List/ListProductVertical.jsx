@@ -13,7 +13,7 @@ import { TabBar } from "../../Components";
 import { ListProduct } from "../../Components/List/ListProduct";
 
 
-const ListProductVerticalGroup = ({name, price, images}) => {
+const ListProductVertical = ({name, price, images}) => {
   //
   // console.log("IMAGES 0", images[0])
   return (
@@ -83,4 +83,4 @@ const vertical_product_styles = StyleSheet.create({
   }
 })
 
-export { ListProductVerticalGroup };
+export { ListProductVertical };

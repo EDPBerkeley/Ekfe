@@ -1,4 +1,4 @@
-import { FlatList, View } from "react-native";
+import { FlatList, View, StyleSheet, Text, ScrollView } from "react-native";
 import React, { useEffect, useState } from "react";
 import { TabBar } from "../../Components";
 import { get_all_stores, get_stores_in_boundary } from "../../API";
@@ -7,6 +7,8 @@ import { Title } from "../../Components/Title/title";
 import MapView, { Marker, PROVIDER_GOOGLE } from "react-native-maps";
 import { MAPSTYLE } from "../../Constants";
 import { scaleBounds } from "../../Services/Utils";
+import { ListShopLandingHorizontal } from "../../Components/List/ListShopLandingHorizontal";
+import { ListShopLandingVertical } from "../../Components/List/ListShopLandingVertical";
 
 
 const MapScreen = ({ navigation }) => {
@@ -28,6 +30,25 @@ const MapScreen = ({ navigation }) => {
     longitudeDelta: 0.0421
   })
 
+
+  const shuffleArray = (array) => {
+    let currentIndex = array.length, temporaryValue, randomIndex;
+
+    // While there remain elements to shuffle...
+    while (0 !== currentIndex) {
+
+      // Pick a remaining element...
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex -= 1;
+
+      // And swap it with the current element.
+      temporaryValue = array[currentIndex];
+      array[currentIndex] = array[randomIndex];
+      array[randomIndex] = temporaryValue;
+    }
+
+    return array;
+  }
 
   const updateRegionStateVars = () => {
 
@@ -54,28 +75,11 @@ const MapScreen = ({ navigation }) => {
 
   }
 
-
-  const create_store_markers = () => {
-    let updated_markers = shops_in_markers.map((shop) => {
-
-      return <Marker
-        key={shop._id}
-        coordinate={{
-          "latitude": shop.location.geometry.coordinates[1],
-          "longitude": shop.location.geometry.coordinates[0]
-        }}
-        title={"HI"}
-        description={"DESC"}
-      />
-    })
-
-    set_markers(updated_markers)
-  }
     return (
       <View flex={1}>
 
         <Title text={"Marketplace"} />
-        <View flex={2}>
+        <View flex={1.4}>
 
           <MapView
             customMapStyle={MAPSTYLE}
@@ -102,28 +106,72 @@ const MapScreen = ({ navigation }) => {
 
 
         </View>
-        <View flex={3}>
-          <View paddingTop={0}>
-            <FlatList
-              keyExtractor={(item) => item._id.toString()}
-              data={shops_in_list}
-              renderItem={({ item: shop }) => (
-                <ListItem
-                  name={shop.name}
-                  rating={shop.rating}
-                  category={shop.category}
-                  phone_number={shop.number}
-                  cost={shop.cost}
-                  distance={shop.distance}
-                  description={shop.description}
-                  navigation={navigation}
-                  shop={shop}
-                />
-              )}
-              contentContainerStyle={{ paddingBottom: 87 }}
-            />
 
-          </View>
+        <View flex={3}>
+
+          <ScrollView>
+            <View paddingTop={0}>
+
+              <View style={styles.horizontal_list}>
+                <Text style={styles.horizontal_list_title}>Recent</Text>
+                <FlatList
+                  keyExtractor={(item) => item._id.toString()}
+                  data={shops_in_list}
+                  renderItem={({ item: shop }) => (
+                    <ListShopLandingHorizontal
+                      name={shop.name}
+                      rating={shop.rating}
+                      category={shop.category}
+                      distance={shop.distance}
+                      navigation={navigation}
+                      shop={shop}
+                    />
+                  )}
+                  horizontal={true}
+                  showsHorizontalScrollIndicator={false}
+                />
+              </View>
+              <View style={styles.horizontal_list}>
+                <Text style={styles.horizontal_list_title}>Featured</Text>
+                <FlatList
+                  keyExtractor={(item) => item._id.toString()}
+                  data={shops_in_list}
+                  renderItem={({ item: shop }) => (
+                    <ListShopLandingHorizontal
+                      name={shop.name}
+                      rating={shop.rating}
+                      category={shop.category}
+                      distance={shop.distance}
+                      navigation={navigation}
+                      shop={shop}
+                    />
+                  )}
+                  horizontal={true}
+                  showsHorizontalScrollIndicator={false}
+                />
+              </View>
+
+              <View style={styles.vertical_list}>
+                <Text style={styles.vertical_list_title}>All Nearby</Text>
+                <FlatList
+                  keyExtractor={(item) => item._id.toString()}
+                  data={shops_in_list}
+                  renderItem={({ item: shop }) => (
+                    <ListShopLandingVertical
+                      name={shop.name}
+                      rating={shop.rating}
+                      category={shop.category}
+                      distance={shop.distance}
+                      navigation={navigation}
+                      shop={shop}
+                    />
+                  )}
+                />
+              </View>
+
+            </View>
+          </ScrollView>
+
         </View>
         <TabBar navigation={navigation} />
       </View>
@@ -132,4 +180,30 @@ const MapScreen = ({ navigation }) => {
 
   };
 
+
+const styles = StyleSheet.create({
+  horizontal_list: {
+    paddingTop: 10,
+    paddingLeft: 10,
+  },
+  vertical_list: {
+    paddingTop: 20
+
+  },
+  horizontal_list_title: {
+    fontFamily: 'Roboto-Wide',
+    fontSize: 17,
+    paddingBottom: 5,
+
+    fontWeight: '700'
+  },
+  vertical_list_title: {
+    fontFamily: 'Roboto-Wide',
+    fontSize: 25,
+    paddingBottom: 5,
+    paddingLeft: 10,
+    fontWeight: '700',
+    marginBottom: -8
+  }
+})
 export default MapScreen;
