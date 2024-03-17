@@ -38,6 +38,8 @@ const MapScreen = ({ navigation }) => {
 
         get_stores_in_boundary(list_bounds)
           .then((data) => {
+
+
             set_shops_in_list(JSON.parse(data))
 
             get_stores_in_boundary(marker_bounds)

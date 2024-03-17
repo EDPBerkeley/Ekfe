@@ -30,6 +30,8 @@ const ProductScreen = ({route, navigation}) => {
   const [selected_category, set_selected_category] = useState("All Products")
   const [sorted_products, set_sorted_products] = useState([])
 
+  useEffect(() => {
+  }, [selected_category])
 
   useEffect(() => {
     Promise.all([
@@ -37,7 +39,8 @@ const ProductScreen = ({route, navigation}) => {
       get_product_for_shop(shop._id),
       get_general_product_field_for_shop(shop._id, "featured_products"),
       get_general_product_field_for_shop(shop._id, "for_you_products"),
-      get_sorted_products(shop._id)
+      get_general_product_field_for_shop(shop._id, "sorted_products")
+
 
     ]).then(([
           image_prefetch_result,
@@ -404,7 +407,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     height: 1,
     marginHorizontal: 15,
-    backgroundColor: "#7c7c7c",
+    backgroundColor: "#bd0000",
   }
 });
 export default ProductScreen;

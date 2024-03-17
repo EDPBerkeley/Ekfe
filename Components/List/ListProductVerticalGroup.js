@@ -14,7 +14,8 @@ import { ListProduct } from "../../Components/List/ListProduct";
 
 
 const ListProductVerticalGroup = ({name, price, images}) => {
-
+  //
+  // console.log("IMAGES 0", images[0])
   return (
     <View style={vertical_product_styles.container}>
 
