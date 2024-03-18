@@ -22,6 +22,8 @@ const StorefrontScreen = ({navigation}) => {
   useEffect(() => {
     get_random_shop().then(data => {
       set_shop(data)
+    }).catch((error) => {
+      console.log(error)
     })
   }, []);
 
@@ -33,10 +35,14 @@ const StorefrontScreen = ({navigation}) => {
       get_store_overview_data(shop._id).then(data => {
         // console.log("THIS IS MOST" + data.most_revenue_product)
         set_store_overview_data(data)
+      }).catch((error) => {
+        console.log(error)
       })
 
       get_product_for_shop(shop._id).then(data => {
         set_product_data(data)
+      }).catch((error) => {
+        console.log(error)
       })
     }
 

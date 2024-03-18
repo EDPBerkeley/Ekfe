@@ -68,10 +68,16 @@ const MapScreen = ({ navigation }) => {
                 data = JSON.parse(data)
                 set_shops_in_markers(data)
 
-              })
+              }).catch((error) => {
+              console.log(error)
+            })
 
-          })
-      })
+          }).catch((error) => {
+          console.log(error)
+        })
+      }).catch((error) => {
+      console.log(error)
+    })
 
   }
 

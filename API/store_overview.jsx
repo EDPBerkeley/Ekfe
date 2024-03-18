@@ -11,7 +11,9 @@ async function get_store_overview_data(shop_id) {
   const url = STORE_OVERVIEW_URL + `/data?${queryString}`
 
   return fetch(url)
-    .then(data => data.json())
+    .then(data => data.json()).catch((error) => {
+      console.log(error)
+    })
 
 }
 

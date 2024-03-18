@@ -3,12 +3,14 @@ import { objToQueryString } from "./utils";
 import { boundsDicttoArr } from "../Services/Utils";
 import {IP_ADDRESS} from "../Constants";
 
-const STORE_URL = "http://" + IP_ADDRESS + ":8000/store";
+const SHOP_URL = "http://" + IP_ADDRESS + ":8000/store";
 async function get_all_stores() {
-  let url = STORE_URL + "/all"
+  let url = SHOP_URL + "/all"
 
   return fetch(url)
-    .then(data => data.json())
+    .then(data => data.json()).catch((error) => {
+      console.log(error)
+    })
 }
 
 async function get_stores_in_boundary(bounds_dict)  {
@@ -22,18 +24,47 @@ async function get_stores_in_boundary(bounds_dict)  {
     "sw_lat": bounds_arr[2]
   })
 
-  const url = STORE_URL + `/get_stores/boundary?${queryString}`
+  const url = SHOP_URL + `/get_stores/boundary?${queryString}`
   // console.log("URL", url)
   return fetch(url)
-    .then(data => data.json())
+    .then(data => data.json()).catch((error) => {
+      console.log(error)
+    })
 }
 
 async function get_random_shop(){
-  const url = STORE_URL + "/random_shop"
+  const url = SHOP_URL + "/random_shop"
   return fetch(url)
-      .then(data => data.json())
+      .then(data => data.json()).catch((error) => {
+      console.log(error)
+    })
+}
+
+async function get_shop_given_id(id, resolve_images) {
+  const params = {
+    shop_id: id,
+    resolve_images: resolve_images ? 1 : 0
+  };
+
+  // Create a URLSearchParams object and append each parameter
+  const searchParams = new URLSearchParams();
+  for (const key in params) {
+    if (params.hasOwnProperty(key)) {
+      searchParams.append(key, params[key]);
+    }
+  }
+
+  // Construct the full URL with the encoded parameters
+  const SPECIFIC_SHOP_URL = SHOP_URL + "/get_shop/shop_id"
+  const fullURL = `${SPECIFIC_SHOP_URL}?${searchParams.toString()}`;
+
+  console.log("THIS IS URL", fullURL)
+  return fetch(fullURL)
+    .then(data => data.json()).catch((error) => {
+      console.log(error)
+    })
 }
 
 
 
-export { get_all_stores, get_stores_in_boundary, get_random_shop };
+export { get_all_stores, get_stores_in_boundary, get_random_shop, get_shop_given_id };

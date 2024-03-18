@@ -20,10 +20,10 @@ import { ICONWRAPPER, SCREEN_WIDTH } from "../../Constants/constants";
 import { useEffect, useState } from "react";
 import { get_product_for_shop } from "../../API";
 import { TabBar } from "../../Components";
-import { ListProduct } from "../../Components/List/ListProduct";
 import { ListProductHorizontal } from "../../Components/List/ListProductHorizontal";
 import { get_general_product_field_for_shop, get_sorted_products } from "../../API/product";
 import { ListProductVertical } from "../../Components/List/ListProductVertical";
+import { get_shop_given_id } from "../../API/store";
 console.disableYellowBox = true;
 
 const { width } = Dimensions.get('window');
@@ -39,6 +39,7 @@ const ProductScreen = ({route, navigation}) => {
   const [isLoading, setIsLoading] = useState(true);
   const [selected_category, set_selected_category] = useState("All Products")
   const [sorted_products, set_sorted_products] = useState([])
+  const [resolved_shop, set_resolved_shop] = useState(null)
 
 
   useEffect(() => {
@@ -46,30 +47,20 @@ const ProductScreen = ({route, navigation}) => {
   }, [])
 
   useEffect(() => {
-    LogBox.ignoreLogs(['Possible Unhandled Promise Rejection']);
-  }, [])
-
-  useEffect(() => {
     Promise.all([
       Image.prefetch("https://reactjs.org/logo-og.png"),
-      get_product_for_shop(shop._id),
-      get_general_product_field_for_shop(shop._id, "featured_products"),
-      get_general_product_field_for_shop(shop._id, "for_you_products"),
-      get_general_product_field_for_shop(shop._id, "sorted_products")
-
-
+      get_shop_given_id(shop._id, true)
     ]).then(([
           image_prefetch_result,
-          data,
-          featured_products,
-          for_you_products,
-          sorted_products
+          shop
       ]) => {
-      set_products(data)
-      set_featured_products(featured_products)
-      set_for_you_products(for_you_products)
-      set_sorted_products(sorted_products)
+      set_products(shop.products)
+      set_featured_products(shop.featured_products)
+      set_for_you_products(shop.for_you_products)
+      set_sorted_products(shop.sorted_products)
       setIsLoading(false)
+    }).catch((error) => {
+      console.log(error)
     })
   }, []);
 
@@ -112,7 +103,6 @@ const ProductScreen = ({route, navigation}) => {
               </TouchableOpacity>
 
             )}
-            keyExtractor={(item, index) => String(index)} // Provide a unique key extractor for each item
             showsHorizontalScrollIndicator={false}
 
           />
@@ -348,6 +338,7 @@ const vertical_product_list = StyleSheet.create({
     paddingBottom: 87
   },
 })
+
 const styles = StyleSheet.create({
   cost: {
     fontSize: 11,

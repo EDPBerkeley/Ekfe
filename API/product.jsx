@@ -9,7 +9,9 @@ async function get_product_for_shop(store_id) {
   let url = PRODUCT_URL + "/store?" + queryString.stringify({ "store_id" : store_id })
   return fetch(url)
 
-    .then(data => data.json())
+    .then(data => data.json()).catch((error) => {
+      console.log(error)
+    })
 }
 
 async function get_general_product_field_for_shop(shop_id, product_field) {
@@ -32,9 +34,11 @@ async function get_general_product_field_for_shop(shop_id, product_field) {
   const SPECIFIC_PRODUCT_URL = PRODUCT_URL + "/shop_field"
   const fullURL = `${SPECIFIC_PRODUCT_URL}?${searchParams.toString()}`;
 
-
+  console.log("THIS IS URL", fullURL)
   return fetch(fullURL)
-    .then(data => data.json())
+    .then(data => data.json()).catch((error) => {
+      console.log(error)
+    })
 }
 
 async function get_sorted_products(shop_id) {
@@ -58,7 +62,9 @@ async function get_sorted_products(shop_id) {
 
 
   return fetch(fullURL)
-    .then(data => data.json())
+    .then(data => data.json()).catch((error) => {
+      console.log(error)
+    })
 }
 
 
