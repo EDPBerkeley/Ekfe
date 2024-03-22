@@ -215,7 +215,6 @@ const ProductScreen = ({route, navigation}) => {
                   />
                 )}
                 contentContainerStyle={vertical_product_list.flatListContent}
-                numColumns={2}
               />
             </View>
 
@@ -336,11 +335,11 @@ const ProductScreen = ({route, navigation}) => {
                     name={product.name}
                     price={product.price}
                     images={product.images}
+                    category={product.category}
                   />
                 )}
-                contentContainerStyle={vertical_product_list.flatListContent}
-                numColumns={2}
               />
+              <View style={{paddingBottom:87}}/>
             </View>
 
           </View>

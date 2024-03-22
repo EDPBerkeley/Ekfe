@@ -1,86 +1,165 @@
-import { ActivityIndicator, Dimensions, StyleSheet, Text, View, Image, FlatList } from "react-native";
-import Animated, {
-  interpolate,
-  useAnimatedRef,
-  useAnimatedStyle,
-  useScrollViewOffset
-} from 'react-native-reanimated';
-import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { Text, View, StyleSheet, TouchableOpacity, Image } from "react-native";
+import { CATEGORIES, ICONWRAPPER } from "../../Constants";
+import React, { useEffect, useState } from "react";
 import { SCREEN_WIDTH } from "../../Constants/constants";
-import { useEffect, useState } from "react";
-import { get_product_for_shop } from "../../API";
-import { TabBar } from "../../Components";
-import { ListProduct } from "../../Components/List/ListProduct";
-
-
-const ListProductVertical = ({name, price, images}) => {
+import FastImage from "react-native-fast-image";
+const ListProductVertical = ({ name, price, images, category }) => {
+  const [image, set_image] = useState(null);
   //
-  // console.log("IMAGES 0", images[0])
+  // useEffect(() => {
+  //   Image.prefetch("https://reactjs.org/logo-og.png").then(([image]) => {
+  //     set_image(image);
+  //   })
+  // }, [])
   return (
-    <View style={vertical_product_styles.container}>
 
-      <View style={vertical_product_styles.product}>
-        <View style={vertical_product_styles.image_container}>
-          <Image source={{ uri: `data:image/png;base64,${images[0].element}` }}  style={vertical_product_styles.image} />
+    <View >
+      <View style={styles.container}>
+
+
+        <View style={styles.descriptor_container}>
+          <View style={styles.title_container}>
+            <Text style={styles.title_text}>{name}</Text>
+          </View>
+
+          <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+
+            <View style={styles.rating_container}>
+
+
+              <Text style={styles.rating_text}>{category}</Text>
+              <View style={{padding: 5}}/>
+              <Text style={styles.rating_text}>{'$'+price}</Text>
+            </View>
+          </View>
+
+
+          <View style={styles.traits_container}>
+
+            {/*<View style={styles.specific_traits_container}>*/}
+            {/*  <Text style={styles.specific_traits_text}>{category}</Text>*/}
+            {/*  <View style={{paddingHorizontal: 3}}/>*/}
+            {/*  <Text style={styles.specific_traits_text}>{distance + " mi"}</Text>*/}
+            {/*</View>*/}
+
+
+
+          </View>
+
+
         </View>
 
-        <View style={vertical_product_styles.name_container}>
-          <Text style={vertical_product_styles.name_text}> {name} </Text>
+
+
+        <View style={styles.image_container}>
+          <FastImage source={{ uri: `data:image/png;base64,${images[0].element}`}}  style={styles.image} />
         </View>
 
-        <View style={vertical_product_styles.price_container}>
-          <Text style={vertical_product_styles.price_text}> {price} </Text>
-        </View>
+
+
+
+
       </View>
 
+      <View style={styles.divider}/>
     </View>
+  )
+};
+
+const IMAGE_WIDTH = 200;
+const styles = {
+  container: {
+    flexDirection: 'column',
+    flex: 1,
+    paddingTop: 10,
+    paddingLeft:10
+  },
+  image_container: {
+    paddingLeft: 10,
+
+  },
+  image: {
+    width: SCREEN_WIDTH - 40,
+    height: (SCREEN_WIDTH - 20) * .45,
+    borderRadius: 6,
+  },
+  title_container: {
+
+  },
+  title_text: {
+    fontFamily: 'Roboto-Wide',
+    fontSize: 15,
+    fontWeight: '500'
+
+  },
+  descriptor_container: {
+    paddingLeft: 10,
+    paddingTop: 3,
+    paddingBottom: 10
+  },
+  traits_container: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingTop: 1
+  },
+  specific_traits_container: {
+    flexDirection: 'row',
+  },
+  specific_traits_text: {
+    fontFamily: 'Roboto-Wide',
+    fontSize: 10,
+    color: "#626262"
+  },
+  rating_container: {
+    flexDirection: 'row',
+    marginRight: 10,
+    paddingTop: 5
+  },
+  rating_text: {
+    fontFamily: 'Roboto-Wide',
+    fontSize: 11,
+    color: "#777777"
+  },
+  divider: {
+    flexDirection: "row",
+    backgroundColor: "#9a2828",
+    marginTop: 10,
+    height: 1,
+    // marginHorizontal: 5
+  }
+}
+const rating_stylesheet = StyleSheet.create({
+  container: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-evenly"
+  },
+  rating_text: {
+    fontFamily: "Roboto-bold",
+    color: "#3b3b3b",
+    fontSize: 13,
+  },
+  star_container: {
+
+  },
+  star: {
+    fontSize: 13,
+    color: "#3b3b3b",
+  }
+})
+
+const Rating = (rating) => {
+
+  const SelectedIcon = ICONWRAPPER["AntDesign"]
+  return (
+    <View style={rating_stylesheet.container}>
+      <SelectedIcon style={[rating_stylesheet.star, rating_stylesheet.star_container]} name={"star"}/>
+      <Text style={rating_stylesheet.rating_text}>{rating}</Text>
+    </View>
+
   )
 }
 
 
-const CONTAINER_WIDTH = 160;
-const PADDING_WIDTH = 20;
-const vertical_product_styles = StyleSheet.create({
-  container: {
-    flexDirection: "row",
-    marginHorizontal: 20,
 
-  },
-  image_container: {
-
-  },
-  image: {
-    width: CONTAINER_WIDTH,
-    height: 160,
-    // borderTopStartRadius: 10,
-    // borderTopEndRadius: 10,
-  },
-  name_container: {
-    paddingLeft: 5,
-    paddingTop: 5,
-    width: CONTAINER_WIDTH
-  },
-  name_text: {
-    fontFamily: "Roboto-Medium",
-    fontSize: 12
-
-  },
-  price_container: {
-    paddingLeft: 5,
-    paddingTop: 2
-
-  },
-  price_text: {
-    fontSize: 10
-  },
-  product: {
-    flexDirection: "column",
-    backgroundColor: "#F5F5F5",
-    marginBottom: 20,
-    borderRadius: 5,
-    paddingBottom: 10
-
-  }
-})
-
-export { ListProductVertical };
+export {ListProductVertical};

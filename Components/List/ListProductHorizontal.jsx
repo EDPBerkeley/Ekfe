@@ -26,7 +26,7 @@ const ListProductHorizontal = ({name, price, images}) => {
       </View>
 
       <View style={horizontal_product_styles.price_container}>
-        <Text style={horizontal_product_styles.price_text}> {price} </Text>
+        <Text style={horizontal_product_styles.price_text}> {"$"+price} </Text>
       </View>
 
     </View>
@@ -34,31 +34,34 @@ const ListProductHorizontal = ({name, price, images}) => {
 }
 
 
-const CONTAINER_WIDTH = 120;
+const CONTAINER_WIDTH = 130;
 const horizontal_product_styles = StyleSheet.create({
   container: {
     marginRight: 20,
     backgroundColor: "#F5F5F5",
-    borderRadius: 5,
+    borderRadius: 2,
     borderWidth: .5,
-    borderColor: "#d2d2d2"
+    borderColor: "#d2d2d2",
+    height: 140,
   },
   image_container: {
 
   },
   image: {
     width: CONTAINER_WIDTH,
-    height: 120,
+    height: 100
+
     // borderTopStartRadius: 10,
     // borderTopEndRadius: 10,
   },
   name_container: {
     paddingLeft: 5,
     paddingTop: 5,
-    width: CONTAINER_WIDTH
+    width: CONTAINER_WIDTH,
   },
   name_text: {
-    fontFamily: "Roboto-Medium",
+    fontFamily: "Roboto-Wide",
+    fontWeight: "500",
     fontSize: 12
 
   },
@@ -68,7 +71,7 @@ const horizontal_product_styles = StyleSheet.create({
 
   },
   price_text: {
-    fontSize: 10
+    fontSize: 9
 
 
   }
