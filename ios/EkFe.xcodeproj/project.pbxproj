@@ -8,10 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* EkFeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* EkFeTests.m */; };
+		0C65878A4FF074D2867F940F /* libPods-EkFe.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 24B76C67DB0C5A7C77982DE2 /* libPods-EkFe.a */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
-		4AE941E30FF95EFE6B75BF37 /* libPods-EkFe-EkFeTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B3BD2AE44F7E905BA6216370 /* libPods-EkFe-EkFeTests.a */; };
+		571C48FBCED85EC3DE1767A3 /* libPods-EkFe-EkFeTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 81BA98377E98D9C589B81C2E /* libPods-EkFe-EkFeTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		C50DB5C52B624F06005B9FA9 /* Roboto-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C50DB5B92B624F05005B9FA9 /* Roboto-Thin.ttf */; };
 		C50DB5C62B624F06005B9FA9 /* Roboto-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C50DB5BA2B624F05005B9FA9 /* Roboto-BoldItalic.ttf */; };
@@ -63,7 +64,6 @@
 		C5F211B82B7C4F15005DB173 /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C54879972B00026D00C8D43C /* Octicons.ttf */; };
 		C5F211B92B7C4F15005DB173 /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C54879982B00026D00C8D43C /* SimpleLineIcons.ttf */; };
 		C5F211BA2B7C4F15005DB173 /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C54879992B00026D00C8D43C /* Zocial.ttf */; };
-		E38C9318568F9ED66D3D3F62 /* libPods-EkFe.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D0C7C4899D13505C691AC8A /* libPods-EkFe.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -96,15 +96,16 @@
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = EkFe/main.m; sourceTree = "<group>"; };
 		1E37638BF27D4584A3190187 /* Roboto-BlackItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-BlackItalic.ttf"; path = "../assets/fonts/Roboto-BlackItalic.ttf"; sourceTree = "<group>"; };
 		24028B57CF8C46D7A60BDE12 /* Roboto-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-Bold.ttf"; path = "../assets/fonts/Roboto-Bold.ttf"; sourceTree = "<group>"; };
+		24B76C67DB0C5A7C77982DE2 /* libPods-EkFe.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-EkFe.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		37B01465010E468D207015AF /* Pods-EkFeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EkFeTests.release.xcconfig"; path = "Target Support Files/Pods-EkFeTests/Pods-EkFeTests.release.xcconfig"; sourceTree = "<group>"; };
 		3A46A5777EDD4D2685657F8E /* Roboto-Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-Italic.ttf"; path = "../assets/fonts/Roboto-Italic.ttf"; sourceTree = "<group>"; };
 		67B692F4A3DF44F8897465D5 /* Roboto-MediumItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-MediumItalic.ttf"; path = "../assets/fonts/Roboto-MediumItalic.ttf"; sourceTree = "<group>"; };
-		6D0C7C4899D13505C691AC8A /* libPods-EkFe.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-EkFe.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8070390674546190F6F4AF5E /* Pods-EkFe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EkFe.debug.xcconfig"; path = "Target Support Files/Pods-EkFe/Pods-EkFe.debug.xcconfig"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = EkFe/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		81BA98377E98D9C589B81C2E /* libPods-EkFe-EkFeTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-EkFe-EkFeTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		838BA580FBC94FE4A1C9F052 /* Roboto-Black.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-Black.ttf"; path = "../assets/fonts/Roboto-Black.ttf"; sourceTree = "<group>"; };
 		9EE060AE033E5594AA04EC59 /* Pods-EkFe-EkFeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EkFe-EkFeTests.debug.xcconfig"; path = "Target Support Files/Pods-EkFe-EkFeTests/Pods-EkFe-EkFeTests.debug.xcconfig"; sourceTree = "<group>"; };
 		AE55045EE9D142A7B02D6389 /* Roboto-Thin.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-Thin.ttf"; path = "../assets/fonts/Roboto-Thin.ttf"; sourceTree = "<group>"; };
-		B3BD2AE44F7E905BA6216370 /* libPods-EkFe-EkFeTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-EkFe-EkFeTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B417A1BDA32AA2A10B3B2B62 /* Pods-EkFe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EkFe.release.xcconfig"; path = "Target Support Files/Pods-EkFe/Pods-EkFe.release.xcconfig"; sourceTree = "<group>"; };
 		B8F4716ADD774ECD92FCF1E2 /* Roboto-BoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-BoldItalic.ttf"; path = "../assets/fonts/Roboto-BoldItalic.ttf"; sourceTree = "<group>"; };
 		C50DB5B92B624F05005B9FA9 /* Roboto-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Roboto-Thin.ttf"; path = "../assets/fonts/Roboto-Thin.ttf"; sourceTree = "<group>"; };
@@ -141,6 +142,7 @@
 		C54DBC412B180FA900ED34F4 /* AirMaps.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = AirMaps.xcodeproj; path = "../node_modules/react-native-maps/ios/AirMaps.xcodeproj"; sourceTree = "<group>"; };
 		CF856C364A324FB894024901 /* Roboto-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-Medium.ttf"; path = "../assets/fonts/Roboto-Medium.ttf"; sourceTree = "<group>"; };
 		DC3D8876ACB645EABBAFE985 /* Roboto-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-Regular.ttf"; path = "../assets/fonts/Roboto-Regular.ttf"; sourceTree = "<group>"; };
+		E46189BD1F20998FB5112360 /* Pods-EkFeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EkFeTests.debug.xcconfig"; path = "Target Support Files/Pods-EkFeTests/Pods-EkFeTests.debug.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		F1953ECBE6D4435C9616DA02 /* Roboto-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-Light.ttf"; path = "../assets/fonts/Roboto-Light.ttf"; sourceTree = "<group>"; };
 		F4DF2CA74E5C43AD8042FAFD /* Roboto-LightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-LightItalic.ttf"; path = "../assets/fonts/Roboto-LightItalic.ttf"; sourceTree = "<group>"; };
@@ -152,7 +154,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4AE941E30FF95EFE6B75BF37 /* libPods-EkFe-EkFeTests.a in Frameworks */,
+				571C48FBCED85EC3DE1767A3 /* libPods-EkFe-EkFeTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -160,7 +162,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E38C9318568F9ED66D3D3F62 /* libPods-EkFe.a in Frameworks */,
+				0C65878A4FF074D2867F940F /* libPods-EkFe.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -210,6 +212,8 @@
 				B417A1BDA32AA2A10B3B2B62 /* Pods-EkFe.release.xcconfig */,
 				9EE060AE033E5594AA04EC59 /* Pods-EkFe-EkFeTests.debug.xcconfig */,
 				FD90E2C27EA86E9A30AB1360 /* Pods-EkFe-EkFeTests.release.xcconfig */,
+				E46189BD1F20998FB5112360 /* Pods-EkFeTests.debug.xcconfig */,
+				37B01465010E468D207015AF /* Pods-EkFeTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -233,8 +237,8 @@
 			children = (
 				C54DBC412B180FA900ED34F4 /* AirMaps.xcodeproj */,
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
-				6D0C7C4899D13505C691AC8A /* libPods-EkFe.a */,
-				B3BD2AE44F7E905BA6216370 /* libPods-EkFe-EkFeTests.a */,
+				24B76C67DB0C5A7C77982DE2 /* libPods-EkFe.a */,
+				81BA98377E98D9C589B81C2E /* libPods-EkFe-EkFeTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -328,8 +332,8 @@
 				00E356EA1AD99517003FC87E /* Sources */,
 				00E356EB1AD99517003FC87E /* Frameworks */,
 				00E356EC1AD99517003FC87E /* Resources */,
-				FE3F34507FA61235B1DB1FBF /* [CP] Embed Pods Frameworks */,
-				01496A7F60958638C26CFC26 /* [CP] Copy Pods Resources */,
+				A13A58C16259CF2BCC07C234 /* [CP] Embed Pods Frameworks */,
+				8BC55DF0C26213A7C423DE99 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -351,8 +355,8 @@
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
-				6FE265731A9B8C0009A5655B /* [CP] Embed Pods Frameworks */,
-				47F01D6AFE7B2F8649CF0AA4 /* [CP] Copy Pods Resources */,
+				636AAA646B34602BF071E562 /* [CP] Embed Pods Frameworks */,
+				92EB9149486F6E67FA70A088 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -501,23 +505,6 @@
 			shellPath = /bin/sh;
 			shellScript = "set -e\n\nWITH_ENVIRONMENT=\"../node_modules/react-native/scripts/xcode/with-environment.sh\"\nREACT_NATIVE_XCODE=\"../node_modules/react-native/scripts/react-native-xcode.sh\"\n\n/bin/sh -c \"$WITH_ENVIRONMENT $REACT_NATIVE_XCODE\"\n";
 		};
-		01496A7F60958638C26CFC26 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-EkFe-EkFeTests/Pods-EkFe-EkFeTests-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-EkFe-EkFeTests/Pods-EkFe-EkFeTests-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-EkFe-EkFeTests/Pods-EkFe-EkFeTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		3809AB2F431471F09CE193A5 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -540,7 +527,41 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		47F01D6AFE7B2F8649CF0AA4 /* [CP] Copy Pods Resources */ = {
+		636AAA646B34602BF071E562 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-EkFe/Pods-EkFe-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-EkFe/Pods-EkFe-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-EkFe/Pods-EkFe-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8BC55DF0C26213A7C423DE99 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-EkFe-EkFeTests/Pods-EkFe-EkFeTests-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-EkFe-EkFeTests/Pods-EkFe-EkFeTests-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-EkFe-EkFeTests/Pods-EkFe-EkFeTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		92EB9149486F6E67FA70A088 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -557,21 +578,21 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-EkFe/Pods-EkFe-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		6FE265731A9B8C0009A5655B /* [CP] Embed Pods Frameworks */ = {
+		A13A58C16259CF2BCC07C234 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-EkFe/Pods-EkFe-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-EkFe-EkFeTests/Pods-EkFe-EkFeTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-EkFe/Pods-EkFe-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-EkFe-EkFeTests/Pods-EkFe-EkFeTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-EkFe/Pods-EkFe-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-EkFe-EkFeTests/Pods-EkFe-EkFeTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		B086A14B401060715C71F7E0 /* [CP] Check Pods Manifest.lock */ = {
@@ -613,23 +634,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "export RCT_METRO_PORT=\"${RCT_METRO_PORT:=8081}\"\necho \"export RCT_METRO_PORT=${RCT_METRO_PORT}\" > \"${SRCROOT}/../node_modules/react-native/scripts/.packager.env\"\nif [ -z \"${RCT_NO_LAUNCH_PACKAGER+xxx}\" ] ; then\n  if nc -w 5 -z localhost ${RCT_METRO_PORT} ; then\n    if ! curl -s \"http://localhost:${RCT_METRO_PORT}/status\" | grep -q \"packager-status:running\" ; then\n      echo \"Port ${RCT_METRO_PORT} already in use, packager is either not running or not running correctly\"\n      exit 2\n    fi\n  else\n    open \"$SRCROOT/../node_modules/react-native/scripts/launchPackager.command\" || echo \"Can't start packager automatically\"\n  fi\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		FE3F34507FA61235B1DB1FBF /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-EkFe-EkFeTests/Pods-EkFe-EkFeTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-EkFe-EkFeTests/Pods-EkFe-EkFeTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-EkFe-EkFeTests/Pods-EkFe-EkFeTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */

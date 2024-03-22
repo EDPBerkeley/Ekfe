@@ -13,15 +13,14 @@ import { TabBar } from "../../Components";
 import { ListProduct } from "../../Components/List/ListProduct";
 
 
-const ListProductVertical = ({name, price, images}) => {
-  //
-  // console.log("IMAGES 0", images[0])
+const ListProductVerticalLoading = ({name, price, images}) => {
+
   return (
     <View style={vertical_product_styles.container}>
 
       <View style={vertical_product_styles.product}>
         <View style={vertical_product_styles.image_container}>
-          <Image source={{ uri: `data:image/png;base64,${images[0].element}` }}  style={vertical_product_styles.image} />
+          <View style={vertical_product_styles.image} />
         </View>
 
         <View style={vertical_product_styles.name_container}>
@@ -83,4 +82,4 @@ const vertical_product_styles = StyleSheet.create({
   }
 })
 
-export { ListProductVertical };
+export { ListProductVerticalLoading };

@@ -24,6 +24,8 @@ import { ListProductHorizontal } from "../../Components/List/ListProductHorizont
 import { get_general_product_field_for_shop, get_sorted_products } from "../../API/product";
 import { ListProductVertical } from "../../Components/List/ListProductVertical";
 import { get_shop_given_id } from "../../API/store";
+import { ListProductVerticalLoading } from "../../Components/List/ListProductVerticalLoading";
+import { ListProductHorizontalLoading } from "../../Components/List/ListProductHorizontalLoading";
 console.disableYellowBox = true;
 
 const { width } = Dimensions.get('window');
@@ -40,7 +42,10 @@ const ProductScreen = ({route, navigation}) => {
   const [selected_category, set_selected_category] = useState("All Products")
   const [sorted_products, set_sorted_products] = useState([])
   const [resolved_shop, set_resolved_shop] = useState(null)
-
+  const dataArray = Array.from({ length: 10 }, (_, index) => ({
+    id: index.toString(), // Ensure a unique key by using the index
+    // Any other data you might want to use for each item
+  }));
 
   useEffect(() => {
     LogBox.ignoreLogs(['VirtualizedLists should never be nested']);
@@ -49,11 +54,11 @@ const ProductScreen = ({route, navigation}) => {
   useEffect(() => {
     Promise.all([
       Image.prefetch("https://reactjs.org/logo-og.png"),
-      get_shop_given_id(shop._id, true)
+      get_shop_given_id(shop.id, true)
     ]).then(([
-          image_prefetch_result,
-          shop
-      ]) => {
+               image_prefetch_result,
+               shop
+             ]) => {
       set_products(shop.products)
       set_featured_products(shop.featured_products)
       set_for_you_products(shop.for_you_products)
@@ -77,7 +82,7 @@ const ProductScreen = ({route, navigation}) => {
     return finalComponents
   }
 
-    const Header = () => {
+  const Header = () => {
 
 
 
@@ -135,17 +140,86 @@ const ProductScreen = ({route, navigation}) => {
   });
 
 
-    if (isLoading) {
+  if (isLoading) {
     return (
-      <View style={{flex: 1 }}>
-        <View style={{backgroundColor: 'grey', height: 300, width: width}}/>
-        <Animated.ScrollView ref={scrollRef} scrollEventThrottle={16} contentContainerStyle={{flexGrow: 1, alignItems:"center", justifyContent: "center"}}>
+      <View style={styles.container}>
+        <Header />
+        <Animated.ScrollView ref={scrollRef} scrollEventThrottle={16} style={{backgroundColor: "#FFFFFF"}}>
+          <View style={{width: SCREEN_WIDTH, height: 200, backgroundColor: "#e5e5e5"}}/>
+
+          <View style={{backgroundColor: "#FFFFFF"}}>
+            <View style={header_styles.container}>
+
+              <View style={header_styles.name_container}>
+                <Text style={header_styles.name_text}>{shop.name}</Text>
+              </View>
 
 
-          <ActivityIndicator size="large" color="#8E0000" style={{alignItems:"center", justifyContent: "center"}}/>
-          <View style={{height: 50}}/>
-          {/*<View style={{height: 2000}}/>*/}
-          {/* You can add additional text or graphics here */}
+
+              <View style={header_styles.horizontal_container_loading}/>
+
+
+
+            </View>
+            <View style={{marginTop: 10}}/>
+            <View style={styles.bar}/>
+          </View>
+
+
+          <View style={{backgroundColor: '#FFFFFF'}}>
+
+
+            <View style={styles.horizontal_products_container}>
+              <Text style={styles.header_product_text}>Featured</Text>
+              <FlatList
+                data={dataArray}
+                horizontal={true}
+                renderItem={({ item: product }) => (
+                  <ListProductHorizontalLoading
+                    name=""
+                    price=""
+                    images=""
+                  />
+                )}
+                keyExtractor={(item, index) => String(index)} // Provide a unique key extractor for each item
+                showsHorizontalScrollIndicator={false}
+              />
+            </View>
+            <View style={styles.horizontal_products_container}>
+              <Text style={styles.header_product_text}>For You</Text>
+              <FlatList
+                data={dataArray}
+                horizontal={true}
+                renderItem={({ item: product }) => (
+                  <ListProductHorizontalLoading
+                    name=""
+                    price=""
+                    images=""
+                  />
+                )}
+                showsHorizontalScrollIndicator={false}
+                keyExtractor={(item, index) => String(index)} // Provide a unique key extractor for each item
+              />
+            </View >
+            <View style={{marginTop: 30}}/>
+            <View style={styles.bar}></View>
+            <View style={{paddingTop: 15}}>
+              <Text style={styles.all_product_text}>{selected_category}</Text>
+              <FlatList
+                data={dataArray}
+                renderItem={({ item: product, index }) => (
+                  <ListProductVerticalLoading
+                    name=""
+                    price=""
+                    images=""
+                  />
+                )}
+                contentContainerStyle={vertical_product_list.flatListContent}
+                numColumns={2}
+              />
+            </View>
+
+          </View>
         </Animated.ScrollView>
         <TabBar navigation={navigation} />
 
@@ -290,6 +364,12 @@ const header_styles = StyleSheet.create({
   horizontal_container: {
     flexDirection: "row",
     alignItems: "center",
+  },
+  horizontal_container_loading: {
+    flexDirection: "row",
+    width: 150,
+    height: 15,
+    backgroundColor: "#F5F5F5"
   },
   name_container: {
     paddingBottom: 5

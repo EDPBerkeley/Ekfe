@@ -26,7 +26,8 @@ import { useState } from "react";
 
 const Stack = createNativeStackNavigator();
 LogBox.ignoreLogs(["Warning: Each child in a list should have a unique \"key\" prop."]);
-
+console.warn = () => {};
+// console.error = () => {};
 // const [SHOP, set_SHOP] = useState(null)
 // let USER = null
 

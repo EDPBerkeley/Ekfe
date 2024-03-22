@@ -2,15 +2,15 @@ import { Text, View, StyleSheet, TouchableOpacity, Image } from "react-native";
 import { CATEGORIES, ICONWRAPPER } from "../../Constants";
 import React, { useEffect, useState } from "react";
 import { SCREEN_WIDTH } from "../../Constants/constants";
-
+import FastImage from "react-native-fast-image";
 const ListShopLandingVertical = ({ name, category, distance, rating, navigation, shop }) => {
   const [image, set_image] = useState(null);
-
-  useEffect(() => {
-    Image.prefetch("https://reactjs.org/logo-og.png").then(([image]) => {
-      set_image(image);
-    })
-  }, [])
+  //
+  // useEffect(() => {
+  //   Image.prefetch("https://reactjs.org/logo-og.png").then(([image]) => {
+  //     set_image(image);
+  //   })
+  // }, [])
   return (
 
   <TouchableOpacity onPress={() => navigation.navigate("ProductScreen", { shop : shop })} >
@@ -49,7 +49,7 @@ const ListShopLandingVertical = ({ name, category, distance, rating, navigation,
 
 
       <View style={styles.image_container}>
-        <Image source={{ uri: "https://reactjs.org/logo-og.png"}}  style={styles.image} />
+        <FastImage source={{ uri: "https://reactjs.org/logo-og.png"}}  style={styles.image} />
       </View>
 
 

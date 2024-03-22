@@ -33,4 +33,26 @@ const arrtoBoundsDict = (arr) => {
   }
 }
 
-export { scaleBounds, boundsDicttoArr, arrtoBoundsDict }
+function parseJSON(json) {
+
+  // If the current value is an array, process each element of the array.
+  if (Array.isArray(json)) {
+    const c = json.map(item => parseJSON(item));
+    return c;
+  }
+  // If the current value is an object, process each key-value pair.
+  else if (typeof json === 'object' && json !== null) {
+    const newObj = {};
+    Object.keys(json).forEach(key => {
+      newObj[key] = parseJSON(json[key]);
+    });
+
+    return newObj;
+  }
+  // If the current value is neither an array nor an object, return it as is.
+  else {
+    return json;
+  }
+}
+
+export { scaleBounds, boundsDicttoArr, arrtoBoundsDict, parseJSON }

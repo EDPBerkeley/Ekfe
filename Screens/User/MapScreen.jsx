@@ -1,35 +1,50 @@
-import { FlatList, View, StyleSheet, Text, ScrollView } from "react-native";
-import React, { useEffect, useState } from "react";
+import { FlatList, View, StyleSheet, Text, ScrollView, LogBox, Image } from "react-native";
+import React, { useEffect, useLayoutEffect, useState } from "react";
 import { TabBar } from "../../Components";
 import { get_all_stores, get_stores_in_boundary } from "../../API";
 import { ListItem } from "../../Components/List";
 import { Title } from "../../Components/Title/title";
 import MapView, { Marker, PROVIDER_GOOGLE } from "react-native-maps";
 import { MAPSTYLE } from "../../Constants";
-import { scaleBounds } from "../../Services/Utils";
+import { parseJSON, parseJsonRecursively, scaleBounds } from "../../Services/Utils";
 import { ListShopLandingHorizontal } from "../../Components/List/ListShopLandingHorizontal";
 import { ListShopLandingVertical } from "../../Components/List/ListShopLandingVertical";
+import { ListShopLandingHorizontalLoading } from "../../Components/List/ListShopLandingHorizontalLoading";
+import { ListShopLandingVerticalLoading } from "../../Components/List/ListShopLandingVerticalLoading";
 
 
 const MapScreen = ({ navigation }) => {
+  const [shops_in_list, set_shops_in_list] = useState([])
+  const [mapRef, set_mapRef] = useState(null)
+  const [shops_in_markers, set_shops_in_markers] = useState([])
   const [bounds, set_bounds] = useState({
     "northEast": { "latitude": 37.9176, "longitude": -122.25195 },
     "southWest": { "latitude": 37.825399999999995, "longitude": -122.29405 }
   })
-  let initial = true
-  const [shops_in_list, set_shops_in_list] = useState(null)
-  const [mapRef, set_mapRef] = useState([])
-  const [shops_in_markers, set_shops_in_markers] = useState([])
-  const [list_bounds, set_list_bounds] = useState(bounds)
-  const [marker_bounds, set_marker_bounds] = useState(scaleBounds(list_bounds, 4))
-  const [markers, set_markers] = useState(null)
-  const [center, set_center] = useState({
+  const scaled_bounds = scaleBounds(bounds, 4)
+  const center = {
     latitude: 37.8715,
     longitude: -122.2730,
     latitudeDelta: 0.0922,
     longitudeDelta: 0.0421
-  })
+  }
+  const [isLoading, set_isLoading] = useState(true)
+  const dataArray = Array.from({ length: 10 }, (_, index) => ({
+    id: index.toString(), // Ensure a unique key by using the index
+    // Any other data you might want to use for each item
+  }));
+  useEffect(() => {
+    LogBox.ignoreLogs(['VirtualizedLists should never be nested']);
+  }, [])
+  useLayoutEffect(() => {
+    updateRegionStateVars().then(
+      // set_isLoading(false)
+      setTimeout(() => set_isLoading(false), 1000)
+    ).catch((error) => {
+      throw error
+    })
 
+  }, [])
 
   const shuffleArray = (array) => {
     let currentIndex = array.length, temporaryValue, randomIndex;
@@ -50,37 +65,98 @@ const MapScreen = ({ navigation }) => {
     return array;
   }
 
-  const updateRegionStateVars = () => {
+  const updateRegionStateVars = async () => {
+    try {
 
-    mapRef.getMapBoundaries()
-      .then((bounds) => {
-        set_list_bounds(bounds)
-        set_marker_bounds(scaleBounds(bounds, 4))
+      if (mapRef != null) {
+        const bounds = await mapRef.getMapBoundaries();
+        const scaled_bounds = scaleBounds(bounds, 4)
+      }
 
-        get_stores_in_boundary(list_bounds)
-          .then((data) => {
+      set_bounds(bounds);
+      console.log("BOUNDS23", bounds)
+
+      await Image.prefetch("https://reactjs.org/logo-og.png").then(console.log("LOADED"))
+
+      const shopsListData = await get_stores_in_boundary(bounds);
+      console.log("SHOPSHOPS", shopsListData)
+      shopsListData !== null && set_shops_in_list(shopsListData);
+
+      const shopsMarkerData = await get_stores_in_boundary(scaled_bounds);
+      shopsMarkerData !== null && set_shops_in_markers(shopsMarkerData)
 
 
-            set_shops_in_list(JSON.parse(data))
 
-            get_stores_in_boundary(marker_bounds)
-              .then((data) => {
-                data = JSON.parse(data)
-                set_shops_in_markers(data)
+    } catch (error) {
+      throw error
+      // Handle the error appropriately here
+    }
+  };
 
-              }).catch((error) => {
-              console.log(error)
-            })
+  if (isLoading===true) {
+    return (
+      <View flex={1}>
 
-          }).catch((error) => {
-          console.log(error)
-        })
-      }).catch((error) => {
-      console.log(error)
-    })
+        <Title text={"Marketplace"} />
+        <View flex={1.4} style={{backgroundColor: 'grey'}}></View>
 
-  }
+        <View flex={3}>
 
+          <ScrollView>
+            <View paddingTop={0}>
+
+              <View style={styles.horizontal_list}>
+                <Text style={styles.horizontal_list_title}>Recent</Text>
+
+                <FlatList
+                  keyExtractor={(item) => item.id.toString()}
+                  data={dataArray}
+                  renderItem={({ item: shop }) => (
+                    <ListShopLandingHorizontalLoading/>
+                  )}
+                  horizontal={true}
+                  showsHorizontalScrollIndicator={false}
+                />
+              </View>
+              <View style={styles.horizontal_list}>
+                <Text style={styles.horizontal_list_title}>Featured</Text>
+                <FlatList
+                  keyExtractor={(item) => item.id.toString()}
+                  data={dataArray}
+                  renderItem={({ item: shop }) => (
+                    <ListShopLandingHorizontalLoading/>
+                  )}
+                  horizontal={true}
+                  showsHorizontalScrollIndicator={false}
+                />
+              </View>
+
+              <View style={styles.vertical_list}>
+                <Text style={styles.vertical_list_title}>All Nearby</Text>
+                <FlatList
+                  keyExtractor={(item) => item.id.toString()}
+                  data={dataArray}
+                  renderItem={({ item: shop }) => (
+                    <ListShopLandingVerticalLoading
+                      name={shop.name}
+                      rating={shop.rating}
+                      category={shop.category}
+                      distance={shop.distance}
+                      navigation={navigation}
+                      shop={shop}
+                    />
+                  )}
+                />
+              </View>
+
+            </View>
+          </ScrollView>
+
+        </View>
+        <TabBar navigation={navigation} />
+      </View>
+    )
+  } else {
     return (
       <View flex={1}>
 
@@ -98,7 +174,7 @@ const MapScreen = ({ navigation }) => {
             {shops_in_markers.map((shop) => {
 
               return <Marker
-                key={shop._id}
+                key={shop.id}
                 coordinate={{
                   "latitude": shop.location.geometry.coordinates[1],
                   "longitude": shop.location.geometry.coordinates[0]
@@ -120,8 +196,9 @@ const MapScreen = ({ navigation }) => {
 
               <View style={styles.horizontal_list}>
                 <Text style={styles.horizontal_list_title}>Recent</Text>
+
                 <FlatList
-                  keyExtractor={(item) => item._id.toString()}
+                  keyExtractor={(item) => item.id.toString()}
                   data={shops_in_list}
                   renderItem={({ item: shop }) => (
                     <ListShopLandingHorizontal
@@ -140,7 +217,7 @@ const MapScreen = ({ navigation }) => {
               <View style={styles.horizontal_list}>
                 <Text style={styles.horizontal_list_title}>Featured</Text>
                 <FlatList
-                  keyExtractor={(item) => item._id.toString()}
+                  keyExtractor={(item) => item.id.toString()}
                   data={shops_in_list}
                   renderItem={({ item: shop }) => (
                     <ListShopLandingHorizontal
@@ -160,7 +237,7 @@ const MapScreen = ({ navigation }) => {
               <View style={styles.vertical_list}>
                 <Text style={styles.vertical_list_title}>All Nearby</Text>
                 <FlatList
-                  keyExtractor={(item) => item._id.toString()}
+                  keyExtractor={(item) => item.id.toString()}
                   data={shops_in_list}
                   renderItem={({ item: shop }) => (
                     <ListShopLandingVertical
@@ -181,8 +258,9 @@ const MapScreen = ({ navigation }) => {
         </View>
         <TabBar navigation={navigation} />
       </View>
-
     );
+  }
+
 
   };
 
@@ -200,7 +278,6 @@ const styles = StyleSheet.create({
     fontFamily: 'Roboto-Wide',
     fontSize: 17,
     paddingBottom: 5,
-
     fontWeight: '700'
   },
   vertical_list_title: {

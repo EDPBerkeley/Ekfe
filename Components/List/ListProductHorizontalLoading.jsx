@@ -13,20 +13,19 @@ import { TabBar } from "../../Components";
 import { ListProduct } from "../../Components/List/ListProduct";
 
 
-const ListProductHorizontal = ({name, price, images}) => {
+const ListProductHorizontalLoading = ({name, price}) => {
 
   return (
     <View style={horizontal_product_styles.container}>
       <View style={horizontal_product_styles.image_container}>
-        <Image source={{ uri: `data:image/png;base64,${images[0].element}` }}  style={horizontal_product_styles.image} />
       </View>
 
       <View style={horizontal_product_styles.name_container}>
-        <Text style={horizontal_product_styles.name_text}> {name} </Text>
+        <Text style={horizontal_product_styles.name_text}> </Text>
       </View>
 
       <View style={horizontal_product_styles.price_container}>
-        <Text style={horizontal_product_styles.price_text}> {price} </Text>
+        <Text style={horizontal_product_styles.price_text}> </Text>
       </View>
 
     </View>
@@ -41,14 +40,11 @@ const horizontal_product_styles = StyleSheet.create({
     backgroundColor: "#F5F5F5",
     borderRadius: 5,
     borderWidth: .5,
-    borderColor: "#d2d2d2"
-  },
-  image_container: {
-
-  },
-  image: {
+    borderColor: "#d2d2d2",
     width: CONTAINER_WIDTH,
     height: 120,
+  },
+  image_container: {
     // borderTopStartRadius: 10,
     // borderTopEndRadius: 10,
   },
@@ -74,4 +70,4 @@ const horizontal_product_styles = StyleSheet.create({
   }
 })
 
-export { ListProductHorizontal };
+export { ListProductHorizontalLoading };
