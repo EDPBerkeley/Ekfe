@@ -18,7 +18,7 @@ import { MapScreenButtons } from "../../Components/Storefront/MapScreenButtons";
 
 const MapScreen = ({ navigation }) => {
   const [shops_in_list, set_shops_in_list] = useState([])
-  const [search_shops_list, set_search_shops_list] = useState([])
+  const [shops_in_search, set_shops_in_search] = useState([])
   const [mapRef, set_mapRef] = useState(null)
   const [shops_in_markers, set_shops_in_markers] = useState([])
   const [shops_promoted, set_shops_promoted] = useState([])
@@ -34,14 +34,13 @@ const MapScreen = ({ navigation }) => {
     // Any other data you might want to use for each item
   }));
   const [query, setQuery] = useState('');
-  const [map_button, set_map_button] = useState("not_clicked");
-  const [item_button, set_item_button] = useState("clicked")
+  const [map_button, set_map_button] = useState("clicked");
+  const [item_button, set_item_button] = useState("not_clicked")
   // Debounce the onSearch function. Adjust the 300ms delay as needed.
   const debouncedSearch = useCallback(
     debounce((query) => {
       get_shop_from_text_search(query).then(shops => {
-        set_shops_in_list(shops);
-        set_shops_in_markers(scaleBounds(shops, 4))
+        set_shops_in_search(shops);
       });
     }, 300),
     []
@@ -255,7 +254,7 @@ const MapScreen = ({ navigation }) => {
             <View style={styles.vertical_list_search}>
               <FlatList
                 keyExtractor={(item) => item.id.toString()}
-                data={shops_in_list}
+                data={shops_in_search}
                 renderItem={({ item: shop }) => (
                   <ListShopLandingVertical
                     name={shop.name}
@@ -298,15 +297,13 @@ const MapScreen = ({ navigation }) => {
       }
 
       const scaled_bounds = scaleBounds(bounds, 4)
-      console.log("BOUNDS23", bounds)
 
-      await Image.prefetch("https://reactjs.org/logo-og.png").then(console.log("LOADED"))
+      await Image.prefetch("https://reactjs.org/logo-og.png")
 
       const shopsMarkerData = await get_stores_in_boundary(scaled_bounds);
       shopsMarkerData !== null && set_shops_in_markers(shopsMarkerData)
 
       const shopsListData = await get_stores_in_boundary(bounds);
-      console.log("SHOPSHOPS", shopsListData)
       shopsListData !== null && set_shops_in_list(shopsListData);
 
 
