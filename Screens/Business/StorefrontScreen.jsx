@@ -48,17 +48,6 @@ const StorefrontScreen = ({navigation}) => {
 
   }, [shop]);
 
-  //
-  //
-  // useEffect(() => {
-  //   console.log("DHAJDHC" + SHOP)
-  //   get_store_overview_data(SHOP.id)
-  //     .then(data => {
-  //       console.log("THIS IS DATA" + data.js)
-  //     })
-  // }, [SHOP]);
-
-
   if (overview_button === "clicked" && store_overview_data != null) {
     return(
       <View flex={1}>

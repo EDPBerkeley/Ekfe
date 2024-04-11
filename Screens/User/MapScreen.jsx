@@ -1,5 +1,5 @@
-import { FlatList, View, StyleSheet, Text, ScrollView, LogBox, Image } from "react-native";
-import React, { useEffect, useLayoutEffect, useState } from "react";
+import { FlatList, View, StyleSheet, Text, ScrollView, LogBox, Image, TextInput } from "react-native";
+import React, { useCallback, useEffect, useLayoutEffect, useState } from "react";
 import { TabBar } from "../../Components";
 import { get_all_stores, get_stores_in_boundary } from "../../API";
 import { ListItem } from "../../Components/List";
@@ -11,17 +11,17 @@ import { ListShopLandingHorizontal } from "../../Components/List/ListShopLanding
 import { ListShopLandingVertical } from "../../Components/List/ListShopLandingVertical";
 import { ListShopLandingHorizontalLoading } from "../../Components/List/ListShopLandingHorizontalLoading";
 import { ListShopLandingVerticalLoading } from "../../Components/List/ListShopLandingVerticalLoading";
+import debounce from "@react-navigation/stack/src/utils/debounce";
+import { get_shop_from_text_search } from "../../API/store";
+import { MapScreenButtons } from "../../Components/Storefront/MapScreenButtons";
 
 
 const MapScreen = ({ navigation }) => {
   const [shops_in_list, set_shops_in_list] = useState([])
+  const [search_shops_list, set_search_shops_list] = useState([])
   const [mapRef, set_mapRef] = useState(null)
   const [shops_in_markers, set_shops_in_markers] = useState([])
-  const [bounds, set_bounds] = useState({
-    "northEast": { "latitude": 37.9176, "longitude": -122.25195 },
-    "southWest": { "latitude": 37.825399999999995, "longitude": -122.29405 }
-  })
-  const scaled_bounds = scaleBounds(bounds, 4)
+  const [shops_promoted, set_shops_promoted] = useState([])
   const center = {
     latitude: 37.8715,
     longitude: -122.2730,
@@ -33,9 +33,32 @@ const MapScreen = ({ navigation }) => {
     id: index.toString(), // Ensure a unique key by using the index
     // Any other data you might want to use for each item
   }));
+  const [query, setQuery] = useState('');
+  const [map_button, set_map_button] = useState("not_clicked");
+  const [item_button, set_item_button] = useState("clicked")
+  // Debounce the onSearch function. Adjust the 300ms delay as needed.
+  const debouncedSearch = useCallback(
+    debounce((query) => {
+      get_shop_from_text_search(query).then(shops => {
+        set_shops_in_list(shops);
+        set_shops_in_markers(scaleBounds(shops, 4))
+      });
+    }, 300),
+    []
+  );
+
+  // Effect to trigger the debounced search whenever the query changes.
+  useEffect(() => {
+    if (query.trim()) {
+      debouncedSearch(query);
+    }
+  }, [query, debouncedSearch]);
+
+
   useEffect(() => {
     LogBox.ignoreLogs(['VirtualizedLists should never be nested']);
   }, [])
+
   useLayoutEffect(() => {
     updateRegionStateVars().then(
       // set_isLoading(false)
@@ -65,39 +88,12 @@ const MapScreen = ({ navigation }) => {
     return array;
   }
 
-  const updateRegionStateVars = async () => {
-    try {
 
-      if (mapRef != null) {
-        const bounds = await mapRef.getMapBoundaries();
-        const scaled_bounds = scaleBounds(bounds, 4)
-      }
+  function SelectedContent () {
 
-      set_bounds(bounds);
-      console.log("BOUNDS23", bounds)
-
-      await Image.prefetch("https://reactjs.org/logo-og.png").then(console.log("LOADED"))
-
-      const shopsListData = await get_stores_in_boundary(bounds);
-      console.log("SHOPSHOPS", shopsListData)
-      shopsListData !== null && set_shops_in_list(shopsListData);
-
-      const shopsMarkerData = await get_stores_in_boundary(scaled_bounds);
-      shopsMarkerData !== null && set_shops_in_markers(shopsMarkerData)
-
-
-
-    } catch (error) {
-      throw error
-      // Handle the error appropriately here
-    }
-  };
-
-  if (isLoading===true) {
-    return (
+    if (map_button === "clicked" && isLoading === true) {
+      return(
       <View flex={1}>
-
-        <Title text={"Marketplace"} />
         <View flex={1.4} style={{backgroundColor: 'grey'}}></View>
 
         <View flex={3}>
@@ -155,111 +151,189 @@ const MapScreen = ({ navigation }) => {
         </View>
         <TabBar navigation={navigation} />
       </View>
-    )
-  } else {
-    return (
+      )
+    } else if (map_button === "clicked" && isLoading === false) {
+      return (
+        <View flex={1}>
+          <View flex={1.4}>
+            <MapView
+              customMapStyle={MAPSTYLE}
+              provider={PROVIDER_GOOGLE}
+              ref={(ref) => (set_mapRef(ref))}
+              style={{ flex: 1 }}
+              region={center}
+              onRegionChangeComplete={updateRegionStateVars}
+            >
+              {shops_in_markers.map((shop) => {
+
+                return <Marker
+                  key={shop.id}
+                  coordinate={{
+                    "latitude": shop.location.geometry.coordinates[1],
+                    "longitude": shop.location.geometry.coordinates[0]
+                  }}
+                  title={"HI"}
+                  description={"DESC"}
+                />
+              })}
+
+            </MapView>
+          </View>
+          <View flex={3}>
+
+            <ScrollView>
+              <View paddingTop={0}>
+
+                <View style={styles.horizontal_list}>
+                  <Text style={styles.horizontal_list_title}>Recent</Text>
+
+                  <FlatList
+                    keyExtractor={(item) => item.id.toString()}
+                    data={shops_in_markers}
+                    renderItem={({ item: shop }) => (
+                      <ListShopLandingHorizontal
+                        name={shop.name}
+                        rating={shop.rating}
+                        category={shop.category}
+                        distance={shop.distance}
+                        navigation={navigation}
+                        shop={shop}
+                      />
+                    )}
+                    horizontal={true}
+                    showsHorizontalScrollIndicator={false}
+                  />
+                </View>
+                <View style={styles.horizontal_list}>
+                  <Text style={styles.horizontal_list_title}>Featured</Text>
+                  <FlatList
+                    keyExtractor={(item) => item.id.toString()}
+                    data={shops_in_markers}
+                    renderItem={({ item: shop }) => (
+                      <ListShopLandingHorizontal
+                        name={shop.name}
+                        rating={shop.rating}
+                        category={shop.category}
+                        distance={shop.distance}
+                        navigation={navigation}
+                        shop={shop}
+                      />
+                    )}
+                    horizontal={true}
+                    showsHorizontalScrollIndicator={false}
+                  />
+                </View>
+
+                <View style={styles.vertical_list}>
+                  <Text style={styles.vertical_list_title}>All Nearby</Text>
+                  <FlatList
+                    keyExtractor={(item) => item.id.toString()}
+                    data={shops_in_list}
+                    renderItem={({ item: shop }) => (
+                      <ListShopLandingVertical
+                        name={shop.name}
+                        rating={shop.rating}
+                        category={shop.category}
+                        distance={shop.distance}
+                        navigation={navigation}
+                        shop={shop}
+                      />
+                    )}
+                  />
+                </View>
+
+              </View>
+            </ScrollView>
+
+          </View>
+        </View>
+      )
+    } else if (item_button === "clicked") {
+      return (
+        <View flex={1} flexDirection={"column"}>
+
+            <View style={styles.vertical_list_search}>
+              <FlatList
+                keyExtractor={(item) => item.id.toString()}
+                data={shops_in_list}
+                renderItem={({ item: shop }) => (
+                  <ListShopLandingVertical
+                    name={shop.name}
+                    rating={shop.rating}
+                    category={shop.category}
+                    distance={shop.distance}
+                    navigation={navigation}
+                    shop={shop}
+                  />
+                )}
+              />
+            </View>
+
+            <View style={{height: 500, backgroundColor: "#8E0000"}}>
+              <TextInput
+                style={styles.input}
+                placeholder="Search..."
+                value={query}
+                onChangeText={setQuery}
+              />
+            </View>
+
+        </View>
+      )
+    }
+  }
+
+  const updateRegionStateVars = async () => {
+    try {
+
+      let bounds = null;
+      if (mapRef != null) {
+        bounds = await mapRef.getMapBoundaries();
+
+      } else {
+        bounds =  {
+          "northEast": { "latitude": 37.9176, "longitude": -122.25195 },
+          "southWest": { "latitude": 37.825399999999995, "longitude": -122.29405 }
+        }
+      }
+
+      const scaled_bounds = scaleBounds(bounds, 4)
+      console.log("BOUNDS23", bounds)
+
+      await Image.prefetch("https://reactjs.org/logo-og.png").then(console.log("LOADED"))
+
+      const shopsMarkerData = await get_stores_in_boundary(scaled_bounds);
+      shopsMarkerData !== null && set_shops_in_markers(shopsMarkerData)
+
+      const shopsListData = await get_stores_in_boundary(bounds);
+      console.log("SHOPSHOPS", shopsListData)
+      shopsListData !== null && set_shops_in_list(shopsListData);
+
+
+    } catch (error) {
+      throw error
+    }
+  };
+
+
+  return (
       <View flex={1}>
 
         <Title text={"Marketplace"} />
-        <View flex={1.4}>
+        <MapScreenButtons
+          navigation={navigation}
+          map_button={map_button}
+          set_map_button={set_map_button}
+          item_button={item_button}
+          set_item_button={set_item_button}
+        />
 
-          <MapView
-            customMapStyle={MAPSTYLE}
-            provider={PROVIDER_GOOGLE}
-            ref={(ref) => (set_mapRef(ref))}
-            style={{ flex: 1 }}
-            region={center}
-            onRegionChangeComplete={updateRegionStateVars}
-          >
-            {shops_in_markers.map((shop) => {
+        {SelectedContent()}
 
-              return <Marker
-                key={shop.id}
-                coordinate={{
-                  "latitude": shop.location.geometry.coordinates[1],
-                  "longitude": shop.location.geometry.coordinates[0]
-                }}
-                title={"HI"}
-                description={"DESC"}
-              />
-            })}
-
-          </MapView>
-
-
-        </View>
-
-        <View flex={3}>
-
-          <ScrollView>
-            <View paddingTop={0}>
-
-              <View style={styles.horizontal_list}>
-                <Text style={styles.horizontal_list_title}>Recent</Text>
-
-                <FlatList
-                  keyExtractor={(item) => item.id.toString()}
-                  data={shops_in_list}
-                  renderItem={({ item: shop }) => (
-                    <ListShopLandingHorizontal
-                      name={shop.name}
-                      rating={shop.rating}
-                      category={shop.category}
-                      distance={shop.distance}
-                      navigation={navigation}
-                      shop={shop}
-                    />
-                  )}
-                  horizontal={true}
-                  showsHorizontalScrollIndicator={false}
-                />
-              </View>
-              <View style={styles.horizontal_list}>
-                <Text style={styles.horizontal_list_title}>Featured</Text>
-                <FlatList
-                  keyExtractor={(item) => item.id.toString()}
-                  data={shops_in_list}
-                  renderItem={({ item: shop }) => (
-                    <ListShopLandingHorizontal
-                      name={shop.name}
-                      rating={shop.rating}
-                      category={shop.category}
-                      distance={shop.distance}
-                      navigation={navigation}
-                      shop={shop}
-                    />
-                  )}
-                  horizontal={true}
-                  showsHorizontalScrollIndicator={false}
-                />
-              </View>
-
-              <View style={styles.vertical_list}>
-                <Text style={styles.vertical_list_title}>All Nearby</Text>
-                <FlatList
-                  keyExtractor={(item) => item.id.toString()}
-                  data={shops_in_list}
-                  renderItem={({ item: shop }) => (
-                    <ListShopLandingVertical
-                      name={shop.name}
-                      rating={shop.rating}
-                      category={shop.category}
-                      distance={shop.distance}
-                      navigation={navigation}
-                      shop={shop}
-                    />
-                  )}
-                />
-              </View>
-
-            </View>
-          </ScrollView>
-
-        </View>
         <TabBar navigation={navigation} />
       </View>
     );
-  }
+
 
 
   };
@@ -274,19 +348,35 @@ const styles = StyleSheet.create({
     paddingTop: 20
 
   },
+  vertical_list_search: {
+    paddingTop: 0,
+    height: "80%"
+  },
   horizontal_list_title: {
     fontFamily: 'Roboto-Wide',
     fontSize: 17,
-    paddingBottom: 5,
-    fontWeight: '700'
+    paddingBottom: 5
   },
   vertical_list_title: {
     fontFamily: 'Roboto-Wide',
     fontSize: 25,
     paddingBottom: 5,
     paddingLeft: 10,
-    fontWeight: '700',
     marginBottom: -8
+  },
+  input: {
+    height: 40, // Set the height,
+    marginTop: 15,
+    marginHorizontal: 15, // Outer space,
+    marginBottom: 5,
+    // borderWidth: 1, // Border thickness
+    padding: 10, // Inner space,
+    paddingLeft: 30,
+    // borderColor: 'gray', // Border color
+    borderRadius: 20, // Rounded corners,
+    backgroundColor: "#dadada",
+    color: "#000000",
+
   }
 })
 export default MapScreen;

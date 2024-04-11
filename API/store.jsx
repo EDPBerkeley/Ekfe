@@ -65,6 +65,28 @@ async function get_shop_given_id(id, resolve_images) {
     })
 }
 
+async function get_shop_from_text_search(query){
+  const params = {
+    text_input: query
+  };
+
+  // Create a URLSearchParams object and append each parameter
+  const searchParams = new URLSearchParams();
+  for (const key in params) {
+    if (params.hasOwnProperty(key)) {
+      searchParams.append(key, params[key]);
+    }
+  }
+
+  // Construct the full URL with the encoded parameters
+  const SPECIFIC_SHOP_URL = SHOP_URL + "/get_shop/text_search"
+  const fullURL = `${SPECIFIC_SHOP_URL}?${searchParams.toString()}`;
+  return fetch(fullURL)
+    .then(data => data.json()).catch((error) => {
+      console.log(error)
+    })
+}
 
 
-export { get_all_stores, get_stores_in_boundary, get_random_shop, get_shop_given_id };
+
+export { get_all_stores, get_stores_in_boundary, get_random_shop, get_shop_given_id, get_shop_from_text_search };
