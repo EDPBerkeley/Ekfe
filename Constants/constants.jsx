@@ -6,6 +6,7 @@ import { Dimensions } from "react-native";
 
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
+const SCREEN_HEIGHT = Dimensions.get('window').height;
 
 const IP_ADDRESS = "localhost"
 const ICONWRAPPER = {
@@ -400,4 +401,4 @@ const MAPSTYLE = [
   }
 ]
 
-export {ICONWRAPPER, CATEGORIES, MAPSTYLE, IP_ADDRESS, SCREEN_WIDTH};
+export {ICONWRAPPER, CATEGORIES, MAPSTYLE, IP_ADDRESS, SCREEN_WIDTH, SCREEN_HEIGHT};

@@ -1,23 +1,29 @@
 import React from 'react';
-import { View, Dimensions } from 'react-native';
+import { View, ScrollView } from "react-native";
 import { LineChart } from 'react-native-chart-kit';
-import { SCREEN_WIDTH } from "../../Constants/constants";
+import { SCREEN_HEIGHT, SCREEN_WIDTH } from "../../Constants/constants";
 
 const MyLineChart = () => {
   return (
     <View>
       <View style={{flexDirection:"row-reverse"}}>
-        <View style={{borderWidth: 0, marginLeft: -50}}>
+        <ScrollView style={{borderWidth: 0, marginLeft: -65, marginBottom: -120}}>
           <LineChart
             data={{
-              datasets: [{
-                data: [
-                  1186,1303,1464,1464,1605,1657,1716,1809,1899,1899,2083
-                ]
-              }]
+              datasets: [
+                {
+                  data: [1186,1303,1464,1464,1605,1657,1716,1809,1899,1899,2083]
+                },
+                {
+                  data: [1] // min
+                },
+                {
+                  data: [10] // max
+                }
+              ]
             }}
-            width={SCREEN_WIDTH + 50} // from react-native
-            height={220}
+            width={SCREEN_WIDTH + 110} // from react-native
+            height={SCREEN_HEIGHT - 350}
             chartConfig={{
               backgroundColor: 'transparent',
               backgroundGradientFrom: 'transparent',
@@ -30,19 +36,18 @@ const MyLineChart = () => {
                 backgroundColor: 'transparent',
               },
               propsForDots: {
-                r: '0',
-                strokeWidth: '0',
+                r: '5',
+                strokeWidth: '1',
                 stroke: '#8E0000'
               },
               propsForBackgroundLines: {
                 stroke: 'transparent' // Hides the grid lines
               },
-              fillShadowGradient: 'transparent',
-              fillShadowGradientFrom: 'transparent',
-              fillShadowGradientTo: 'transparent',
-              fillShadowGradientFromOpacity: 0,
-              fillShadowGradientToOpacity: 0,
-              strokeWidth: 3,
+              fillShadowGradientFrom: 'rgba(220,0,0,0.64)',
+              fillShadowGradientTo: 'rgba(220,0,0,0.64)',
+              fillShadowGradientFromOpacity: .6,
+              fillShadowGradientToOpacity: .2,
+              strokeWidth: 2.5,
               endSpacing: 0
             }}
             bezier
@@ -55,7 +60,7 @@ const MyLineChart = () => {
             withVerticalLabels={false}
             withHorizontalLabels={false}
           />
-        </View>
+        </ScrollView>
       </View>
     </View>
   );
