@@ -177,7 +177,7 @@ const styles = StyleSheet.create({
     bottom: 25,
     zIndex: 2,
     paddingHorizontal: 10,
-    backgroundColor: "#4b0000",
+    backgroundColor: "#8e0000",
     borderRadius: 8
   },
   interval_text: {
