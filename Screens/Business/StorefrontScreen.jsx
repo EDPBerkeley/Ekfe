@@ -10,6 +10,7 @@ import { DisplayOverviewData } from "../../Components/Statistics/Overview_Data";
 import { ListProduct } from "../../Components/List/ListProduct";
 import { get_product_for_shop } from "../../API";
 import { ListProductData } from "../../Components/List/ListProductData";
+import MyLineChart from "../../Components/Graphs/RevenueGraph";
 
 const StorefrontScreen = ({navigation}) => {
 
@@ -60,6 +61,7 @@ const StorefrontScreen = ({navigation}) => {
           set_product_data_button={set_product_data_button}/>
 
         <View marginTop={0}/>
+        <MyLineChart/>
         <FlatList
           // keyExtractor={(item) => item._id.toString()}
           data={store_overview_data}
