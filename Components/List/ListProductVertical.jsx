@@ -11,7 +11,7 @@ const ListProductVertical = ({ name, price, images, category }) => {
 
 
         <View style={styles.left_text}>
-          <View flex={2} style={{height: 10}}/>
+          <View flex={1} style={{height: 10}}/>
           <View style={styles.descriptor_container}>
             <View style={styles.title_container}>
               <Text style={styles.title_text}>{name}</Text>
@@ -39,7 +39,7 @@ const ListProductVertical = ({ name, price, images, category }) => {
 
 
           </View>
-          <View flex={3}/>
+          <View flex={10}/>
         </View>
 
 

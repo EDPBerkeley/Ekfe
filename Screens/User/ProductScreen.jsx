@@ -64,6 +64,7 @@ const ProductScreen = ({route, navigation}) => {
       set_for_you_products(shop.for_you_products)
       set_sorted_products(shop.sorted_products)
       setIsLoading(false)
+
     }).catch((error) => {
       console.log(error)
     })
@@ -71,10 +72,13 @@ const ProductScreen = ({route, navigation}) => {
 
   const NumCost = (numSigns) => {
 
+
     let finalComponents = []
     const SelectedIcon = ICONWRAPPER["Feather"]
 
-    for (let i = 0; i < numSigns + 1; i++) {
+
+    for (let i = 0; i < parseInt(numSigns); i++) {
+      console.log("Running" + i)
       finalComponents.push(
         <SelectedIcon style={styles.cost} name={"dollar-sign"}/>
       )

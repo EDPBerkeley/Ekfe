@@ -15,6 +15,7 @@ import { ListProduct } from "../../Components/List/ListProduct";
 
 const ListProductHorizontal = ({name, price, images}) => {
 
+  console.log()
   return (
     <View style={horizontal_product_styles.container}>
       <View style={horizontal_product_styles.image_container}>
@@ -22,7 +23,7 @@ const ListProductHorizontal = ({name, price, images}) => {
       </View>
 
       <View style={horizontal_product_styles.name_container}>
-        <Text style={horizontal_product_styles.name_text}> {name} </Text>
+        <Text numberOfLines={3} style={horizontal_product_styles.name_text}>{name}</Text>
       </View>
 
       <View style={horizontal_product_styles.price_container}>
@@ -42,7 +43,7 @@ const horizontal_product_styles = StyleSheet.create({
     borderRadius: 2,
     borderWidth: .5,
     borderColor: "#d2d2d2",
-    height: 140,
+    height: 150,
   },
   image_container: {
 
@@ -62,7 +63,8 @@ const horizontal_product_styles = StyleSheet.create({
   name_text: {
     fontFamily: "Roboto-Wide",
     fontWeight: "500",
-    fontSize: 12
+    fontSize: 12,
+    textAlign: 'left'
 
   },
   price_container: {
