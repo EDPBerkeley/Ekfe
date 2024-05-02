@@ -4,50 +4,44 @@ import React, { useEffect, useState } from "react";
 import { SCREEN_WIDTH } from "../../Constants/constants";
 import FastImage from "react-native-fast-image";
 const ListProductVertical = ({ name, price, images, category }) => {
-  const [image, set_image] = useState(null);
-  //
-  // useEffect(() => {
-  //   Image.prefetch("https://reactjs.org/logo-og.png").then(([image]) => {
-  //     set_image(image);
-  //   })
-  // }, [])
   return (
 
     <View >
       <View style={styles.container}>
 
 
-        <View style={styles.descriptor_container}>
-          <View style={styles.title_container}>
-            <Text style={styles.title_text}>{name}</Text>
-          </View>
-
-          <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
-
-            <View style={styles.rating_container}>
-
-
-              <Text style={styles.rating_text}>{category}</Text>
-              <View style={{padding: 5}}/>
-              <Text style={styles.rating_text}>{'$'+price}</Text>
+        <View style={styles.left_text}>
+          <View flex={2} style={{height: 10}}/>
+          <View style={styles.descriptor_container}>
+            <View style={styles.title_container}>
+              <Text style={styles.title_text}>{name}</Text>
             </View>
+
+            <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+
+              <View style={styles.rating_container}>
+
+
+                <Text style={styles.rating_text}>{category}</Text>
+                <View style={{padding: 5}}/>
+                <Text style={styles.rating_text}>{'$'+price}</Text>
+              </View>
+            </View>
+
+            <View style={styles.description}>
+              <Text numberOfLines={3} style={styles.long_description}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent ultrices non turpis egestas sollicitudin. Duis molestie est at nulla varius scelerisque. Quisque in elit mattis neque faucibus eleifend eget sed lacus. Morbi nec sem maximus, ornare magna at, faucibus ante. Cras ut massa sed metus tristique mattis.</Text>
+            </View>
+
+
+            <View style={styles.traits_container}>
+
+            </View>
+
+
           </View>
-
-
-          <View style={styles.traits_container}>
-
-            {/*<View style={styles.specific_traits_container}>*/}
-            {/*  <Text style={styles.specific_traits_text}>{category}</Text>*/}
-            {/*  <View style={{paddingHorizontal: 3}}/>*/}
-            {/*  <Text style={styles.specific_traits_text}>{distance + " mi"}</Text>*/}
-            {/*</View>*/}
-
-
-
-          </View>
-
-
+          <View flex={3}/>
         </View>
+
 
 
 
@@ -61,7 +55,7 @@ const ListProductVertical = ({ name, price, images, category }) => {
 
       </View>
 
-      <View style={styles.divider}/>
+      {/*<View style={styles.divider}/>*/}
     </View>
   )
 };
@@ -69,31 +63,43 @@ const ListProductVertical = ({ name, price, images, category }) => {
 const IMAGE_WIDTH = 200;
 const styles = {
   container: {
-    flexDirection: 'column',
+    flexDirection: 'row',
+    justifyContent: "space-between",
     flex: 1,
-    paddingTop: 10,
-    paddingLeft:10
+    paddingLeft: 7,
+    borderWidth: 1,
+    borderRadius: 6,
+    marginHorizontal: 13,
+    borderColor: '#a1a1a1',
+    marginVertical: 8
   },
   image_container: {
-    paddingLeft: 10,
+    paddingRight: 10,
+    paddingVertical: 8
 
   },
   image: {
-    width: SCREEN_WIDTH - 40,
-    height: (SCREEN_WIDTH - 20) * .45,
+    width: 120,
+    height: 120,
     borderRadius: 6,
   },
   title_container: {
 
   },
+  left_text: {
+    flexDirection: 'column',
+    width: 200,
+    // justifyContent: 'center'
+  },
   title_text: {
     fontFamily: 'Roboto-Wide',
     fontSize: 15,
-    fontWeight: '500'
+    fontWeight: '500',
+    color: "#000000"
 
   },
   descriptor_container: {
-    paddingLeft: 10,
+    paddingLeft: 5,
     paddingTop: 3,
     paddingBottom: 10
   },
@@ -118,7 +124,7 @@ const styles = {
   rating_text: {
     fontFamily: 'Roboto-Wide',
     fontSize: 11,
-    color: "#777777"
+    color: "#2a2a2a",
   },
   divider: {
     flexDirection: "row",
@@ -126,6 +132,15 @@ const styles = {
     marginTop: 10,
     height: 1,
     // marginHorizontal: 5
+  },
+  description: {
+
+    paddingTop: 9
+  },
+  long_description: {
+    fontSize: 12,
+    lineHeight: 17,
+    color: "#2a2a2a",
   }
 }
 const rating_stylesheet = StyleSheet.create({
@@ -136,7 +151,7 @@ const rating_stylesheet = StyleSheet.create({
   },
   rating_text: {
     fontFamily: "Roboto-bold",
-    color: "#3b3b3b",
+    color: "#2a2a2a",
     fontSize: 13,
   },
   star_container: {
