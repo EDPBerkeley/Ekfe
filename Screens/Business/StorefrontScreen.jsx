@@ -120,7 +120,7 @@ const StorefrontScreen = ({ navigation }) => {
           set_product_data_button={set_product_data_button} />
         {/*<View marginTop={10}/>*/}
         <FlatList
-          keyExtractor={(item) => item._id.toString()}
+          keyExtractor={(item) => item.id.toString()}
           data={product_data}
           renderItem={({ item: product }) => (
             <ListProductData
