@@ -26,7 +26,7 @@
 		C50DB5CE2B624F06005B9FA9 /* Roboto-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C50DB5C22B624F06005B9FA9 /* Roboto-Italic.ttf */; };
 		C50DB5CF2B624F06005B9FA9 /* Roboto-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C50DB5C32B624F06005B9FA9 /* Roboto-BlackItalic.ttf */; };
 		C50DB5D02B624F06005B9FA9 /* Roboto-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C50DB5C42B624F06005B9FA9 /* Roboto-MediumItalic.ttf */; };
-		C53722772BF1BE9500D20E93 /* main.jsbundle in Resources */ = {isa = PBXBuildFile; fileRef = C53722762BF1BE9400D20E93 /* main.jsbundle */; };
+		C53722792BF1CA6700D20E93 /* main.jsbundle in Resources */ = {isa = PBXBuildFile; fileRef = C53722782BF1CA6700D20E93 /* main.jsbundle */; };
 		C54879A12B00026D00C8D43C /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C548798D2B00026D00C8D43C /* FontAwesome.ttf */; };
 		C54879A32B00026D00C8D43C /* Feather.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C548798E2B00026D00C8D43C /* Feather.ttf */; };
 		C54879A52B00026D00C8D43C /* AntDesign.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C548798F2B00026D00C8D43C /* AntDesign.ttf */; };
@@ -122,6 +122,7 @@
 		C50DB5C32B624F06005B9FA9 /* Roboto-BlackItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Roboto-BlackItalic.ttf"; path = "../assets/fonts/Roboto-BlackItalic.ttf"; sourceTree = "<group>"; };
 		C50DB5C42B624F06005B9FA9 /* Roboto-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Roboto-MediumItalic.ttf"; path = "../assets/fonts/Roboto-MediumItalic.ttf"; sourceTree = "<group>"; };
 		C53722762BF1BE9400D20E93 /* main.jsbundle */ = {isa = PBXFileReference; lastKnownFileType = text; path = main.jsbundle; sourceTree = "<group>"; };
+		C53722782BF1CA6700D20E93 /* main.jsbundle */ = {isa = PBXFileReference; lastKnownFileType = text; path = main.jsbundle; sourceTree = "<group>"; };
 		C548798D2B00026D00C8D43C /* FontAwesome.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = FontAwesome.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
 		C548798E2B00026D00C8D43C /* Feather.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Feather.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Feather.ttf"; sourceTree = "<group>"; };
 		C548798F2B00026D00C8D43C /* AntDesign.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = AntDesign.ttf; path = "../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf"; sourceTree = "<group>"; };
@@ -256,6 +257,7 @@
 			isa = PBXGroup;
 			children = (
 				C53722762BF1BE9400D20E93 /* main.jsbundle */,
+				C53722782BF1CA6700D20E93 /* main.jsbundle */,
 				13B07FAE1A68108700A75B9A /* EkFe */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* EkFeTests */,
@@ -453,7 +455,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C53722772BF1BE9500D20E93 /* main.jsbundle in Resources */,
+				C53722792BF1CA6700D20E93 /* main.jsbundle in Resources */,
 				C5F211A82B7C4F15005DB173 /* AntDesign.ttf in Resources */,
 				C5F211A92B7C4F15005DB173 /* Entypo.ttf in Resources */,
 				C5F211AA2B7C4F15005DB173 /* EvilIcons.ttf in Resources */,

@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import { SCREEN_WIDTH } from "../../Constants/constants";
 import FastImage from "react-native-fast-image";
 const ListProductVertical = ({ name, price, images, category }) => {
+  // console.log("KLKLKLKLKLK" + images[0].element)
   return (
 
     <View >

@@ -49,7 +49,7 @@ const ListShopLandingVertical = ({ name, category, distance, rating, navigation,
 
 
       <View style={styles.image_container}>
-        <FastImage source={{ uri: "https://reactjs.org/logo-og.png"}}  style={styles.image} />
+        <FastImage source={{ uri: `data:image/jpeg;base64,${shop.banner.element}`}}  style={styles.image} />
       </View>
 
 

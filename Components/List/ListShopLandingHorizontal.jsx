@@ -17,7 +17,7 @@ const ListShopLandingHorizontal = ({ name, category, distance, rating, navigatio
     <View style={styles.container}>
 
       <View style={styles.image_container}>
-        <FastImage source={{ uri: "https://reactjs.org/logo-og.png"}}  style={styles.image} />
+        <FastImage source={{ uri: `data:image/jpeg;base64,${shop.banner.element}`}}  style={styles.image} />
       </View>
 
       <View style={styles.descriptor_container}>

@@ -68,22 +68,13 @@ const MapScreen = ({ navigation }) => {
 
   }, [])
 
-  const shuffleArray = (array) => {
-    let currentIndex = array.length, temporaryValue, randomIndex;
-
-    // While there remain elements to shuffle...
-    while (0 !== currentIndex) {
-
-      // Pick a remaining element...
-      randomIndex = Math.floor(Math.random() * currentIndex);
-      currentIndex -= 1;
-
-      // And swap it with the current element.
-      temporaryValue = array[currentIndex];
-      array[currentIndex] = array[randomIndex];
-      array[randomIndex] = temporaryValue;
+  function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+      // Generate a random index from 0 to i
+      const j = Math.floor(Math.random() * (i + 1));
+      // Swap elements at indices i and j
+      [array[i], array[j]] = [array[j], array[i]];
     }
-
     return array;
   }
 
@@ -197,6 +188,7 @@ const MapScreen = ({ navigation }) => {
                         distance={shop.distance}
                         navigation={navigation}
                         shop={shop}
+
                       />
                     )}
                     horizontal={true}

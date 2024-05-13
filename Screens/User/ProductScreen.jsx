@@ -16,7 +16,7 @@ import Animated, {
 } from 'react-native-reanimated';
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { ICONWRAPPER, SCREEN_WIDTH } from "../../Constants/constants";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { get_product_for_shop } from "../../API";
 import { TabBar } from "../../Components";
 import { ListProductHorizontal } from "../../Components/List/ListProductHorizontal";
@@ -25,6 +25,7 @@ import { ListProductVertical } from "../../Components/List/ListProductVertical";
 import { get_shop_given_id } from "../../API/store";
 import { ListProductVerticalLoading } from "../../Components/List/ListProductVerticalLoading";
 import { ListProductHorizontalLoading } from "../../Components/List/ListProductHorizontalLoading";
+import FastImage from "react-native-fast-image";
 console.disableYellowBox = true;
 console.disableYellowBox = true;
 
@@ -46,6 +47,8 @@ const ProductScreen = ({route, navigation}) => {
     id: index.toString(), // Ensure a unique key by using the index
     // Any other data you might want to use for each item
   }));
+  const banner = shop.banner;
+  console.log("THIS IS SHOP BANNER ELEMENT" + shop.banner.element)
 
   useEffect(() => {
     LogBox.ignoreLogs(['VirtualizedLists should never be nested']);
@@ -232,12 +235,17 @@ const ProductScreen = ({route, navigation}) => {
       <View style={styles.container}>
         <Header />
         <Animated.ScrollView ref={scrollRef} scrollEventThrottle={16} style={{backgroundColor: "#FFFFFF"}}>
-          <Animated.Image
-            source={{
-              uri: "https://reactjs.org/logo-og.png"
-            }}
-            style={[styles.image, imageAnimatedStyle]}
-          />
+          {/*<Animated.Image*/}
+          {/*  source={{*/}
+          {/*    uri: "https://reactjs.org/logo-og.png"*/}
+          {/*  }}*/}
+          {/*  style={[styles.image, imageAnimatedStyle]}*/}
+          {/*/>*/}
+          {/*<Text>{shop.banner.element}</Text>*/}
+
+
+          <Animated.Image source={{ uri: `data:image/jpeg;base64,${shop.banner.element}` }} />
+          <FastImage source={{ uri: `data:image/jpeg;base64,${shop.banner.element}`}}  style={styles.image} />
 
           <View style={{backgroundColor: "#FFFFFF"}}>
             <View style={header_styles.container}>
@@ -434,8 +442,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff'
   },
   image: {
-    width: width,
-    height: IMG_HEIGHT
+    width: SCREEN_WIDTH,
+    height: 250,
   },
   header: {
     backgroundColor: '#fff',
