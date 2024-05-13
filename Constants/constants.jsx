@@ -8,7 +8,7 @@ import { Dimensions } from "react-native";
 const SCREEN_WIDTH = Dimensions.get('window').width;
 const SCREEN_HEIGHT = Dimensions.get('window').height;
 
-const IP_ADDRESS = "localhost"
+const IP_ADDRESS = "https://edp1-49215be185d6.herokuapp.com"
 const ICONWRAPPER = {
   Feather,
   Ionicons,

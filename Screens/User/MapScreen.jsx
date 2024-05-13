@@ -303,6 +303,7 @@ const MapScreen = ({ navigation }) => {
       const shopsMarkerData = await get_stores_in_boundary(scaled_bounds);
       shopsMarkerData !== null && set_shops_in_markers(shopsMarkerData)
 
+
       const shopsListData = await get_stores_in_boundary(bounds);
       shopsListData !== null && set_shops_in_list(shopsListData);
 

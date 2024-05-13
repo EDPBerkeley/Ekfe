@@ -3,7 +3,7 @@ import { objToQueryString } from "./utils";
 import { boundsDicttoArr } from "../Services/Utils";
 import {IP_ADDRESS} from "../Constants";
 
-const SHOP_URL = "http://" + IP_ADDRESS + ":8000/store";
+const SHOP_URL = IP_ADDRESS + "/store";
 async function get_all_stores() {
   let url = SHOP_URL + "/all"
 
@@ -25,6 +25,7 @@ async function get_stores_in_boundary(bounds_dict)  {
   })
 
   const url = SHOP_URL + `/get_stores/boundary?${queryString}`
+  console.log("KDSJKJKF" + url)
   // console.log("URL", url)
   return fetch(url)
     .then(data => data.json()).catch((error) => {

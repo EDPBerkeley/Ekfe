@@ -7,7 +7,9 @@
     "ios": "react-native run-ios",
     "lint": "eslint .",
     "start": "react-native start",
-    "test": "jest"
+    "test": "jest",
+    "bundle:ios": "react-native bundle --entry-file index.js --platform ios --dev false --bundle-output ./ios/main.jsbundle --assets-dest ios",
+    "postinstall": "npm run bundle:ios"
   },
   "dependencies": {
     "@monterosa/react-native-parallax-scroll": "^1.8.0",
