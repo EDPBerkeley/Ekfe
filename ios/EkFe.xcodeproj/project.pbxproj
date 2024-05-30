@@ -26,7 +26,7 @@
 		C50DB5CE2B624F06005B9FA9 /* Roboto-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C50DB5C22B624F06005B9FA9 /* Roboto-Italic.ttf */; };
 		C50DB5CF2B624F06005B9FA9 /* Roboto-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C50DB5C32B624F06005B9FA9 /* Roboto-BlackItalic.ttf */; };
 		C50DB5D02B624F06005B9FA9 /* Roboto-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C50DB5C42B624F06005B9FA9 /* Roboto-MediumItalic.ttf */; };
-		C53722792BF1CA6700D20E93 /* main.jsbundle in Resources */ = {isa = PBXBuildFile; fileRef = C53722782BF1CA6700D20E93 /* main.jsbundle */; };
+		C537227B2BF1F20E00D20E93 /* main.jsbundle in Resources */ = {isa = PBXBuildFile; fileRef = C53722762BF1BE9400D20E93 /* main.jsbundle */; };
 		C54879A12B00026D00C8D43C /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C548798D2B00026D00C8D43C /* FontAwesome.ttf */; };
 		C54879A32B00026D00C8D43C /* Feather.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C548798E2B00026D00C8D43C /* Feather.ttf */; };
 		C54879A52B00026D00C8D43C /* AntDesign.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C548798F2B00026D00C8D43C /* AntDesign.ttf */; };
@@ -455,7 +455,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C53722792BF1CA6700D20E93 /* main.jsbundle in Resources */,
+				C537227B2BF1F20E00D20E93 /* main.jsbundle in Resources */,
 				C5F211A82B7C4F15005DB173 /* AntDesign.ttf in Resources */,
 				C5F211A92B7C4F15005DB173 /* Entypo.ttf in Resources */,
 				C5F211AA2B7C4F15005DB173 /* EvilIcons.ttf in Resources */,
